@@ -11,6 +11,6 @@ public enum Mapas {
     }
 
     public String getNomeArquivo() {
-        return "semnome/mapas/" + nomeArquivo;
+        return "mapas/" + nomeArquivo;
     }
 }

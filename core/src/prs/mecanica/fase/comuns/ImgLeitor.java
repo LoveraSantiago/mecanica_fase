@@ -17,7 +17,7 @@ public class ImgLeitor implements Disposable{
     }
 
     private ImgLeitor(){
-        this.textureAtlas = new TextureAtlas("semnome/imgs/imgs_gerais.atlas");
+        this.textureAtlas = new TextureAtlas("imgs/imgs_gerais.atlas");
     }
 
     public static ImgLeitor getInstance() {
