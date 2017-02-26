@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputProcessor;
 class JogadorListener implements InputProcessor{
 
     private final ControleJogador controle;
+    private int contadorKeyDown;
 
     public JogadorListener(ControleJogador controle) {
         this.controle = controle;
@@ -12,13 +13,16 @@ class JogadorListener implements InputProcessor{
 
     @Override
     public boolean keyDown(int keycode) {
+        this.contadorKeyDown++;
         this.controle.movimentarJogador(keycode);
         return false;
     }
 
     @Override
     public boolean keyUp(int keycode) {
-        this.controle.pararMovimentacao();
+        if(--this.contadorKeyDown == 0){
+            this.controle.pararMovimentacao();
+        }
         return false;
     }
 
