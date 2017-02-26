@@ -1,5 +1,6 @@
 package prs.mecanica.fase.debugagem;
 
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -12,18 +13,23 @@ public class Debugagem {
 
     private final static StringBuilder stringBuilder = new StringBuilder();
 
-    public static class Camera {
+    public static class CameraD {
 
         private final static Vector3 vector3 = new Vector3();
         private static int contador;
 
-        public static void posicao(com.badlogic.gdx.graphics.Camera camera){
-            Debugagem.Posicao.vetor3("camera", camera.position);
+        public static void completo(Camera camera){
+            posicao(camera);
+            frustrum(camera);
         }
 
-        public static void frustrum(com.badlogic.gdx.graphics.Camera camera){
+        public static void posicao(Camera camera){
+            Debugagem.Posicao.vetor3("Camera pos", camera.position);
+        }
+
+        public static void frustrum(Camera camera){
             stringBuilder.setLength(0);
-            stringBuilder.append("Frustrum" + "\n");
+            stringBuilder.append("Camera Frustrum" + "\n");
             for(contador = 0; contador < camera.frustum.planePoints.length; contador++){
                 vector3.set(camera.frustum.planePoints[contador]);
                 stringBuilder.append("x: " + vector3.x + ", " + "y: " + vector3.y + "; \n");

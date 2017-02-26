@@ -3,6 +3,7 @@ package prs.mecanica.fase.atores.jogador;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
 import prs.mecanica.fase.comuns.ImgLeitor;
@@ -28,6 +29,7 @@ public class SpriteManager {
 
         this.arraySprites = new Array<Sprite>();
         this.arraySprites.addAll(this.spriteCima, this.spriteBaixo, this.spriteDir, this.spriteEsq);
+
         configurarSprites();
     }
 
@@ -65,6 +67,7 @@ public class SpriteManager {
 
     private void configurarSprites(){
         for(this.contadorSprites = 0; this.contadorSprites < this.arraySprites.size; this.contadorSprites++){
+            this.arraySprites.get(this.contadorSprites).setOrigin(0, 0);
             this.arraySprites.get(this.contadorSprites).setScale(MyCamera.ESCALA);
         }
     }

@@ -28,8 +28,7 @@ public class MyCamera {
         this.viewport.apply();
 
         this.camera.position.set(this.camera.viewportWidth / 2f, this.camera.viewportHeight / 2f, 0);
-        this.camera.update();
-        Debugagem.Camera.frustrum(this.camera);
+        update();
     }
 
     public static MyCamera getInstance() {
@@ -38,6 +37,7 @@ public class MyCamera {
 
     public void resize(int width, int heigth){
         this.viewport.update(width, heigth);
+        this.viewport.apply();
     }
 
     public void update(){

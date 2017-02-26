@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import prs.mecanica.fase.comuns.MySpriteBatch;
 import prs.mecanica.fase.comuns.contratos.TipoControlavel;
 import prs.mecanica.fase.comuns.contratos.TipoDesenhavel;
+import prs.mecanica.fase.debugagem.Debugagem;
 
 public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador{
 
@@ -37,6 +38,7 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
     public void meDesenhar() {
         this.movimentadorAtual.movimentar();
         this.mySpriteBatch.desenharSprite(this.spriteAtual);
+        Debugagem.Posicao.xy("sprite pos", this.spriteAtual.getX(), this.spriteAtual.getY());
     }
 
     @Override
