@@ -1,6 +1,6 @@
 package prs.mecanica.fase.atores.jogador;
 
-public interface ControleJogador {
+interface ControleJogador {
 
     void movimentarJogador(int keyCode);
     void pararMovimentacao();
