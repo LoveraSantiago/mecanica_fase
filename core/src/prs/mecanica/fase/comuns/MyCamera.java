@@ -8,12 +8,14 @@ import prs.mecanica.fase.debugagem.Debugagem;
 
 public class MyCamera {
 
+    public static final float ESCALA = 1f / 10f;
+
     private static final MyCamera myCamera;
-
     private final OrthographicCamera camera;
-    private final Viewport viewport;
 
+    private final Viewport viewport;
     private final int LARGURA_TELA = 30;
+
     private final int HALTURA_TELA = 20;
 
     static{
@@ -27,7 +29,7 @@ public class MyCamera {
 
         this.camera.position.set(this.camera.viewportWidth / 2f, this.camera.viewportHeight / 2f, 0);
         this.camera.update();
-        Debugagem.Camera.frustrumCamera(this.camera);
+        Debugagem.Camera.frustrum(this.camera);
     }
 
     public static MyCamera getInstance() {
@@ -40,7 +42,6 @@ public class MyCamera {
 
     public void update(){
         this.camera.update();
-//        Debugagem.Camera.frustrumCamera(this.camera);
     }
 
     public OrthographicCamera getCamera() {

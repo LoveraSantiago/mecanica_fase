@@ -10,38 +10,92 @@ import com.badlogic.gdx.utils.StringBuilder;
 
 public class Debugagem {
 
+    private final static StringBuilder stringBuilder = new StringBuilder();
+
+    public static class Camera {
+
+        private final static Vector3 vector3 = new Vector3();
+        private static int contador;
+
+        public static void posicao(com.badlogic.gdx.graphics.Camera camera){
+            Debugagem.Posicao.vetor3("camera", camera.position);
+        }
+
+        public static void frustrum(com.badlogic.gdx.graphics.Camera camera){
+            stringBuilder.setLength(0);
+            stringBuilder.append("Frustrum" + "\n");
+            for(contador = 0; contador < camera.frustum.planePoints.length; contador++){
+                vector3.set(camera.frustum.planePoints[contador]);
+                stringBuilder.append("x: " + vector3.x + ", " + "y: " + vector3.y + "; \n");
+            }
+            stringBuilder.append("*********\n");
+            System.out.println(stringBuilder);
+        }
+    }
+
     public static class Posicao{
 
-        public static void dbgPosVector3(String texto, Vector3 p){
+        public static void vetor3(String texto, Vector3 p){
             System.out.println(texto + " x:" + p.x + " y:" + p.y);
         }
 
-        public static void dbgPosVector2(String texto, Vector2 p){
-            dbgXY(texto, p.x, p.y);
+        public static void vetor2(String texto, Vector2 p){
+            xy(texto, p.x, p.y);
         }
 
-        public static void dbgXY(String texto, float x, float y){
+        public static void xy(String texto, float x, float y){
             System.out.println(texto + " x:" + x + " y:" + y);
         }
     }
 
-    public static class Camera {
+    public static class Texturas{
 
-        private final static StringBuilder stringBuilder = new StringBuilder();
-        private final static Vector3 vector3 = new Vector3();
-        private static int contador;
+        public static void sprite(String texto, Sprite sprite){
+            stringBuilder.setLength(0);
+            stringBuilder.append("Sprite " + texto + "\n");
+            stringBuilder.append("pt origem x:" + sprite.getOriginX() + " y:" + sprite.getOriginY() + "\n");
+            stringBuilder.append("width:" + sprite.getWidth() + ", height:" + sprite.getHeight() + "\n");
+            stringBuilder.append("*********\n");
+            System.out.println(stringBuilder);
+        }
+    }
 
-        public static void posicaoCamera(com.badlogic.gdx.graphics.Camera camera){
-            Debugagem.Posicao.dbgPosVector3("camera", camera.position);
+    public static class Toque{
+
+        public static void pinch(Vector2 i1, Vector2 i2, Vector2 p1, Vector2 p2){
+            System.out.println("i1 x:" + i1.x + " y:" + i1.y);
+            System.out.println("i2 x:" + i2.x + " y:" + i2.y);
+
+            System.out.println("p1 x:" + p1.x + " y:" + p1.y);
+            System.out.println("p2 x:" + p2.x + " y:" + p2.y);
         }
 
-        public static void frustrumCamera(com.badlogic.gdx.graphics.Camera camera){
-            stringBuilder.setLength(0);
-            for(contador = 0; contador < camera.frustum.planePoints.length; contador++){
-                vector3.set(camera.frustum.planePoints[contador]);
-                stringBuilder.append("x: " + vector3.x + ", " + "y: " + vector3.y + "; ");
-            }
-            System.out.println("Frustum camera "+ stringBuilder);
+        public static void pan(float x, float y, float deltaX, float deltaY){
+            panComum("Pan", x, y, deltaX, deltaY);
+        }
+
+        public static void panStop(float x, float y, float deltaX, float deltaY){
+            panComum("PanStop", x, y, deltaX, deltaY);
+        }
+
+        private static void panComum(String texto, float x, float y, float deltaX, float deltaY){
+            System.out.println(texto + " x:" + x + " y: " + y + " deltaX:" + deltaX + " deltaY:" + deltaY);
+        }
+
+        public static void touchDragged(int x, int y, int pt){
+            System.out.println("TouchDragged x:" + x + " y:" + y + " pt:" + pt);
+        }
+
+        public static void touchDown(float x, float y, int pt, int btn){
+            touchComum("TouchDown", x, y, pt, btn);
+        }
+
+        public static void touchUp(float x, float y, float pt, float btn){
+            touchComum("TouchUp", x, y, pt, btn);
+        }
+
+        private static void touchComum(String texto, float x, float y, float pt, float btn){
+            System.out.println(texto + " x:" + x + " y:" + y + " pt:" + pt + " btn:" + btn);
         }
     }
 
@@ -57,49 +111,6 @@ public class Debugagem {
 //    public static void dbgEquacaoDaReta(TipoEquacao eq, float entrada){
 //        System.out.println("Equacao Reta: " + eq + " f(" + entrada + ") x=" + eq.getX(entrada) + " y=" + eq.getY(entrada));
 //    }
-
-    public static void dbgPinch(Vector2 i1, Vector2 i2, Vector2 p1, Vector2 p2){
-        System.out.println("i1 x:" + i1.x + " y:" + i1.y);
-        System.out.println("i2 x:" + i2.x + " y:" + i2.y);
-
-        System.out.println("p1 x:" + p1.x + " y:" + p1.y);
-        System.out.println("p2 x:" + p2.x + " y:" + p2.y);
-    }
-
-    public static void dbgPan(float x, float y, float deltaX, float deltaY){
-        dbgPanComum("Pan", x, y, deltaX, deltaY);
-    }
-
-    public static void dbgPanStop(float x, float y, float deltaX, float deltaY){
-        dbgPanComum("PanStop", x, y, deltaX, deltaY);
-    }
-
-    private static void dbgPanComum(String texto, float x, float y, float deltaX, float deltaY){
-        System.out.println(texto + " x:" + x + " y: " + y + " deltaX:" + deltaX + " deltaY:" + deltaY);
-    }
-
-    public static void dbgSprite(String texto, Sprite sprite){
-        StringBuilder strBuider = new StringBuilder();
-        strBuider.append("Sprite " + texto + "/n");
-        strBuider.append("pt origem x:" + sprite.getOriginX() + " y:" + sprite.getOriginY());
-        System.out.println(strBuider);
-    }
-
-    public static void dbgTouchDragged(int x, int y, int pt){
-        System.out.println("TouchDragged x:" + x + " y:" + y + " pt:" + pt);
-    }
-
-    public static void dbgTouchDown(float x, float y, int pt, int btn){
-        dbgTouchComum("TouchDown", x, y, pt, btn);
-    }
-
-    public static void dbgTouchUp(float x, float y, float pt, float btn){
-        dbgTouchComum("TouchUp", x, y, pt, btn);
-    }
-
-    private static void dbgTouchComum(String texto, float x, float y, float pt, float btn){
-        System.out.println(texto + " x:" + x + " y:" + y + " pt:" + pt + " btn:" + btn);
-    }
 
     public static void desenharPontoNaTela(Color cor, float x, float y){
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);

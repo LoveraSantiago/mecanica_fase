@@ -16,6 +16,7 @@ public class MySpriteBatch implements Disposable{
 
     private MySpriteBatch(){
         this.spriteBatch = new SpriteBatch();
+        this.spriteBatch.setProjectionMatrix(MyCamera.getInstance().getCamera().combined);
     }
 
     public static MySpriteBatch getInstance() {

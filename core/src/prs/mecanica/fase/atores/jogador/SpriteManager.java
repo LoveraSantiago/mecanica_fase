@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
 
 import prs.mecanica.fase.comuns.ImgLeitor;
+import prs.mecanica.fase.comuns.MyCamera;
 
 public class SpriteManager {
 
@@ -27,6 +28,7 @@ public class SpriteManager {
 
         this.arraySprites = new Array<Sprite>();
         this.arraySprites.addAll(this.spriteCima, this.spriteBaixo, this.spriteDir, this.spriteEsq);
+        configurarSprites();
     }
 
     public Sprite getSprite(int keyCode){
@@ -44,7 +46,7 @@ public class SpriteManager {
     }
 
     public void movimentar(Sprite sprite){
-        this.resultTemp = 150f * Gdx.graphics.getDeltaTime();
+        this.resultTemp = 5f * Gdx.graphics.getDeltaTime();
 
         if(sprite == spriteCima){
             sprite.setPosition(sprite.getX(), sprite.getY() + this.resultTemp);
@@ -59,6 +61,12 @@ public class SpriteManager {
             sprite.setPosition(sprite.getX() - this.resultTemp, sprite.getY());
         }
         updatePosicaoSprite(sprite);
+    }
+
+    private void configurarSprites(){
+        for(this.contadorSprites = 0; this.contadorSprites < this.arraySprites.size; this.contadorSprites++){
+            this.arraySprites.get(this.contadorSprites).setScale(MyCamera.ESCALA);
+        }
     }
 
     public void updatePosicaoSprite(Sprite sprite){

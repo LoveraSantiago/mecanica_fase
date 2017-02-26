@@ -17,7 +17,7 @@ public class MapaCasa implements TipoDesenhavel {
     private final SpriteBatch spriteBatch;
 
     public MapaCasa(){
-        this.renderer = MapaLeitor.getInstance().lerMapa(Mapas.CASA, .1f);
+        this.renderer = MapaLeitor.getInstance().lerMapa(Mapas.CASA, MyCamera.ESCALA);
         this.camera = MyCamera.getInstance().getCamera();
 
         this.spriteBatch = MySpriteBatch.getInstance().getSpriteBatch();
