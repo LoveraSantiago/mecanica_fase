@@ -3,7 +3,6 @@ package prs.mecanica.fase.atores.jogador;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
 import prs.mecanica.fase.comuns.ImgLeitor;

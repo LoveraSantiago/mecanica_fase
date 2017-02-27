@@ -39,14 +39,12 @@ class JogadorListener implements InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        Debugagem.Toque.touchDown(screenX, screenY, pointer, button);
         this.controle.movimentarJogador(gesture.getKeyCodeToque(this.controle.getPosicaoJogador(), screenX, screenY));
         return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        Debugagem.Toque.touchUp(screenX, screenY, pointer, button);
         this.controle.pararMovimentacao();
         return false;
     }

@@ -40,7 +40,6 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
     public void meDesenhar() {
         this.movimentadorAtual.movimentar();
         this.mySpriteBatch.desenharSprite(this.spriteAtual);
-//        Debugagem.Posicao.xy("sprite pos", this.spriteAtual.getX(), this.spriteAtual.getY());
     }
 
     @Override

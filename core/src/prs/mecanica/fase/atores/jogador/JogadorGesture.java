@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector3;
 
 import prs.mecanica.fase.comuns.MyCamera;
 
-public class JogadorGesture {
+class JogadorGesture {
 
     private float difC;
     private float difB;
