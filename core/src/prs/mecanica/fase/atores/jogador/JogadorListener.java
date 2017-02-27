@@ -20,7 +20,7 @@ class JogadorListener implements InputProcessor{
     @Override
     public boolean keyDown(int keycode) {
         ++this.contadorKeyDown;
-        this.controle.movimentarJogador(keycode);
+        this.controle.iniciarMovimentacao(keycode);
         return false;
     }
 
@@ -39,7 +39,7 @@ class JogadorListener implements InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        this.controle.movimentarJogador(gesture.getKeyCodeToque(this.controle.getPosicaoJogador(), screenX, screenY));
+        this.controle.iniciarMovimentacao(gesture.getKeyCodeToque(this.controle.getPosicaoJogador(), screenX, screenY));
         return false;
     }
 

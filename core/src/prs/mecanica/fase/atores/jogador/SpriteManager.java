@@ -3,8 +3,10 @@ package prs.mecanica.fase.atores.jogador;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
+import prs.mecanica.fase.atores.mapas.MapaCasa;
 import prs.mecanica.fase.comuns.ImgLeitor;
 import prs.mecanica.fase.comuns.MyCamera;
 
@@ -19,6 +21,8 @@ public class SpriteManager {
     private final Sprite spriteDir;
     private final Array<Sprite> arraySprites;
 
+    private Rectangle limitesTela;
+
     public SpriteManager() {
         ImgLeitor imgLeitor = ImgLeitor.getInstance();
         this.spriteCima = imgLeitor.getImg (Imagens.PERSONAGEM_CIMA);
@@ -30,6 +34,7 @@ public class SpriteManager {
         this.arraySprites.addAll(this.spriteCima, this.spriteBaixo, this.spriteDir, this.spriteEsq);
 
         configurarSprites();
+        limitesTela = MapaCasa.getInstance().getOrthogonalTiledMapRenderer().getViewBounds();
     }
 
     public Sprite getSprite(int keyCode){
@@ -47,26 +52,32 @@ public class SpriteManager {
     }
 
     public void movimentar(Sprite sprite){
+        if(!this.limitesTela.contains(sprite.getBoundingRectangle())) return;
+
         this.resultTemp = 5f * Gdx.graphics.getDeltaTime();
 
         if(sprite == spriteCima){
-            sprite.setPosition(sprite.getX(), sprite.getY() + this.resultTemp);
+            this.resultTemp = sprite.getY() + this.resultTemp;
+            sprite.setPosition(sprite.getX(), Math.min(this.resultTemp, (this.limitesTela.getHeight() - (sprite.getHeight() * MyCamera.ESCALA)) - .1f));
         }
         else if(sprite == spriteBaixo){
-            sprite.setPosition(sprite.getX(), sprite.getY() - this.resultTemp);
+            this.resultTemp = sprite.getY() - this.resultTemp;
+            sprite.setPosition(sprite.getX(), Math.max(this.resultTemp, this.limitesTela.getY() + .1f));
         }
         else if(sprite == spriteDir){
-            sprite.setPosition(sprite.getX() + this.resultTemp, sprite.getY());
+            this.resultTemp = sprite.getX() + this.resultTemp;
+            sprite.setPosition(Math.min(this.resultTemp, this.limitesTela.getWidth() - (sprite.getWidth() * MyCamera.ESCALA) - .1f), sprite.getY());
         }
         else if(sprite == spriteEsq){
-            sprite.setPosition(sprite.getX() - this.resultTemp, sprite.getY());
+            this.resultTemp = sprite.getX() - this.resultTemp;
+            sprite.setPosition(Math.max(this.resultTemp, this.limitesTela.getX() + .1f), sprite.getY());
         }
         updatePosicaoSprite(sprite);
     }
 
     private void configurarSprites(){
         for(this.contadorSprites = 0; this.contadorSprites < this.arraySprites.size; this.contadorSprites++){
-            this.arraySprites.get(this.contadorSprites).setOrigin(0, 0);
+            this.arraySprites.get(this.contadorSprites).setOrigin(0.1f, 0.1f);
             this.arraySprites.get(this.contadorSprites).setScale(MyCamera.ESCALA);
         }
     }

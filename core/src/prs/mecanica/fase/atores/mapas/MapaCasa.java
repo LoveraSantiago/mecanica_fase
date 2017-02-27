@@ -2,7 +2,8 @@ package prs.mecanica.fase.atores.mapas;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 
 import prs.mecanica.fase.comuns.MapaLeitor;
 import prs.mecanica.fase.comuns.MyCamera;
@@ -11,25 +12,37 @@ import prs.mecanica.fase.comuns.contratos.TipoDesenhavel;
 
 public class MapaCasa implements TipoDesenhavel {
 
-    private TiledMapRenderer renderer;
+    private static MapaCasa mapaCasa;
+
+    private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private OrthographicCamera camera;
 
     private final SpriteBatch spriteBatch;
 
     public MapaCasa(){
-        this.renderer = MapaLeitor.getInstance().lerMapa(Mapas.CASA, MyCamera.ESCALA);
+        this.orthogonalTiledMapRenderer = MapaLeitor.getInstance().lerMapa(Mapas.CASA, MyCamera.ESCALA);
         this.camera = MyCamera.getInstance().getCamera();
 
         this.spriteBatch = MySpriteBatch.getInstance().getSpriteBatch();
+
+        mapaCasa = this;
+    }
+
+    public static MapaCasa getInstance() {
+        return mapaCasa;
     }
 
     @Override
     public void meDesenhar() {
         this.spriteBatch.begin();
 
-        this.renderer.setView(this.camera);
-        this.renderer.render();
+        this.orthogonalTiledMapRenderer.setView(this.camera);
+        this.orthogonalTiledMapRenderer.render();
 
         this.spriteBatch.end();
+    }
+
+    public OrthogonalTiledMapRenderer getOrthogonalTiledMapRenderer() {
+        return orthogonalTiledMapRenderer;
     }
 }
