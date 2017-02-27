@@ -51,6 +51,7 @@ public class SpriteManager {
         return this.spriteCima;
     }
 
+    //Todo melhorar performance realizando calculo de limites da tela a cada movimentacao. O tamanho verdadeiro do mapa casa so e definido apos set view passando camera
     public void movimentar(Sprite sprite){
         if(!this.limitesTela.contains(sprite.getBoundingRectangle())) return;
 
@@ -77,7 +78,7 @@ public class SpriteManager {
 
     private void configurarSprites(){
         for(this.contadorSprites = 0; this.contadorSprites < this.arraySprites.size; this.contadorSprites++){
-            this.arraySprites.get(this.contadorSprites).setOrigin(0.1f, 0.1f);
+            this.arraySprites.get(this.contadorSprites).setOrigin(.1f, .1f);
             this.arraySprites.get(this.contadorSprites).setScale(MyCamera.ESCALA);
         }
     }
