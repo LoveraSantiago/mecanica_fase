@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Array;
 import prs.mecanica.fase.atores.mapas.MapaCasa;
 import prs.mecanica.fase.comuns.ImgLeitor;
 import prs.mecanica.fase.comuns.MyCamera;
+import prs.mecanica.fase.debugagem.Debugagem;
 
 public class SpriteManager {
 
@@ -21,6 +22,7 @@ public class SpriteManager {
     private final Sprite spriteDir;
     private final Array<Sprite> arraySprites;
 
+    private Rectangle limitesTelaSprite;
     private Rectangle limitesTela;
 
     public SpriteManager() {
@@ -33,8 +35,11 @@ public class SpriteManager {
         this.arraySprites = new Array<Sprite>();
         this.arraySprites.addAll(this.spriteCima, this.spriteBaixo, this.spriteDir, this.spriteEsq);
 
+        this.limitesTela = MapaCasa.getInstance().getOrthogonalTiledMapRenderer().getViewBounds();
+        this.limitesTelaSprite = new Rectangle();
+
         configurarSprites();
-        limitesTela = MapaCasa.getInstance().getOrthogonalTiledMapRenderer().getViewBounds();
+        configurarLimites();
     }
 
     public Sprite getSprite(int keyCode){
@@ -51,7 +56,6 @@ public class SpriteManager {
         return this.spriteCima;
     }
 
-    //Todo melhorar performance realizando calculo de limites da tela a cada movimentacao. O tamanho verdadeiro do mapa casa so e definido apos set view passando camera
     public void movimentar(Sprite sprite){
         if(!this.limitesTela.contains(sprite.getBoundingRectangle())) return;
 
@@ -59,19 +63,19 @@ public class SpriteManager {
 
         if(sprite == spriteCima){
             this.resultTemp = sprite.getY() + this.resultTemp;
-            sprite.setPosition(sprite.getX(), Math.min(this.resultTemp, (this.limitesTela.getHeight() - (sprite.getHeight() * MyCamera.ESCALA)) - .1f));
+            sprite.setPosition(sprite.getX(), Math.min(this.resultTemp, this.limitesTelaSprite.getHeight()));
         }
         else if(sprite == spriteBaixo){
             this.resultTemp = sprite.getY() - this.resultTemp;
-            sprite.setPosition(sprite.getX(), Math.max(this.resultTemp, this.limitesTela.getY() + .1f));
+            sprite.setPosition(sprite.getX(), Math.max(this.resultTemp, this.limitesTelaSprite.getY()));
         }
         else if(sprite == spriteDir){
             this.resultTemp = sprite.getX() + this.resultTemp;
-            sprite.setPosition(Math.min(this.resultTemp, this.limitesTela.getWidth() - (sprite.getWidth() * MyCamera.ESCALA) - .1f), sprite.getY());
+            sprite.setPosition(Math.min(this.resultTemp, this.limitesTelaSprite.getWidth()), sprite.getY());
         }
         else if(sprite == spriteEsq){
             this.resultTemp = sprite.getX() - this.resultTemp;
-            sprite.setPosition(Math.max(this.resultTemp, this.limitesTela.getX() + .1f), sprite.getY());
+            sprite.setPosition(Math.max(this.resultTemp, this.limitesTelaSprite.getX()), sprite.getY());
         }
         updatePosicaoSprite(sprite);
     }
@@ -81,6 +85,15 @@ public class SpriteManager {
             this.arraySprites.get(this.contadorSprites).setOrigin(.1f, .1f);
             this.arraySprites.get(this.contadorSprites).setScale(MyCamera.ESCALA);
         }
+    }
+
+    private void configurarLimites(){
+        this.limitesTelaSprite.set(MapaCasa.getInstance().getOrthogonalTiledMapRenderer().getViewBounds());
+
+        this.limitesTelaSprite.setX(this.limitesTelaSprite.getX() + .01f);
+        this.limitesTelaSprite.setY(this.limitesTelaSprite.getY() + .01f);
+        this.limitesTelaSprite.setWidth(this.limitesTelaSprite.getWidth() - (this.spriteCima.getWidth() * MyCamera.ESCALA) - .1f);
+        this.limitesTelaSprite.setHeight(this.limitesTelaSprite.getHeight() - (this.spriteCima.getHeight() * MyCamera.ESCALA) - .1f);
     }
 
     public void updatePosicaoSprite(Sprite sprite){

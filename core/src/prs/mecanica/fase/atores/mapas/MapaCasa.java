@@ -24,6 +24,7 @@ public class MapaCasa implements TipoDesenhavel {
         this.camera = MyCamera.getInstance().getCamera();
 
         this.spriteBatch = MySpriteBatch.getInstance().getSpriteBatch();
+        this.orthogonalTiledMapRenderer.setView(this.camera);
 
         mapaCasa = this;
     }
@@ -35,10 +36,7 @@ public class MapaCasa implements TipoDesenhavel {
     @Override
     public void meDesenhar() {
         this.spriteBatch.begin();
-
-        this.orthogonalTiledMapRenderer.setView(this.camera);
         this.orthogonalTiledMapRenderer.render();
-
         this.spriteBatch.end();
     }
 
