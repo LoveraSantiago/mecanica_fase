@@ -14,6 +14,7 @@ import prs.mecanica.fase.comuns.MyCamera;
 import prs.mecanica.fase.comuns.MySpriteBatch;
 
 public class MecanicaFaseMain extends ApplicationAdapter {
+
 	private MyCamera myCamera;
 
 	private MapaCasa mapaCasa;

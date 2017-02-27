@@ -2,18 +2,24 @@ package prs.mecanica.fase.atores.jogador;
 
 import com.badlogic.gdx.InputProcessor;
 
+import prs.mecanica.fase.debugagem.Debugagem;
+
 class JogadorListener implements InputProcessor{
 
-    private final ControleJogador controle;
     private int contadorKeyDown;
+
+    private final ControleJogador controle;
+    private final JogadorGesture gesture;
 
     public JogadorListener(ControleJogador controle) {
         this.controle = controle;
+
+        this.gesture = new JogadorGesture();
     }
 
     @Override
     public boolean keyDown(int keycode) {
-        this.contadorKeyDown++;
+        ++this.contadorKeyDown;
         this.controle.movimentarJogador(keycode);
         return false;
     }
@@ -33,16 +39,21 @@ class JogadorListener implements InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        Debugagem.Toque.touchDown(screenX, screenY, pointer, button);
+        this.controle.movimentarJogador(gesture.getKeyCodeToque(this.controle.getPosicaoJogador(), screenX, screenY));
         return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        Debugagem.Toque.touchUp(screenX, screenY, pointer, button);
+        this.controle.pararMovimentacao();
         return false;
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
+        Debugagem.Toque.touchDragged(screenX, screenY, pointer);
         return false;
     }
 

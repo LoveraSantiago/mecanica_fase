@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import prs.mecanica.fase.comuns.MySpriteBatch;
 import prs.mecanica.fase.comuns.contratos.TipoControlavel;
 import prs.mecanica.fase.comuns.contratos.TipoDesenhavel;
-import prs.mecanica.fase.debugagem.Debugagem;
 
 public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador{
 
@@ -14,6 +13,7 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
     private final SpriteManager spriteManager;
 
     private Sprite spriteAtual;
+    private final PosJog posJog;
 
     private final InputProcessor controle;
 
@@ -32,13 +32,15 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
         this.movimentadorAcao = new MovimentarAcao();
         this.movimentadorParado = new MovimentarParado();
         this.movimentadorAtual = this.movimentadorParado;
+
+        this.posJog = new PosJog();
     }
 
     @Override
     public void meDesenhar() {
         this.movimentadorAtual.movimentar();
         this.mySpriteBatch.desenharSprite(this.spriteAtual);
-        Debugagem.Posicao.xy("sprite pos", this.spriteAtual.getX(), this.spriteAtual.getY());
+//        Debugagem.Posicao.xy("sprite pos", this.spriteAtual.getX(), this.spriteAtual.getY());
     }
 
     @Override
@@ -50,6 +52,12 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
     @Override
     public void pararMovimentacao() {
         this.movimentadorAtual = movimentadorParado;
+    }
+
+    @Override
+    public PosJog getPosicaoJogador() {
+        this.posJog.setXY(this.spriteAtual.getX(), this.spriteAtual.getY());
+        return this.posJog;
     }
 
     @Override
