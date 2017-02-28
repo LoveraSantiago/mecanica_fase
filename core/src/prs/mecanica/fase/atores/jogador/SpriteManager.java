@@ -148,6 +148,22 @@ public class SpriteManager {
                 resultTemp = min(resultTemp, min(limite - ((sprite.getHeight() * ESCALA) / 2f), limitesTelaSprite.getHeight()));
                 sprite.setPosition(sprite.getX(), resultTemp);
             }
+            else if(sprite == spriteBaixo){
+                resultTemp = sprite.getY() - resultTemp;
+                resultTemp = max(resultTemp, max(limite - ((sprite.getHeight() * ESCALA) / 2f), limitesTelaSprite.getY()));
+                sprite.setPosition(sprite.getX(), resultTemp);
+            }
+            else if(sprite == spriteDir){
+                resultTemp = sprite.getX() + resultTemp;
+                resultTemp = min(resultTemp, min(limite - ((sprite.getWidth() * ESCALA) / 2f), limitesTelaSprite.getWidth()));
+                sprite.setPosition(resultTemp, sprite.getY());
+            }
+            else if(sprite == spriteEsq){
+                resultTemp = sprite.getX() - resultTemp;
+                resultTemp = max(resultTemp, max(limite - ((sprite.getWidth() * ESCALA) / 2f), limitesTelaSprite.getX()));
+                sprite.setPosition(resultTemp, sprite.getY());
+            }
+            updatePosicaoSprite(sprite);
         }
     }
 }

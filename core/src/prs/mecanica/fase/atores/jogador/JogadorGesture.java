@@ -33,23 +33,29 @@ class JogadorGesture {
             this.limite = yToque;
             return true;
         }
-//        if(this.areaB.contains(this.vetor3.x, this.vetor3.y)){
-//            return Input.Keys.DOWN;
-//        }
-//        if(this.areaD.contains(this.vetor3.x, this.vetor3.y)){
-//            return Input.Keys.RIGHT;
-//        }
-//        if(this.areaE.contains(this.vetor3.x, this.vetor3.y)){
-//            return Input.Keys.LEFT;
-//        }
+        if(this.areaB.contains(xToque, yToque)){
+            this.keyCode = Input.Keys.DOWN;
+            this.limite = yToque;
+            return true;
+        }
+        if(this.areaD.contains(xToque, yToque)){
+            this.keyCode = Input.Keys.RIGHT;
+            this.limite = xToque;
+            return true;
+        }
+        if(this.areaE.contains(xToque, yToque)){
+            this.keyCode = Input.Keys.LEFT;
+            this.limite = xToque;
+            return true;
+        }
         return false;
     }
 
     private void setAreas(PosJog posJog){
         this.areaC.set(posJog.getX(), posJog.getY() + posJog.getH(), posJog.getW(), MyCamera.HALTURA_TELA);
-        this.areaB.set(posJog.getX(), posJog.getY() - posJog.getH(), posJog.getW(), posJog.getH());
-        this.areaD.set(posJog.getX() + posJog.getW(), posJog.getY(), posJog.getW(), posJog.getH());
-        this.areaE.set(posJog.getX() - posJog.getW(), posJog.getY(), posJog.getW(), posJog.getH());
+        this.areaB.set(posJog.getX(), posJog.getY() - MyCamera.HALTURA_TELA, posJog.getW(), MyCamera.HALTURA_TELA);
+        this.areaD.set(posJog.getX() + posJog.getW(), posJog.getY(), MyCamera.LARGURA_TELA, posJog.getH());
+        this.areaE.set(posJog.getX() - MyCamera.LARGURA_TELA, posJog.getY(), MyCamera.LARGURA_TELA, posJog.getH());
     }
 
     public int getKeyCode() {
