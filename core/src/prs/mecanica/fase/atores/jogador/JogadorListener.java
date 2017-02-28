@@ -1,26 +1,33 @@
 package prs.mecanica.fase.atores.jogador;
 
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.math.Vector3;
 
-import prs.mecanica.fase.debugagem.Debugagem;
+import prs.mecanica.fase.comuns.MyCamera;
 
 class JogadorListener implements InputProcessor{
 
     private int contadorKeyDown;
+
+    private final Vector3 vetor3;
+    private final Camera camera;
 
     private final ControleJogador controle;
     private final JogadorGesture gesture;
 
     public JogadorListener(ControleJogador controle) {
         this.controle = controle;
-
         this.gesture = new JogadorGesture();
+
+        this.vetor3 = new Vector3();
+        this.camera = MyCamera.getInstance().getCamera();
     }
 
     @Override
     public boolean keyDown(int keycode) {
         ++this.contadorKeyDown;
-        this.controle.iniciarMovimentacao(keycode);
+        this.controle.iniciarMovimentacaoTecla(keycode);
         return false;
     }
 
@@ -39,7 +46,12 @@ class JogadorListener implements InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        this.controle.iniciarMovimentacao(gesture.getKeyCodeToque(this.controle.getPosicaoJogador(), screenX, screenY));
+        this.vetor3.set(screenX, screenY, 0);
+        this.vetor3.set(this.camera.unproject(this.vetor3));
+
+        if(this.gesture.isToqueValido(this.controle.getPosicaoJogador(), this.vetor3.x, this.vetor3.y)){
+            this.controle.iniciarMovimentacaoToque(this.gesture.getKeyCode(), this.gesture.getLimite());
+        }
         return false;
     }
 
@@ -51,7 +63,6 @@ class JogadorListener implements InputProcessor{
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        Debugagem.Toque.touchDragged(screenX, screenY, pointer);
         return false;
     }
 

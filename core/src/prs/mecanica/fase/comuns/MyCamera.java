@@ -9,14 +9,13 @@ import prs.mecanica.fase.debugagem.Debugagem;
 public class MyCamera {
 
     public static final float ESCALA = 1f / 10f;
+    public static final int LARGURA_TELA = 30;
+    public static final int HALTURA_TELA = 20;
 
     private static final MyCamera myCamera;
     private final OrthographicCamera camera;
 
     private final Viewport viewport;
-    private final int LARGURA_TELA = 30;
-
-    private final int HALTURA_TELA = 20;
 
     static{
         myCamera = new MyCamera();

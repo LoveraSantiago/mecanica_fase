@@ -11,6 +11,10 @@ import prs.mecanica.fase.comuns.ImgLeitor;
 import prs.mecanica.fase.comuns.MyCamera;
 import prs.mecanica.fase.debugagem.Debugagem;
 
+import static java.lang.Math.min;
+import static java.lang.Math.max;
+import static prs.mecanica.fase.comuns.MyCamera.ESCALA;
+
 public class SpriteManager {
 
     private int contadorSprites;
@@ -25,6 +29,11 @@ public class SpriteManager {
     private Rectangle limitesTelaSprite;
     private Rectangle limitesTela;
 
+    private float limite;
+    private       Movimentador movimentadorAtual;
+    private final Movimentador movimentadorTecla;
+    private final Movimentador movimentadorToque;
+
     public SpriteManager() {
         ImgLeitor imgLeitor = ImgLeitor.getInstance();
         this.spriteCima = imgLeitor.getImg (Imagens.PERSONAGEM_CIMA);
@@ -37,6 +46,9 @@ public class SpriteManager {
 
         this.limitesTela = MapaCasa.getInstance().getOrthogonalTiledMapRenderer().getViewBounds();
         this.limitesTelaSprite = new Rectangle();
+
+        this.movimentadorTecla = new MovimentadorTecla();
+        this.movimentadorToque = new MovimentadorToque();
 
         configurarSprites();
         configurarLimites();
@@ -57,34 +69,23 @@ public class SpriteManager {
     }
 
     public void movimentar(Sprite sprite){
-        if(!this.limitesTela.contains(sprite.getBoundingRectangle())) return;
-
-        this.resultTemp = 5f * Gdx.graphics.getDeltaTime();
-
-        if(sprite == spriteCima){
-            this.resultTemp = sprite.getY() + this.resultTemp;
-            sprite.setPosition(sprite.getX(), Math.min(this.resultTemp, this.limitesTelaSprite.getHeight()));
-        }
-        else if(sprite == spriteBaixo){
-            this.resultTemp = sprite.getY() - this.resultTemp;
-            sprite.setPosition(sprite.getX(), Math.max(this.resultTemp, this.limitesTelaSprite.getY()));
-        }
-        else if(sprite == spriteDir){
-            this.resultTemp = sprite.getX() + this.resultTemp;
-            sprite.setPosition(Math.min(this.resultTemp, this.limitesTelaSprite.getWidth()), sprite.getY());
-        }
-        else if(sprite == spriteEsq){
-            this.resultTemp = sprite.getX() - this.resultTemp;
-            sprite.setPosition(Math.max(this.resultTemp, this.limitesTelaSprite.getX()), sprite.getY());
-        }
-        updatePosicaoSprite(sprite);
+        this.movimentadorAtual.movimentando(sprite);
     }
 
     private void configurarSprites(){
         for(this.contadorSprites = 0; this.contadorSprites < this.arraySprites.size; this.contadorSprites++){
             this.arraySprites.get(this.contadorSprites).setOrigin(.1f, .1f);
-            this.arraySprites.get(this.contadorSprites).setScale(MyCamera.ESCALA);
+            this.arraySprites.get(this.contadorSprites).setScale(ESCALA);
         }
+    }
+
+    public void configurarTecla() {
+        this.movimentadorAtual = this.movimentadorTecla;
+    }
+
+    public void configurarToque(float limite) {
+        this.movimentadorAtual = this.movimentadorToque;
+        this.limite = limite;
     }
 
     private void configurarLimites(){
@@ -92,13 +93,61 @@ public class SpriteManager {
 
         this.limitesTelaSprite.setX(this.limitesTelaSprite.getX() + .01f);
         this.limitesTelaSprite.setY(this.limitesTelaSprite.getY() + .01f);
-        this.limitesTelaSprite.setWidth(this.limitesTelaSprite.getWidth() - (this.spriteCima.getWidth() * MyCamera.ESCALA) - .1f);
-        this.limitesTelaSprite.setHeight(this.limitesTelaSprite.getHeight() - (this.spriteCima.getHeight() * MyCamera.ESCALA) - .1f);
+        this.limitesTelaSprite.setWidth(this.limitesTelaSprite.getWidth() - (this.spriteCima.getWidth() * ESCALA) - .1f);
+        this.limitesTelaSprite.setHeight(this.limitesTelaSprite.getHeight() - (this.spriteCima.getHeight() * ESCALA) - .1f);
     }
 
     public void updatePosicaoSprite(Sprite sprite){
         for(this.contadorSprites = 0; this.contadorSprites < this.arraySprites.size; this.contadorSprites++){
             this.arraySprites.get(this.contadorSprites).setPosition(sprite.getX(), sprite.getY());
+        }
+    }
+
+    private interface Movimentador{
+        void movimentando(Sprite sprite);
+    }
+
+    private class MovimentadorTecla implements Movimentador{
+
+        @Override
+        public void movimentando(Sprite sprite) {
+            if(!limitesTela.contains(sprite.getBoundingRectangle())) return;
+
+            resultTemp = 5f * Gdx.graphics.getDeltaTime();
+
+            if(sprite == spriteCima){
+                resultTemp = sprite.getY() + resultTemp;
+                sprite.setPosition(sprite.getX(), min(resultTemp, limitesTelaSprite.getHeight()));
+            }
+            else if(sprite == spriteBaixo){
+                resultTemp = sprite.getY() - resultTemp;
+                sprite.setPosition(sprite.getX(), max(resultTemp, limitesTelaSprite.getY()));
+            }
+            else if(sprite == spriteDir){
+                resultTemp = sprite.getX() + resultTemp;
+                sprite.setPosition(min(resultTemp, limitesTelaSprite.getWidth()), sprite.getY());
+            }
+            else if(sprite == spriteEsq){
+                resultTemp = sprite.getX() - resultTemp;
+                sprite.setPosition(max(resultTemp, limitesTelaSprite.getX()), sprite.getY());
+            }
+            updatePosicaoSprite(sprite);
+        }
+    }
+
+    private class MovimentadorToque implements Movimentador{
+
+        @Override
+        public void movimentando(Sprite sprite) {
+            if(!limitesTela.contains(sprite.getBoundingRectangle())) return;
+
+            resultTemp = 5f * max(Gdx.graphics.getDeltaTime(), .1f);
+
+            if(sprite == spriteCima){
+                resultTemp = sprite.getY() + resultTemp;
+                resultTemp = min(resultTemp, min(limite - ((sprite.getHeight() * ESCALA) / 2f), limitesTelaSprite.getHeight()));
+                sprite.setPosition(sprite.getX(), resultTemp);
+            }
         }
     }
 }

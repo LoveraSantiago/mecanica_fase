@@ -3,10 +3,10 @@ package prs.mecanica.fase.atores.jogador;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import prs.mecanica.fase.comuns.MyCamera;
 import prs.mecanica.fase.comuns.MySpriteBatch;
 import prs.mecanica.fase.comuns.contratos.TipoControlavel;
 import prs.mecanica.fase.comuns.contratos.TipoDesenhavel;
-import prs.mecanica.fase.debugagem.Debugagem;
 
 public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador{
 
@@ -45,8 +45,16 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
     }
 
     @Override
-    public void iniciarMovimentacao(int keyCode) {
+    public void iniciarMovimentacaoTecla(int keyCode) {
         this.movimentadorAtual = movimentadorAcao;
+        this.spriteManager.configurarTecla();
+        this.spriteAtual = this.spriteManager.getSprite(keyCode);
+    }
+
+    @Override
+    public void iniciarMovimentacaoToque(int keyCode, float limite) {
+        this.movimentadorAtual = movimentadorAcao;
+        this.spriteManager.configurarToque(limite);
         this.spriteAtual = this.spriteManager.getSprite(keyCode);
     }
 
@@ -57,7 +65,7 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
 
     @Override
     public PosJog getPosicaoJogador() {
-        this.posJog.setXY(this.spriteAtual.getX(), this.spriteAtual.getY());
+        this.posJog.setXYWH(this.spriteAtual.getX(), this.spriteAtual.getY(), this.spriteAtual.getWidth() * MyCamera.ESCALA, this.spriteAtual.getHeight() * MyCamera.ESCALA);
         return this.posJog;
     }
 
