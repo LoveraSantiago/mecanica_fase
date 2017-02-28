@@ -20,6 +20,8 @@ public class SpriteManager {
 
     private int contadorSprites;
     private float resultTemp;
+    private float widthSprite;
+    private float heightSprite;
 
     private final Sprite spriteCima;
     private final Sprite spriteBaixo;
@@ -52,19 +54,16 @@ public class SpriteManager {
         this.movimentadorToque = new MovimentadorToque();
 
         configurarSprites();
+        configurarTamanhoSprite();
         configurarLimites();
     }
 
     public Sprite getSprite(int keyCode){
         switch (keyCode){
-            case UP:
-                return this.spriteCima;
-            case DOWN:
-                return this.spriteBaixo;
-            case LEFT:
-                return this.spriteEsq;
-            case RIGHT:
-                return this.spriteDir;
+            case UP   : return this.spriteCima;
+            case DOWN : return this.spriteBaixo;
+            case LEFT : return this.spriteEsq;
+            case RIGHT: return this.spriteDir;
         }
         return this.spriteCima;
     }
@@ -89,13 +88,18 @@ public class SpriteManager {
         this.limite = limite;
     }
 
+    public void configurarTamanhoSprite(){
+        this.widthSprite = this.spriteCima.getWidth() * ESCALA;
+        this.heightSprite = this.spriteCima.getHeight() * ESCALA;
+    }
+
     private void configurarLimites(){
         this.limitesTelaSprite.set(MapaCasa.getInstance().getOrthogonalTiledMapRenderer().getViewBounds());
 
         this.limitesTelaSprite.setX(this.limitesTelaSprite.getX() + .01f);
         this.limitesTelaSprite.setY(this.limitesTelaSprite.getY() + .01f);
-        this.limitesTelaSprite.setWidth(this.limitesTelaSprite.getWidth() - (this.spriteCima.getWidth() * ESCALA) - .1f);
-        this.limitesTelaSprite.setHeight(this.limitesTelaSprite.getHeight() - (this.spriteCima.getHeight() * ESCALA) - .1f);
+        this.limitesTelaSprite.setWidth(this.limitesTelaSprite.getWidth() - this.widthSprite - .1f);
+        this.limitesTelaSprite.setHeight(this.limitesTelaSprite.getHeight() - this.heightSprite - .1f);
     }
 
     public void updatePosicaoSprite(Sprite sprite){
@@ -146,22 +150,22 @@ public class SpriteManager {
 
             if(sprite == spriteCima){
                 resultTemp = sprite.getY() + resultTemp;
-                resultTemp = min(resultTemp, min(limite - ((sprite.getHeight() * ESCALA) / 2f), limitesTelaSprite.getHeight()));
+                resultTemp = min(resultTemp, min(limite - (heightSprite / 2f), limitesTelaSprite.getHeight()));
                 sprite.setPosition(sprite.getX(), resultTemp);
             }
             else if(sprite == spriteBaixo){
                 resultTemp = sprite.getY() - resultTemp;
-                resultTemp = max(resultTemp, max(limite - ((sprite.getHeight() * ESCALA) / 2f), limitesTelaSprite.getY()));
+                resultTemp = max(resultTemp, max(limite - (heightSprite / 2f), limitesTelaSprite.getY()));
                 sprite.setPosition(sprite.getX(), resultTemp);
             }
             else if(sprite == spriteDir){
                 resultTemp = sprite.getX() + resultTemp;
-                resultTemp = min(resultTemp, min(limite - ((sprite.getWidth() * ESCALA) / 2f), limitesTelaSprite.getWidth()));
+                resultTemp = min(resultTemp, min(limite - (widthSprite / 2f), limitesTelaSprite.getWidth()));
                 sprite.setPosition(resultTemp, sprite.getY());
             }
             else if(sprite == spriteEsq){
                 resultTemp = sprite.getX() - resultTemp;
-                resultTemp = max(resultTemp, max(limite - ((sprite.getWidth() * ESCALA) / 2f), limitesTelaSprite.getX()));
+                resultTemp = max(resultTemp, max(limite - (widthSprite / 2f), limitesTelaSprite.getX()));
                 sprite.setPosition(resultTemp, sprite.getY());
             }
             updatePosicaoSprite(sprite);
