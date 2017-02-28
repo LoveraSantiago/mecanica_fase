@@ -1,18 +1,19 @@
 package prs.mecanica.fase.atores.jogador;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
 import prs.mecanica.fase.atores.mapas.MapaCasa;
 import prs.mecanica.fase.comuns.ImgLeitor;
-import prs.mecanica.fase.comuns.MyCamera;
-import prs.mecanica.fase.debugagem.Debugagem;
 
-import static java.lang.Math.min;
+import static com.badlogic.gdx.Input.Keys.DOWN;
+import static com.badlogic.gdx.Input.Keys.LEFT;
+import static com.badlogic.gdx.Input.Keys.RIGHT;
+import static com.badlogic.gdx.Input.Keys.UP;
 import static java.lang.Math.max;
+import static java.lang.Math.min;
 import static prs.mecanica.fase.comuns.MyCamera.ESCALA;
 
 public class SpriteManager {
@@ -56,13 +57,13 @@ public class SpriteManager {
 
     public Sprite getSprite(int keyCode){
         switch (keyCode){
-            case Input.Keys.UP:
+            case UP:
                 return this.spriteCima;
-            case Input.Keys.DOWN:
+            case DOWN:
                 return this.spriteBaixo;
-            case Input.Keys.LEFT:
+            case LEFT:
                 return this.spriteEsq;
-            case Input.Keys.RIGHT:
+            case RIGHT:
                 return this.spriteDir;
         }
         return this.spriteCima;

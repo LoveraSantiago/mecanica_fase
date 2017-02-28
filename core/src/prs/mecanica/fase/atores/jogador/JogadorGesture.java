@@ -1,12 +1,14 @@
 package prs.mecanica.fase.atores.jogador;
 
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
 
-import prs.mecanica.fase.comuns.MyCamera;
-import prs.mecanica.fase.debugagem.Debugagem;
+import static com.badlogic.gdx.Input.Keys.DOWN;
+import static com.badlogic.gdx.Input.Keys.LEFT;
+import static com.badlogic.gdx.Input.Keys.RIGHT;
+import static com.badlogic.gdx.Input.Keys.UP;
+import static prs.mecanica.fase.comuns.MyCamera.HALTURA_TELA;
+import static prs.mecanica.fase.comuns.MyCamera.LARGURA_TELA;
 
 class JogadorGesture {
 
@@ -29,22 +31,22 @@ class JogadorGesture {
         setAreas(posJog);
 
         if(this.areaC.contains(xToque, yToque)){
-            this.keyCode = Input.Keys.UP;
+            this.keyCode = UP;
             this.limite = yToque;
             return true;
         }
         if(this.areaB.contains(xToque, yToque)){
-            this.keyCode = Input.Keys.DOWN;
+            this.keyCode = DOWN;
             this.limite = yToque;
             return true;
         }
         if(this.areaD.contains(xToque, yToque)){
-            this.keyCode = Input.Keys.RIGHT;
+            this.keyCode = RIGHT;
             this.limite = xToque;
             return true;
         }
         if(this.areaE.contains(xToque, yToque)){
-            this.keyCode = Input.Keys.LEFT;
+            this.keyCode = LEFT;
             this.limite = xToque;
             return true;
         }
@@ -52,10 +54,10 @@ class JogadorGesture {
     }
 
     private void setAreas(PosJog posJog){
-        this.areaC.set(posJog.getX(), posJog.getY() + posJog.getH(), posJog.getW(), MyCamera.HALTURA_TELA);
-        this.areaB.set(posJog.getX(), posJog.getY() - MyCamera.HALTURA_TELA, posJog.getW(), MyCamera.HALTURA_TELA);
-        this.areaD.set(posJog.getX() + posJog.getW(), posJog.getY(), MyCamera.LARGURA_TELA, posJog.getH());
-        this.areaE.set(posJog.getX() - MyCamera.LARGURA_TELA, posJog.getY(), MyCamera.LARGURA_TELA, posJog.getH());
+        this.areaC.set(posJog.getX(), posJog.getY() + posJog.getH(), posJog.getW(), HALTURA_TELA);
+        this.areaB.set(posJog.getX(), posJog.getY() - HALTURA_TELA, posJog.getW(), HALTURA_TELA);
+        this.areaD.set(posJog.getX() + posJog.getW(), posJog.getY(), LARGURA_TELA, posJog.getH());
+        this.areaE.set(posJog.getX() - LARGURA_TELA, posJog.getY(), LARGURA_TELA, posJog.getH());
     }
 
     public int getKeyCode() {
