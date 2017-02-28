@@ -22,6 +22,8 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
     private final Movimentador movimentadorAcao;
     private final Movimentador movimentadorParado;
 
+    private final MovimentadorManager movimentadorManager;
+
     public Jogador() {
         this.spriteManager = new SpriteManager();
         this.spriteAtual = this.spriteManager.getSprite(666);
@@ -35,26 +37,27 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
         this.movimentadorAtual = this.movimentadorParado;
 
         this.posJog = new PosJog();
+
+        this.movimentadorManager = new MovimentadorManager(this.spriteManager);
     }
 
     @Override
     public void meDesenhar() {
         this.movimentadorAtual.movimentar();
         this.mySpriteBatch.desenharSprite(this.spriteAtual);
-//        Debugagem.Posicao.xy("jogador", this.spriteAtual.getX(), this.spriteAtual.getY());
     }
 
     @Override
     public void iniciarMovimentacaoTecla(int keyCode) {
         this.movimentadorAtual = movimentadorAcao;
-        this.spriteManager.configurarTecla();
+        this.movimentadorManager.configurarTecla();
         this.spriteAtual = this.spriteManager.getSprite(keyCode);
     }
 
     @Override
     public void iniciarMovimentacaoToque(int keyCode, float limite) {
         this.movimentadorAtual = movimentadorAcao;
-        this.spriteManager.configurarToque(limite);
+        this.movimentadorManager.configurarToque(limite);
         this.spriteAtual = this.spriteManager.getSprite(keyCode);
     }
 
@@ -82,7 +85,7 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
 
         @Override
         public void movimentar() {
-            spriteManager.movimentar(spriteAtual);
+            movimentadorManager.movimentar(spriteAtual);
         }
     }
 

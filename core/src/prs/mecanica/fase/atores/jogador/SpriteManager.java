@@ -1,25 +1,20 @@
 package prs.mecanica.fase.atores.jogador;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
-import prs.mecanica.fase.atores.mapas.MapaCasa;
 import prs.mecanica.fase.comuns.ImgLeitor;
 
 import static com.badlogic.gdx.Input.Keys.DOWN;
 import static com.badlogic.gdx.Input.Keys.LEFT;
 import static com.badlogic.gdx.Input.Keys.RIGHT;
 import static com.badlogic.gdx.Input.Keys.UP;
-import static java.lang.Math.max;
-import static java.lang.Math.min;
 import static prs.mecanica.fase.comuns.MyCamera.ESCALA;
 
-public class SpriteManager {
+public class SpriteManager implements ControleSprite{
 
     private int contadorSprites;
-    private float resultTemp;
+
     private float widthSprite;
     private float heightSprite;
 
@@ -28,14 +23,6 @@ public class SpriteManager {
     private final Sprite spriteEsq;
     private final Sprite spriteDir;
     private final Array<Sprite> arraySprites;
-
-    private Rectangle limitesTelaSprite;
-    private Rectangle limitesTela;
-
-    private float limite;
-    private       Movimentador movimentadorAtual;
-    private final Movimentador movimentadorTecla;
-    private final Movimentador movimentadorToque;
 
     public SpriteManager() {
         ImgLeitor imgLeitor = ImgLeitor.getInstance();
@@ -47,15 +34,8 @@ public class SpriteManager {
         this.arraySprites = new Array<Sprite>();
         this.arraySprites.addAll(this.spriteCima, this.spriteBaixo, this.spriteDir, this.spriteEsq);
 
-        this.limitesTela = MapaCasa.getInstance().getOrthogonalTiledMapRenderer().getViewBounds();
-        this.limitesTelaSprite = new Rectangle();
-
-        this.movimentadorTecla = new MovimentadorTecla();
-        this.movimentadorToque = new MovimentadorToque();
-
         configurarSprites();
         configurarTamanhoSprite();
-        configurarLimites();
     }
 
     public Sprite getSprite(int keyCode){
@@ -68,10 +48,6 @@ public class SpriteManager {
         return this.spriteCima;
     }
 
-    public void movimentar(Sprite sprite){
-        this.movimentadorAtual.movimentando(sprite);
-    }
-
     private void configurarSprites(){
         for(this.contadorSprites = 0; this.contadorSprites < this.arraySprites.size; this.contadorSprites++){
             this.arraySprites.get(this.contadorSprites).setOrigin(.1f, .1f);
@@ -79,96 +55,45 @@ public class SpriteManager {
         }
     }
 
-    public void configurarTecla() {
-        this.movimentadorAtual = this.movimentadorTecla;
-    }
-
-    public void configurarToque(float limite) {
-        this.movimentadorAtual = this.movimentadorToque;
-        this.limite = limite;
-    }
-
     public void configurarTamanhoSprite(){
         this.widthSprite = this.spriteCima.getWidth() * ESCALA;
         this.heightSprite = this.spriteCima.getHeight() * ESCALA;
     }
 
-    private void configurarLimites(){
-        this.limitesTelaSprite.set(MapaCasa.getInstance().getOrthogonalTiledMapRenderer().getViewBounds());
-
-        this.limitesTelaSprite.setX(this.limitesTelaSprite.getX() + .01f);
-        this.limitesTelaSprite.setY(this.limitesTelaSprite.getY() + .01f);
-        this.limitesTelaSprite.setWidth(this.limitesTelaSprite.getWidth() - this.widthSprite - .1f);
-        this.limitesTelaSprite.setHeight(this.limitesTelaSprite.getHeight() - this.heightSprite - .1f);
+    @Override
+    public boolean isSpriteBaixo(Sprite sprite) {
+        return sprite == this.spriteBaixo;
     }
 
+    @Override
+    public boolean isSpriteCima(Sprite sprite) {
+        return sprite == this.spriteCima;
+    }
+
+    @Override
+    public boolean isSpriteDireita(Sprite sprite) {
+        return sprite == this.spriteDir;
+    }
+
+    @Override
+    public boolean isSpriteEsquerda(Sprite sprite) {
+        return sprite == this.spriteEsq;
+    }
+
+    @Override
+    public float getWidth() {
+        return this.widthSprite;
+    }
+
+    @Override
+    public float getHeigth() {
+        return this.heightSprite;
+    }
+
+    @Override
     public void updatePosicaoSprite(Sprite sprite){
         for(this.contadorSprites = 0; this.contadorSprites < this.arraySprites.size; this.contadorSprites++){
             this.arraySprites.get(this.contadorSprites).setPosition(sprite.getX(), sprite.getY());
-        }
-    }
-
-    private interface Movimentador{
-        void movimentando(Sprite sprite);
-    }
-
-    private class MovimentadorTecla implements Movimentador{
-
-        @Override
-        public void movimentando(Sprite sprite) {
-            if(!limitesTela.contains(sprite.getBoundingRectangle())) return;
-
-            resultTemp = 5f * Gdx.graphics.getDeltaTime();
-
-            if(sprite == spriteCima){
-                resultTemp = sprite.getY() + resultTemp;
-                sprite.setPosition(sprite.getX(), min(resultTemp, limitesTelaSprite.getHeight()));
-            }
-            else if(sprite == spriteBaixo){
-                resultTemp = sprite.getY() - resultTemp;
-                sprite.setPosition(sprite.getX(), max(resultTemp, limitesTelaSprite.getY()));
-            }
-            else if(sprite == spriteDir){
-                resultTemp = sprite.getX() + resultTemp;
-                sprite.setPosition(min(resultTemp, limitesTelaSprite.getWidth()), sprite.getY());
-            }
-            else if(sprite == spriteEsq){
-                resultTemp = sprite.getX() - resultTemp;
-                sprite.setPosition(max(resultTemp, limitesTelaSprite.getX()), sprite.getY());
-            }
-            updatePosicaoSprite(sprite);
-        }
-    }
-
-    private class MovimentadorToque implements Movimentador{
-
-        @Override
-        public void movimentando(Sprite sprite) {
-            if(!limitesTela.contains(sprite.getBoundingRectangle())) return;
-
-            resultTemp = 5f * max(Gdx.graphics.getDeltaTime(), .1f);
-
-            if(sprite == spriteCima){
-                resultTemp = sprite.getY() + resultTemp;
-                resultTemp = min(resultTemp, min(limite - (heightSprite / 2f), limitesTelaSprite.getHeight()));
-                sprite.setPosition(sprite.getX(), resultTemp);
-            }
-            else if(sprite == spriteBaixo){
-                resultTemp = sprite.getY() - resultTemp;
-                resultTemp = max(resultTemp, max(limite - (heightSprite / 2f), limitesTelaSprite.getY()));
-                sprite.setPosition(sprite.getX(), resultTemp);
-            }
-            else if(sprite == spriteDir){
-                resultTemp = sprite.getX() + resultTemp;
-                resultTemp = min(resultTemp, min(limite - (widthSprite / 2f), limitesTelaSprite.getWidth()));
-                sprite.setPosition(resultTemp, sprite.getY());
-            }
-            else if(sprite == spriteEsq){
-                resultTemp = sprite.getX() - resultTemp;
-                resultTemp = max(resultTemp, max(limite - (widthSprite / 2f), limitesTelaSprite.getX()));
-                sprite.setPosition(resultTemp, sprite.getY());
-            }
-            updatePosicaoSprite(sprite);
         }
     }
 }
