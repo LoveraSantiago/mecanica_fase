@@ -21,6 +21,7 @@ public class MovimentadorManager {
     private       Movimentador movimentadorAtual;
     private final Movimentador movimentadorTecla;
     private final Movimentador movimentadorToque;
+    private final Movimentador movimentadorParado;
 
     public MovimentadorManager(ControleSprite controleSprite) {
         this.controleSprite = controleSprite;
@@ -28,8 +29,10 @@ public class MovimentadorManager {
         this.limitesTela = MapaCasa.getInstance().getOrthogonalTiledMapRenderer().getViewBounds();
         this.limitesTelaSprite = new Rectangle();
 
-        this.movimentadorTecla = new MovimentadorTecla();
-        this.movimentadorToque = new MovimentadorToque();
+        this.movimentadorTecla  = new MovimentadorTecla();
+        this.movimentadorToque  = new MovimentadorToque();
+        this.movimentadorParado = new MovimentadorParado();
+        this.movimentadorAtual = this.movimentadorParado;
 
         configurarLimites();
     }
@@ -54,6 +57,10 @@ public class MovimentadorManager {
     public void configurarToque(float limite) {
         this.movimentadorAtual = this.movimentadorToque;
         this.limite = limite;
+    }
+
+    public void configurarParado(){
+        this.movimentadorAtual = movimentadorParado;
     }
 
     private interface Movimentador{
@@ -116,6 +123,14 @@ public class MovimentadorManager {
                 resultTemp = max(resultTemp, max(limite - (controleSprite.getWidth() / 2f), limitesTelaSprite.getX()));
                 sprite.setPosition(resultTemp, sprite.getY());
             }
+            controleSprite.updatePosicaoSprite(sprite);
+        }
+    }
+
+    private class MovimentadorParado implements Movimentador{
+
+        @Override
+        public void movimentando(Sprite sprite) {
             controleSprite.updatePosicaoSprite(sprite);
         }
     }
