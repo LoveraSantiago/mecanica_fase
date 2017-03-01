@@ -67,6 +67,7 @@ public class Movimentador {
         void movimentando(Sprite sprite);
     }
 
+    //Todo unificar movimentadortecla e toque utilizando os limites. Aguardar se mapa tera as propriedade de tamanho.
     private class SubMovimentadorTecla implements SubMovimentador {
 
         @Override

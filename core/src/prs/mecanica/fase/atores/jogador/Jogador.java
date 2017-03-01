@@ -23,10 +23,9 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
     public Jogador() {
         this.spriteManager = new SpriteManager();
         this.spriteAtual = this.spriteManager.getSprite(666);
+        this.posJog = new PosJog();
 
         this.mySpriteBatch = MySpriteBatch.getInstance();
-
-        this.posJog = new PosJog();
 
         this.movimentador = new Movimentador(this.spriteManager);
         this.controle = new JogadorListener(this);
