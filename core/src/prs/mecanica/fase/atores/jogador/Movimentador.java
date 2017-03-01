@@ -9,7 +9,7 @@ import prs.mecanica.fase.atores.mapas.MapaCasa;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-public class MovimentadorManager {
+public class Movimentador {
 
     private final ControleSprite controleSprite;
 
@@ -18,21 +18,21 @@ public class MovimentadorManager {
 
     private float resultTemp;
     private float limite;
-    private       Movimentador movimentadorAtual;
-    private final Movimentador movimentadorTecla;
-    private final Movimentador movimentadorToque;
-    private final Movimentador movimentadorParado;
+    private SubMovimentador subMovimentadorAtual;
+    private final SubMovimentador subMovimentadorTecla;
+    private final SubMovimentador subMovimentadorToque;
+    private final SubMovimentador subMovimentadorParado;
 
-    public MovimentadorManager(ControleSprite controleSprite) {
+    public Movimentador(ControleSprite controleSprite) {
         this.controleSprite = controleSprite;
 
         this.limitesTela = MapaCasa.getInstance().getOrthogonalTiledMapRenderer().getViewBounds();
         this.limitesTelaSprite = new Rectangle();
 
-        this.movimentadorTecla  = new MovimentadorTecla();
-        this.movimentadorToque  = new MovimentadorToque();
-        this.movimentadorParado = new MovimentadorParado();
-        this.movimentadorAtual = this.movimentadorParado;
+        this.subMovimentadorTecla = new SubMovimentadorTecla();
+        this.subMovimentadorToque = new SubMovimentadorToque();
+        this.subMovimentadorParado = new SubMovimentadorParado();
+        this.subMovimentadorAtual = this.subMovimentadorParado;
 
         configurarLimites();
     }
@@ -47,27 +47,27 @@ public class MovimentadorManager {
     }
 
     public void movimentar(Sprite sprite){
-        this.movimentadorAtual.movimentando(sprite);
+        this.subMovimentadorAtual.movimentando(sprite);
     }
 
     public void configurarTecla() {
-        this.movimentadorAtual = this.movimentadorTecla;
+        this.subMovimentadorAtual = this.subMovimentadorTecla;
     }
 
     public void configurarToque(float limite) {
-        this.movimentadorAtual = this.movimentadorToque;
+        this.subMovimentadorAtual = this.subMovimentadorToque;
         this.limite = limite;
     }
 
     public void configurarParado(){
-        this.movimentadorAtual = movimentadorParado;
+        this.subMovimentadorAtual = subMovimentadorParado;
     }
 
-    private interface Movimentador{
+    private interface SubMovimentador {
         void movimentando(Sprite sprite);
     }
 
-    private class MovimentadorTecla implements Movimentador {
+    private class SubMovimentadorTecla implements SubMovimentador {
 
         @Override
         public void movimentando(Sprite sprite) {
@@ -95,7 +95,7 @@ public class MovimentadorManager {
         }
     }
 
-    private class MovimentadorToque implements Movimentador {
+    private class SubMovimentadorToque implements SubMovimentador {
 
         @Override
         public void movimentando(Sprite sprite) {
@@ -127,7 +127,7 @@ public class MovimentadorManager {
         }
     }
 
-    private class MovimentadorParado implements Movimentador{
+    private class SubMovimentadorParado implements SubMovimentador {
 
         @Override
         public void movimentando(Sprite sprite) {
