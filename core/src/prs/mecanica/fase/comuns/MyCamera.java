@@ -4,9 +4,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import prs.mecanica.fase.comuns.contratos.TipoAtualizavel;
 import prs.mecanica.fase.debugagem.Debugagem;
 
-public class MyCamera {
+public class MyCamera implements TipoAtualizavel{
 
     public static final float ESCALA = 1f / 10f;
     public static final int LARGURA_TELA = 30;
@@ -27,7 +28,7 @@ public class MyCamera {
         this.viewport.apply();
 
         this.camera.position.set(this.camera.viewportWidth / 2f, this.camera.viewportHeight / 2f, 0);
-        update();
+        atualizar();
     }
 
     public static MyCamera getInstance() {
@@ -39,7 +40,8 @@ public class MyCamera {
         this.viewport.apply();
     }
 
-    public void update(){
+    @Override
+    public void atualizar() {
         this.camera.update();
     }
 

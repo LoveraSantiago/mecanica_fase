@@ -4,8 +4,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
 
-//TODO atualizar o spritebacth com setprojectionmatrix no render
-public class MySpriteBatch implements Disposable{
+import prs.mecanica.fase.comuns.contratos.TipoAtualizavel;
+
+public class MySpriteBatch implements Disposable, TipoAtualizavel{
 
     private static final MySpriteBatch mySpriteBatch;
 
@@ -17,7 +18,7 @@ public class MySpriteBatch implements Disposable{
 
     private MySpriteBatch(){
         this.spriteBatch = new SpriteBatch();
-        this.spriteBatch.setProjectionMatrix(MyCamera.getInstance().getCamera().combined);
+        atualizar();
     }
 
     public static MySpriteBatch getInstance() {
@@ -26,6 +27,11 @@ public class MySpriteBatch implements Disposable{
 
     public SpriteBatch getSpriteBatch(){
         return this.spriteBatch;
+    }
+
+    @Override
+    public void atualizar() {
+        this.spriteBatch.setProjectionMatrix(MyCamera.getInstance().getCamera().combined);
     }
 
     @Override

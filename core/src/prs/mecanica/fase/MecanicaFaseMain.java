@@ -16,6 +16,7 @@ import prs.mecanica.fase.comuns.MySpriteBatch;
 public class MecanicaFaseMain extends ApplicationAdapter {
 
 	private MyCamera myCamera;
+	private MySpriteBatch mySpriteBatch;
 
 	private MapaCasa mapaCasa;
 	private Jogador jogador;
@@ -23,7 +24,7 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 	@Override
 	public void create() {
 		this.myCamera = MyCamera.getInstance();
-		MySpriteBatch.getInstance();//Força o early instantiation do MySpriteBatch
+		this.mySpriteBatch = MySpriteBatch.getInstance();
 
 		this.mapaCasa = new MapaCasa();
 
@@ -35,7 +36,10 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 	public void render() {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		myCamera.update();
+
+		this.myCamera.atualizar();
+		this.mySpriteBatch.atualizar();
+
 		this.mapaCasa.meDesenhar();
 		this.jogador.meDesenhar();
 	}
@@ -47,7 +51,7 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 
 	@Override
 	public void dispose() {
-		MySpriteBatch.getInstance().dispose();
+		this.mySpriteBatch.dispose();
 		MapaLeitor.getInstance().dispose();
 		ImgLeitor.getInstance().dispose();
 	}
