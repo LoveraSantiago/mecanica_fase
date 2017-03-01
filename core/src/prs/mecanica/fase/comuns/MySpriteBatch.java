@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
 
+//TODO atualizar o spritebacth com setprojectionmatrix no render
 public class MySpriteBatch implements Disposable{
 
     private static final MySpriteBatch mySpriteBatch;
