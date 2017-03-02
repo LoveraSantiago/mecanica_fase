@@ -11,8 +11,6 @@ import prs.mecanica.fase.comuns.contratos.TipoDesenhavel;
 
 import static prs.mecanica.fase.atores.entidades.direcao.Direcoes.CIMA;
 
-
-//TODO jogador tem que ter uma direcao atual
 public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador{
 
     private final MySpriteBatch mySpriteBatch;
@@ -28,7 +26,6 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
 
     public Jogador() {
         this.spriteManager = new SpriteManager();
-//        this.spriteAtual = this.spriteManager.getSprite(666);
         this.spriteAtual = this.spriteManager.getSprite(CIMA);
         this.posJog = new PosJog();
 
@@ -44,24 +41,12 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
         this.mySpriteBatch.desenharSprite  (this.spriteAtual);
     }
 
-//    @Override
-//    public void iniciarMovimentacaoTecla(int keyCode) {
-//        this.movimentador.configurarTecla();
-//        this.spriteAtual = this.spriteManager.getSprite(keyCode);
-//    }
-
     @Override
     public void iniciarMovimentacaoTecla(Direcoes direcao) {
         this.direcaoAtual = direcao;
         this.movimentador.configurarTecla();
         this.spriteAtual = this.spriteManager.getSprite(direcao);
     }
-
-//    @Override
-//    public void iniciarMovimentacaoToque(int keyCode, float limite) {
-//        this.movimentador.configurarToque(limite);
-//        this.spriteAtual = this.spriteManager.getSprite(keyCode);
-//    }
 
     @Override
     public void iniciarMovimentacaoToque(Direcoes direcao, float limite) {

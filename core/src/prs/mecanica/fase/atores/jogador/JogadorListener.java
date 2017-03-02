@@ -28,13 +28,6 @@ class JogadorListener implements InputProcessor{
         this.direcaoManager = DirecaoManager.getInstance();
     }
 
-//    @Override
-//    public boolean keyDown(int keycode) {
-//        ++this.contadorKeyDown;
-//        this.controle.iniciarMovimentacaoTecla(keycode);
-//        return false;
-//    }
-
     @Override
     public boolean keyDown(int keycode) {
         ++this.contadorKeyDown;
