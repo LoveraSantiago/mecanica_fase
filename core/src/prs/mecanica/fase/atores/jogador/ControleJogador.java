@@ -6,9 +6,9 @@ import prs.mecanica.fase.atores.entidades.direcao.Direcoes;
 //todo diminuir nomes dos metodos
 interface ControleJogador {
 
-    void iniciarMovimentacaoTecla(Direcoes direcao);
-    void iniciarMovimentacaoToque(Direcoes direcao, float limite);
-    void pararMovimentacao();
+    void initMovTecla(Direcoes direcao);
+    void initMovToque(Direcoes direcao, float limite);
+    void pararMov();
 
     PosJog getPosicaoJogador();
 }

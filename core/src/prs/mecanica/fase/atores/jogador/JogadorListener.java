@@ -31,14 +31,14 @@ class JogadorListener implements InputProcessor{
     @Override
     public boolean keyDown(int keycode) {
         ++this.contadorKeyDown;
-        this.controle.iniciarMovimentacaoTecla(this.direcaoManager.getDirecaoFromKeyCode(keycode));
+        this.controle.initMovTecla(this.direcaoManager.getDirecaoFromKeyCode(keycode));
         return false;
     }
 
     @Override
     public boolean keyUp(int keycode) {
         if(--this.contadorKeyDown == 0){
-            this.controle.pararMovimentacao();
+            this.controle.pararMov();
         }
         return false;
     }
@@ -54,14 +54,14 @@ class JogadorListener implements InputProcessor{
         this.vetor3.set(this.camera.unproject(this.vetor3));
 
         if(this.gesture.isToqueValido(this.controle.getPosicaoJogador(), this.vetor3.x, this.vetor3.y)){
-            this.controle.iniciarMovimentacaoToque(this.direcaoManager.getDirecaoFromKeyCode(this.gesture.getKeyCode()), this.gesture.getLimite());
+            this.controle.initMovToque(this.direcaoManager.getDirecaoFromKeyCode(this.gesture.getKeyCode()), this.gesture.getLimite());
         }
         return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        this.controle.pararMovimentacao();
+        this.controle.pararMov();
         return false;
     }
 

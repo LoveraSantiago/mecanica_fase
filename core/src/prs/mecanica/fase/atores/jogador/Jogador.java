@@ -42,21 +42,21 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
     }
 
     @Override
-    public void iniciarMovimentacaoTecla(Direcoes direcao) {
+    public void initMovTecla(Direcoes direcao) {
         this.direcaoAtual = direcao;
         this.movimentador.configurarTecla();
         this.spriteAtual = this.spriteManager.getSprite(direcao);
     }
 
     @Override
-    public void iniciarMovimentacaoToque(Direcoes direcao, float limite) {
+    public void initMovToque(Direcoes direcao, float limite) {
         this.direcaoAtual = direcao;
         this.movimentador.configurarToque(limite);
         this.spriteAtual = this.spriteManager.getSprite(direcao);
     }
 
     @Override
-    public void pararMovimentacao() {
+    public void pararMov() {
         this.movimentador.configurarParado();
     }
 
