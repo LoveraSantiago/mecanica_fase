@@ -39,23 +39,26 @@ public class SpriteManager implements ControleSprite{
         configurarTamanhoSprite();
     }
 
-    public Sprite getSprite(int keyCode){
-        switch (keyCode){
-            case UP   : return this.spriteCima;
-            case DOWN : return this.spriteBaixo;
-            case LEFT : return this.spriteEsq;
-            case RIGHT: return this.spriteDir;
-        }
-        return this.spriteCima;
-    }
+//    public Sprite getSprite(int keyCode){
+//        switch (keyCode){
+//            case UP   : return this.spriteCima;
+//            case DOWN : return this.spriteBaixo;
+//            case LEFT : return this.spriteEsq;
+//            case RIGHT: return this.spriteDir;
+//        }
+//        return this.spriteCima;
+//    }
 
     public Sprite getSprite(Direcoes direcao){
         switch (direcao){
-            case PARADO   : return this.spriteCima;
-            case CIMA     : return this.spriteCima;
-            case BAIXO    : return this.spriteBaixo;
-            case ESQUERDA : return this.spriteEsq;
-            case DIREITA  : return this.spriteDir;
+            case CIMA              : return this.spriteCima;
+            case BAIXO             : return this.spriteBaixo;
+            case ESQUERDA          :
+            case ESQUERDA_INFERIOR :
+            case ESQUERDA_SUPERIOR : return this.spriteEsq;
+            case DIREITA           :
+            case DIREIRA_SUPERIOR  :
+            case DIREITA_INFERIOR  : return this.spriteDir;
         }
         return this.spriteCima;
     }
@@ -72,25 +75,25 @@ public class SpriteManager implements ControleSprite{
         this.heightSprite = this.spriteCima.getHeight() * ESCALA;
     }
 
-    @Override
-    public boolean isSpriteBaixo(Sprite sprite) {
-        return sprite == this.spriteBaixo;
-    }
-
-    @Override
-    public boolean isSpriteCima(Sprite sprite) {
-        return sprite == this.spriteCima;
-    }
-
-    @Override
-    public boolean isSpriteDireita(Sprite sprite) {
-        return sprite == this.spriteDir;
-    }
-
-    @Override
-    public boolean isSpriteEsquerda(Sprite sprite) {
-        return sprite == this.spriteEsq;
-    }
+//    @Override
+//    public boolean isSpriteBaixo(Sprite sprite) {
+//        return sprite == this.spriteBaixo;
+//    }
+//
+//    @Override
+//    public boolean isSpriteCima(Sprite sprite) {
+//        return sprite == this.spriteCima;
+//    }
+//
+//    @Override
+//    public boolean isSpriteDireita(Sprite sprite) {
+//        return sprite == this.spriteDir;
+//    }
+//
+//    @Override
+//    public boolean isSpriteEsquerda(Sprite sprite) {
+//        return sprite == this.spriteEsq;
+//    }
 
     @Override
     public float getWidth() {

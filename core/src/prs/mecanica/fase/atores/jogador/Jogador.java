@@ -3,10 +3,13 @@ package prs.mecanica.fase.atores.jogador;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import prs.mecanica.fase.atores.entidades.direcao.Direcoes;
 import prs.mecanica.fase.comuns.MyCamera;
 import prs.mecanica.fase.comuns.MySpriteBatch;
 import prs.mecanica.fase.comuns.contratos.TipoControlavel;
 import prs.mecanica.fase.comuns.contratos.TipoDesenhavel;
+
+import static prs.mecanica.fase.atores.entidades.direcao.Direcoes.CIMA;
 
 
 //TODO jogador tem que ter uma direcao atual
@@ -15,6 +18,7 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
     private final MySpriteBatch mySpriteBatch;
     private final SpriteManager spriteManager;
 
+    private Direcoes direcaoAtual;
     private Sprite spriteAtual;
     private final PosJog posJog;
 
@@ -24,7 +28,8 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
 
     public Jogador() {
         this.spriteManager = new SpriteManager();
-        this.spriteAtual = this.spriteManager.getSprite(666);
+//        this.spriteAtual = this.spriteManager.getSprite(666);
+        this.spriteAtual = this.spriteManager.getSprite(CIMA);
         this.posJog = new PosJog();
 
         this.mySpriteBatch = MySpriteBatch.getInstance();
@@ -35,20 +40,34 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
 
     @Override
     public void meDesenhar() {
-        this.movimentador.movimentar(this.spriteAtual);
+        this.movimentador.movimentar(this.spriteAtual, this.direcaoAtual);
         this.mySpriteBatch.desenharSprite  (this.spriteAtual);
     }
 
-    @Override
-    public void iniciarMovimentacaoTecla(int keyCode) {
-        this.movimentador.configurarTecla();
-        this.spriteAtual = this.spriteManager.getSprite(keyCode);
-    }
+//    @Override
+//    public void iniciarMovimentacaoTecla(int keyCode) {
+//        this.movimentador.configurarTecla();
+//        this.spriteAtual = this.spriteManager.getSprite(keyCode);
+//    }
 
     @Override
-    public void iniciarMovimentacaoToque(int keyCode, float limite) {
+    public void iniciarMovimentacaoTecla(Direcoes direcao) {
+        this.direcaoAtual = direcao;
+        this.movimentador.configurarTecla();
+        this.spriteAtual = this.spriteManager.getSprite(direcao);
+    }
+
+//    @Override
+//    public void iniciarMovimentacaoToque(int keyCode, float limite) {
+//        this.movimentador.configurarToque(limite);
+//        this.spriteAtual = this.spriteManager.getSprite(keyCode);
+//    }
+
+    @Override
+    public void iniciarMovimentacaoToque(Direcoes direcao, float limite) {
+        this.direcaoAtual = direcao;
         this.movimentador.configurarToque(limite);
-        this.spriteAtual = this.spriteManager.getSprite(keyCode);
+        this.spriteAtual = this.spriteManager.getSprite(direcao);
     }
 
     @Override

@@ -7,7 +7,7 @@ public enum Direcoes {
     ESQUERDA,
     DIREITA,
 
-    ABAIXADO,
+    ABAIXADO,//todo criar enum de acoes
     PARADO,
     PULANDO,
 

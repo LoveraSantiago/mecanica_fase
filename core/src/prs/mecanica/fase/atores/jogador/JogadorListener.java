@@ -4,6 +4,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector3;
 
+import prs.mecanica.fase.atores.entidades.direcao.DirecaoManager;
 import prs.mecanica.fase.comuns.MyCamera;
 
 class JogadorListener implements InputProcessor{
@@ -15,6 +16,7 @@ class JogadorListener implements InputProcessor{
 
     private final ControleJogador controle;
     private final JogadorGesture gesture;
+    private final DirecaoManager direcaoManager;
 
     public JogadorListener(ControleJogador controle) {
         this.controle = controle;
@@ -22,12 +24,21 @@ class JogadorListener implements InputProcessor{
 
         this.vetor3 = new Vector3();
         this.camera = MyCamera.getInstance().getCamera();
+
+        this.direcaoManager = DirecaoManager.getInstance();
     }
+
+//    @Override
+//    public boolean keyDown(int keycode) {
+//        ++this.contadorKeyDown;
+//        this.controle.iniciarMovimentacaoTecla(keycode);
+//        return false;
+//    }
 
     @Override
     public boolean keyDown(int keycode) {
         ++this.contadorKeyDown;
-        this.controle.iniciarMovimentacaoTecla(keycode);
+        this.controle.iniciarMovimentacaoTecla(this.direcaoManager.getDirecaoFromKeyCode(keycode));
         return false;
     }
 
@@ -50,7 +61,7 @@ class JogadorListener implements InputProcessor{
         this.vetor3.set(this.camera.unproject(this.vetor3));
 
         if(this.gesture.isToqueValido(this.controle.getPosicaoJogador(), this.vetor3.x, this.vetor3.y)){
-            this.controle.iniciarMovimentacaoToque(this.gesture.getKeyCode(), this.gesture.getLimite());
+            this.controle.iniciarMovimentacaoToque(this.direcaoManager.getDirecaoFromKeyCode(this.gesture.getKeyCode()), this.gesture.getLimite());
         }
         return false;
     }

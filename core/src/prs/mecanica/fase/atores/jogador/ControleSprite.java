@@ -7,10 +7,10 @@ interface ControleSprite {
     float getWidth();
     float getHeigth();
 
-    boolean isSpriteCima(Sprite sprite);
-    boolean isSpriteBaixo(Sprite sprite);
-    boolean isSpriteDireita(Sprite sprite);
-    boolean isSpriteEsquerda(Sprite sprite);
+//    boolean isSpriteCima(Sprite sprite);
+//    boolean isSpriteBaixo(Sprite sprite);
+//    boolean isSpriteDireita(Sprite sprite);
+//    boolean isSpriteEsquerda(Sprite sprite);
 
     void updatePosicaoSprite(Sprite sprite);
 
