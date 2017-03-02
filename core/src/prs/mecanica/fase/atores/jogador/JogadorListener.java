@@ -3,13 +3,17 @@ package prs.mecanica.fase.atores.jogador;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Array;
 
-import prs.mecanica.fase.atores.entidades.direcao.DirecaoManager;
+import prs.mecanica.fase.atores.entidades.direcao.Direcoes;
 import prs.mecanica.fase.comuns.MyCamera;
 
 class JogadorListener implements InputProcessor{
 
-    private int contadorKeyDown;
+//    private int contadorKeyDown;
+    private final Array<Direcoes> direcoes;
+    private Direcoes direcaoTempKD;
+    private Direcoes direcaoTempKU;
 
     private final Vector3 vetor3;
     private final Camera camera;
@@ -17,6 +21,7 @@ class JogadorListener implements InputProcessor{
     private final ControleJogador controle;
     private final JogadorGesture gesture;
     private final DirecaoManager direcaoManager;
+    private final KeyCodeFilter keyCodeFilter;
 
     public JogadorListener(ControleJogador controle) {
         this.controle = controle;
@@ -25,20 +30,35 @@ class JogadorListener implements InputProcessor{
         this.vetor3 = new Vector3();
         this.camera = MyCamera.getInstance().getCamera();
 
+        this.direcoes = new Array<Direcoes>();
+        this.keyCodeFilter = new KeyCodeFilter();
         this.direcaoManager = DirecaoManager.getInstance();
+
     }
 
     @Override
     public boolean keyDown(int keycode) {
-        ++this.contadorKeyDown;
-        this.controle.initMovTecla(this.direcaoManager.getDirecaoFromKeyCode(keycode));
+        if(this.keyCodeFilter.isKeyCodeMovimentacao(keycode)){
+            this.direcaoTempKD = this.direcaoManager.getDirecaoFromKeyCode(keycode);
+            this.direcoes.add(this.direcaoTempKD);
+
+            if(this.direcoes.size < 2){
+                this.controle.initMovTecla(this.direcaoTempKD);
+            }
+            else{
+                this.controle.initMovTecla(this.direcaoManager.getDirecaoFromSomaDirecao(this.direcoes));
+            }
+        }
         return false;
     }
 
     @Override
     public boolean keyUp(int keycode) {
-        if(--this.contadorKeyDown == 0){
-            this.controle.pararMov();
+        if(this.keyCodeFilter.isKeyCodeMovimentacao(keycode)){
+            this.direcaoTempKU = this.direcaoManager.getDirecaoFromKeyCode(keycode);
+            if(this.direcoes.removeValue(this.direcaoTempKU, true) && this.direcoes.size == 0){
+                this.controle.pararMov();
+            }
         }
         return false;
     }

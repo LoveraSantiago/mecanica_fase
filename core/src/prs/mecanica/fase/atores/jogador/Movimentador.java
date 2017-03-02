@@ -107,6 +107,8 @@ public class Movimentador {
         }
     }
 
+
+    //TODO IMPLEMENTAR DIAGONAIS
     private class SubMovimentadorToque implements SubMovimentador {
 
         @Override

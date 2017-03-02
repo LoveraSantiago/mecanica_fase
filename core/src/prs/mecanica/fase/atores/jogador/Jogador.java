@@ -2,6 +2,7 @@ package prs.mecanica.fase.atores.jogador;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.utils.Array;
 
 import prs.mecanica.fase.atores.entidades.direcao.Direcoes;
 import prs.mecanica.fase.comuns.MyCamera;
@@ -46,6 +47,11 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
         this.direcaoAtual = direcao;
         this.movimentador.configurarTecla();
         this.spriteAtual = this.spriteManager.getSprite(direcao);
+    }
+
+    @Override
+    public void initMovTeclas(Array<Direcoes> direcoes) {
+
     }
 
     @Override
