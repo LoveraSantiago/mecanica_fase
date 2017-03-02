@@ -1,4 +1,4 @@
-package prs.mecanica.fase.debugagem;
+package prs.mecanica.fase.utils.debugagem;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;

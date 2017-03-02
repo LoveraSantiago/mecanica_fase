@@ -5,7 +5,6 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import prs.mecanica.fase.comuns.contratos.TipoAtualizavel;
-import prs.mecanica.fase.debugagem.Debugagem;
 
 public class MyCamera implements TipoAtualizavel{
 
