@@ -8,6 +8,8 @@ import prs.mecanica.fase.comuns.MySpriteBatch;
 import prs.mecanica.fase.comuns.contratos.TipoControlavel;
 import prs.mecanica.fase.comuns.contratos.TipoDesenhavel;
 
+
+//TODO jogador tem que ter uma direcao atual
 public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador{
 
     private final MySpriteBatch mySpriteBatch;

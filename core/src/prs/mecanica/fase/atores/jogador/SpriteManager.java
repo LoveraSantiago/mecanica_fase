@@ -3,6 +3,7 @@ package prs.mecanica.fase.atores.jogador;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
 
+import prs.mecanica.fase.atores.entidades.direcao.Direcoes;
 import prs.mecanica.fase.comuns.ImgLeitor;
 
 import static com.badlogic.gdx.Input.Keys.DOWN;
@@ -44,6 +45,17 @@ public class SpriteManager implements ControleSprite{
             case DOWN : return this.spriteBaixo;
             case LEFT : return this.spriteEsq;
             case RIGHT: return this.spriteDir;
+        }
+        return this.spriteCima;
+    }
+
+    public Sprite getSprite(Direcoes direcao){
+        switch (direcao){
+            case PARADO   : return this.spriteCima;
+            case CIMA     : return this.spriteCima;
+            case BAIXO    : return this.spriteBaixo;
+            case ESQUERDA : return this.spriteEsq;
+            case DIREITA  : return this.spriteDir;
         }
         return this.spriteCima;
     }
