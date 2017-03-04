@@ -1,13 +1,11 @@
 package prs.mecanica.fase.atores.entidades.controle;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import prs.mecanica.fase.comuns.MyCamera;
 import prs.mecanica.fase.comuns.MySpriteBatch;
 import prs.mecanica.fase.comuns.contratos.ViewPortUser;
 import prs.mecanica.fase.comuns.contratos.tipo.TipoControlavel;

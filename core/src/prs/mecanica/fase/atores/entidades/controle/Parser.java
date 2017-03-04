@@ -15,12 +15,10 @@ import prs.mecanica.fase.comuns.imagens.ImgLeitor;
 class Parser {
 
     public Table parsear(){
-        Skin skin = new Skin(Gdx.files.internal("skins/uiskin.json"));
-        skin.addRegions(ImgLeitor.getInstance().getTextureAtlas());
 
-        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle(skin.get(Button.ButtonStyle.class));
-        style.imageUp = skin.getDrawable(Imagens.BTN_CIMA.getNomeArquivo());
-        style.imageDown = skin.getDrawable(Imagens.BTN_BAIXO.getNomeArquivo());
+        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
+        style.imageUp   = new SpriteDrawable(ImgLeitor.getInstance().getImg(Imagens.BTN_CIMA));
+        style.imageDown = new SpriteDrawable(ImgLeitor.getInstance().getImg(Imagens.BTN_BAIXO));
 
         ImageButton btn = new ImageButton(style);
         btn.addListener(new ClickListener(){
