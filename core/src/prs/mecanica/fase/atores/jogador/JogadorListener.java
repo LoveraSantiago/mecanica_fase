@@ -10,7 +10,6 @@ import prs.mecanica.fase.comuns.MyCamera;
 
 class JogadorListener implements InputProcessor{
 
-//    private int contadorKeyDown;
     private final Array<Direcoes> direcoes;
     private Direcoes direcaoTempKD;
     private Direcoes direcaoTempKU;
