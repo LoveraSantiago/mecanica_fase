@@ -1,4 +1,4 @@
-package prs.mecanica.fase.atores.jogador;
+package prs.mecanica.fase.comuns.imagens;
 
 public enum Imagens {
 

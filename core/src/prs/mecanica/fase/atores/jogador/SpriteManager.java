@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
 
 import prs.mecanica.fase.atores.entidades.direcao.Direcoes;
-import prs.mecanica.fase.comuns.imagens.ImgLeitor;
+import prs.mecanica.fase.comuns.imagens.*;
 
 import static prs.mecanica.fase.comuns.MyCamera.ESCALA;
 
@@ -23,10 +23,10 @@ public class SpriteManager implements ControleSprite{
 
     public SpriteManager() {
         ImgLeitor imgLeitor = ImgLeitor.getInstance();
-        this.spriteCima = imgLeitor.getImg (Imagens.PERSONAGEM_CIMA);
-        this.spriteBaixo = imgLeitor.getImg(Imagens.PERSONAGEM_BAIXO);
-        this.spriteDir = imgLeitor.getImg  (Imagens.PERSONAGEM_DIR);
-        this.spriteEsq = imgLeitor.getImg  (Imagens.PERSONAGEM_ESQ);
+        this.spriteCima = imgLeitor.getImg (prs.mecanica.fase.comuns.imagens.Imagens.PERSONAGEM_CIMA);
+        this.spriteBaixo = imgLeitor.getImg(prs.mecanica.fase.comuns.imagens.Imagens.PERSONAGEM_BAIXO);
+        this.spriteDir = imgLeitor.getImg  (prs.mecanica.fase.comuns.imagens.Imagens.PERSONAGEM_DIR);
+        this.spriteEsq = imgLeitor.getImg  (prs.mecanica.fase.comuns.imagens.Imagens.PERSONAGEM_ESQ);
 
         this.arraySprites = new Array<Sprite>();
         this.arraySprites.addAll(this.spriteCima, this.spriteBaixo, this.spriteDir, this.spriteEsq);

@@ -4,8 +4,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Disposable;
 
-import prs.mecanica.fase.atores.jogador.Imagens;
-
 public class ImgLeitor implements Disposable{
 
     private static final ImgLeitor imgLeitor;
