@@ -1,33 +1,89 @@
 
 imgs_gerais.png
-size: 32,256
+size: 512,64
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+btn_baixo
+  rotate: false
+  xy: 2, 2
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+btn_cima
+  rotate: false
+  xy: 44, 2
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+btn_direita
+  rotate: false
+  xy: 86, 2
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+btn_direitainferior
+  rotate: false
+  xy: 128, 2
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+btn_direitasuperior
+  rotate: false
+  xy: 170, 2
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+btn_esquerda
+  rotate: false
+  xy: 212, 2
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+btn_esquerdainferior
+  rotate: false
+  xy: 254, 2
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+btn_esquerdasuperior
+  rotate: false
+  xy: 296, 2
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
 pbaixo
   rotate: false
-  xy: 2, 128
+  xy: 338, 2
   size: 20, 40
   orig: 20, 40
   offset: 0, 0
   index: -1
 pcima
   rotate: false
-  xy: 2, 86
+  xy: 360, 2
   size: 20, 40
   orig: 20, 40
   offset: 0, 0
   index: -1
 pdireita
   rotate: false
-  xy: 2, 44
+  xy: 382, 2
   size: 20, 40
   orig: 20, 40
   offset: 0, 0
   index: -1
 pesquerda
   rotate: false
-  xy: 2, 2
+  xy: 404, 2
   size: 20, 40
   orig: 20, 40
   offset: 0, 0
