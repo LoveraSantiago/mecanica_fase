@@ -1,4 +1,4 @@
-package prs.mecanica.fase.comuns;
+package prs.mecanica.fase.comuns.imagens;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;

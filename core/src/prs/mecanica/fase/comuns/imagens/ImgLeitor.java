@@ -1,4 +1,4 @@
-package prs.mecanica.fase.comuns;
+package prs.mecanica.fase.comuns.imagens;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;

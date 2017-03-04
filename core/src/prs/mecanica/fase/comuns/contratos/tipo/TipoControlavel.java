@@ -1,4 +1,4 @@
-package prs.mecanica.fase.comuns.contratos;
+package prs.mecanica.fase.comuns.contratos.tipo;
 
 import com.badlogic.gdx.InputProcessor;
 
