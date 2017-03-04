@@ -7,14 +7,23 @@ public enum Imagens {
     PERSONAGEM_ESQ  ("pesquerda"),
     PERSONAGEM_DIR  ("pdireita"),
 
-    BTN_DIR    ("btn_direita"),
-    BTN_ESQ    ("btn_esquerda"),
-    BTN_CIMA   ("btn_cima"),
-    BTN_BAIXO  ("btn_baixo"),
-    BTN_DIR_SUP("btn_direitasuperior"),
-    BTN_DIR_INF("btn_direitainferior"),
-    BTN_ESQ_SUP("btn_esquerdasuperior"),
-    BTN_ESQ_INF("btn_esquerdainferior");
+    BTN_DIR_U    ("btn_direita_u"),
+    BTN_ESQ_U    ("btn_esquerda_u"),
+    BTN_CIMA_U   ("btn_cima_u"),
+    BTN_BAIXO_U  ("btn_baixo_u"),
+    BTN_DIR_SUP_U("btn_direitasuperior_u"),
+    BTN_DIR_INF_U("btn_direitainferior_u"),
+    BTN_ESQ_SUP_U("btn_esquerdasuperior_u"),
+    BTN_ESQ_INF_U("btn_esquerdainferior_u"),
+
+    BTN_DIR_D    ("btn_direita_d"),
+    BTN_ESQ_D    ("btn_esquerda_d"),
+    BTN_CIMA_D   ("btn_cima_d"),
+    BTN_BAIXO_D  ("btn_baixo_d"),
+    BTN_DIR_SUP_D("btn_direitasuperior_d"),
+    BTN_DIR_INF_D("btn_direitainferior_d"),
+    BTN_ESQ_SUP_D("btn_esquerdasuperior_d"),
+    BTN_ESQ_INF_D("btn_esquerdainferior_d");
 
     private String nomeArquivo;
 
