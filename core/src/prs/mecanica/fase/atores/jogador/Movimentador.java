@@ -91,16 +91,20 @@ public class Movimentador {
                     sprite.setPosition(max(resultTemp, limitesTelaSprite.getX()), sprite.getY());
                     break;
                 case ESQUERDA_INFERIOR :
+                    sprite.setPosition(max(sprite.getX() - resultTemp, limitesTelaSprite.getX()), max(sprite.getY() - resultTemp, limitesTelaSprite.getY()));
                     break;
                 case ESQUERDA_SUPERIOR :
+                    sprite.setPosition(max(sprite.getX() - resultTemp, limitesTelaSprite.getX()), min(sprite.getY() + resultTemp, limitesTelaSprite.getHeight()));
                     break;
                 case DIREITA           :
                     resultTemp = sprite.getX() + resultTemp;
                     sprite.setPosition(min(resultTemp, limitesTelaSprite.getWidth()), sprite.getY());
                     break;
                 case DIREIRA_SUPERIOR  :
+                    sprite.setPosition(min(sprite.getX() + resultTemp, limitesTelaSprite.getWidth()), min(sprite.getY() + resultTemp, limitesTelaSprite.getHeight()));
                     break;
                 case DIREITA_INFERIOR  :
+                    sprite.setPosition(min(sprite.getX() + resultTemp, limitesTelaSprite.getWidth()), max(sprite.getY() - resultTemp, limitesTelaSprite.getY()));
                     break;
             }
             controleSprite.updatePosicaoSprite(sprite);

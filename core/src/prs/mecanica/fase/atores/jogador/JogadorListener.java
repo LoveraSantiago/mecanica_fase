@@ -56,8 +56,13 @@ class JogadorListener implements InputProcessor{
     public boolean keyUp(int keycode) {
         if(this.keyCodeFilter.isKeyCodeMovimentacao(keycode)){
             this.direcaoTempKU = this.direcaoManager.getDirecaoFromKeyCode(keycode);
-            if(this.direcoes.removeValue(this.direcaoTempKU, true) && this.direcoes.size == 0){
-                this.controle.pararMov();
+            if(this.direcoes.removeValue(this.direcaoTempKU, true)){
+                if(this.direcoes.size == 0){
+                    this.controle.pararMov();
+                }
+                else if(this.direcoes.size == 1){
+                    this.controle.initMovTecla(this.direcoes.first());
+                }
             }
         }
         return false;

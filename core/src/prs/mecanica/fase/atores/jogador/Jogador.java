@@ -50,11 +50,6 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
     }
 
     @Override
-    public void initMovTeclas(Array<Direcoes> direcoes) {
-
-    }
-
-    @Override
     public void initMovToque(Direcoes direcao, float limite) {
         this.direcaoAtual = direcao;
         this.movimentador.configurarToque(limite);
