@@ -30,4 +30,8 @@ public class ImgLeitor implements Disposable{
     public Sprite getImg(Imagens img){
         return this.textureAtlas.createSprite(img.getNomeArquivo());
     }
+
+    public TextureAtlas getTextureAtlas() {
+        return textureAtlas;
+    }
 }

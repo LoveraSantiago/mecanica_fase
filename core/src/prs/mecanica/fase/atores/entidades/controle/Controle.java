@@ -1,5 +1,6 @@
 package prs.mecanica.fase.atores.entidades.controle;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -16,8 +17,11 @@ public class Controle implements TipoDesenhavel, ViewPortUser, Disposable{
     private final Stage stage;
 
     public Controle() {
-        this.viewport = new StretchViewport(MyCamera.LARGURA_TELA, MyCamera.HALTURA_TELA);
+        this.viewport = new StretchViewport(300, 200);
         this.stage = new Stage(this.viewport, MySpriteBatch.getInstance().getSpriteBatch());
+
+        this.stage.addActor(new Parser().parsear());
+        Gdx.input.setInputProcessor(this.stage);
     }
 
     @Override

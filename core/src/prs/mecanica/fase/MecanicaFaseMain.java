@@ -30,7 +30,7 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 		this.jogador = new Jogador();
 		this.controle = new Controle();
 
-		Gdx.input.setInputProcessor(this.jogador.getControle());
+//		Gdx.input.setInputProcessor(this.jogador.getControle());
 	}
 
 	@Override
