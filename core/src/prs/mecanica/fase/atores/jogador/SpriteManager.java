@@ -4,12 +4,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.Array;
 
 import prs.mecanica.fase.atores.entidades.direcao.Direcoes;
-import prs.mecanica.fase.comuns.ImgLeitor;
+import prs.mecanica.fase.comuns.imagens.ImgLeitor;
 
-import static com.badlogic.gdx.Input.Keys.DOWN;
-import static com.badlogic.gdx.Input.Keys.LEFT;
-import static com.badlogic.gdx.Input.Keys.RIGHT;
-import static com.badlogic.gdx.Input.Keys.UP;
 import static prs.mecanica.fase.comuns.MyCamera.ESCALA;
 
 public class SpriteManager implements ControleSprite{

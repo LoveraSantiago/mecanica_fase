@@ -3,9 +3,9 @@ package prs.mecanica.fase.atores.mapas;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
-import prs.mecanica.fase.comuns.MapaLeitor;
+import prs.mecanica.fase.comuns.imagens.MapaLeitor;
 import prs.mecanica.fase.comuns.MyCamera;
-import prs.mecanica.fase.comuns.contratos.TipoDesenhavel;
+import prs.mecanica.fase.comuns.contratos.tipo.TipoDesenhavel;
 
 public class MapaCasa implements TipoDesenhavel {
 

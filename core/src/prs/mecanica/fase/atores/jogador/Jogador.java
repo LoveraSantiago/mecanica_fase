@@ -2,13 +2,12 @@ package prs.mecanica.fase.atores.jogador;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.utils.Array;
 
 import prs.mecanica.fase.atores.entidades.direcao.Direcoes;
 import prs.mecanica.fase.comuns.MyCamera;
 import prs.mecanica.fase.comuns.MySpriteBatch;
-import prs.mecanica.fase.comuns.contratos.TipoControlavel;
-import prs.mecanica.fase.comuns.contratos.TipoDesenhavel;
+import prs.mecanica.fase.comuns.contratos.tipo.TipoControlavel;
+import prs.mecanica.fase.comuns.contratos.tipo.TipoDesenhavel;
 
 import static prs.mecanica.fase.atores.entidades.direcao.Direcoes.CIMA;
 

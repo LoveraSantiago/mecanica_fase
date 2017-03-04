@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
 
-import prs.mecanica.fase.comuns.contratos.TipoAtualizavel;
+import prs.mecanica.fase.comuns.contratos.tipo.TipoAtualizavel;
 
 public class MySpriteBatch implements Disposable, TipoAtualizavel{
 

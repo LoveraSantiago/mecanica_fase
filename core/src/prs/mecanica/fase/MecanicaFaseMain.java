@@ -3,13 +3,12 @@ package prs.mecanica.fase;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import prs.mecanica.fase.atores.entidades.controle.Controle;
 import prs.mecanica.fase.atores.jogador.Jogador;
 import prs.mecanica.fase.atores.mapas.MapaCasa;
-import prs.mecanica.fase.comuns.ImgLeitor;
-import prs.mecanica.fase.comuns.MapaLeitor;
+import prs.mecanica.fase.comuns.imagens.ImgLeitor;
+import prs.mecanica.fase.comuns.imagens.MapaLeitor;
 import prs.mecanica.fase.comuns.MyCamera;
 import prs.mecanica.fase.comuns.MySpriteBatch;
 
@@ -20,6 +19,7 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 
 	private MapaCasa mapaCasa;
 	private Jogador jogador;
+	private Controle controle;
 
 	@Override
 	public void create() {
@@ -27,8 +27,9 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 		this.mySpriteBatch = MySpriteBatch.getInstance();
 
 		this.mapaCasa = new MapaCasa();
-
 		this.jogador = new Jogador();
+		this.controle = new Controle();
+
 		Gdx.input.setInputProcessor(this.jogador.getControle());
 	}
 
@@ -42,6 +43,7 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 
 		this.mapaCasa.meDesenhar();
 		this.jogador.meDesenhar();
+		this.controle.meDesenhar();
 	}
 
 	@Override
@@ -54,5 +56,6 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 		this.mySpriteBatch.dispose();
 		MapaLeitor.getInstance().dispose();
 		ImgLeitor.getInstance().dispose();
+		this.controle.dispose();
 	}
 }
