@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 
 import prs.mecanica.fase.atores.entidades.controle.Controle;
+import prs.mecanica.fase.atores.entidades.controle.ControleManager;
 import prs.mecanica.fase.atores.jogador.Jogador;
 import prs.mecanica.fase.atores.mapas.MapaCasa;
 import prs.mecanica.fase.comuns.imagens.ImgLeitor;
@@ -30,7 +31,9 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 		this.jogador = new Jogador();
 		this.controle = new Controle();
 
-//		Gdx.input.setInputProcessor(this.jogador.getControle());
+        ControleManager controleManager = ControleManager.getInstance();
+        controleManager.adicionarControlavel(this.jogador);
+        controleManager.adicionarControlavel(this.controle);
 	}
 
 	@Override
