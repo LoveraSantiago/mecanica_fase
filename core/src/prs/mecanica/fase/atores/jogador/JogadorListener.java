@@ -74,18 +74,18 @@ class JogadorListener implements InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        this.vetor3.set(screenX, screenY, 0);
-        this.vetor3.set(this.camera.unproject(this.vetor3));
-
-        if(this.gesture.isToqueValido(this.controle.getPosicaoJogador(), this.vetor3.x, this.vetor3.y)){
-            this.controle.initMovToque(this.direcaoManager.getDirecaoFromKeyCode(this.gesture.getKeyCode()), this.gesture.getLimite());
-        }
+//        this.vetor3.set(screenX, screenY, 0);
+//        this.vetor3.set(this.camera.unproject(this.vetor3));
+//
+//        if(this.gesture.isToqueValido(this.controle.getPosicaoJogador(), this.vetor3.x, this.vetor3.y)){
+//            this.controle.initMovToque(this.direcaoManager.getDirecaoFromKeyCode(this.gesture.getKeyCode()), this.gesture.getLimite());
+//        }
         return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        this.controle.pararMov();
+//        this.controle.pararMov();
         return false;
     }
 
