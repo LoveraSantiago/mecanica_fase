@@ -16,8 +16,11 @@ public class Controle implements TipoDesenhavel, ViewPortUser, Disposable, TipoC
     private final Viewport viewport;
     private final Stage stage;
 
+    private final int LARGURA_TELA = 150;
+    private final int HALTURA_TELA = 100;
+
     public Controle() {
-        this.viewport = new StretchViewport(300, 200);
+        this.viewport = new StretchViewport(LARGURA_TELA, HALTURA_TELA);
         this.stage = new Stage(this.viewport, MySpriteBatch.getInstance().getSpriteBatch());
 
         this.stage.addActor(new Parser().parsear());
