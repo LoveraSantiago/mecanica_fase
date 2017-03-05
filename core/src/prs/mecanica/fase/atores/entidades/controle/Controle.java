@@ -23,7 +23,7 @@ public class Controle implements TipoDesenhavel, ViewPortUser, Disposable, TipoC
         this.viewport = new StretchViewport(LARGURA_TELA, HALTURA_TELA);
         this.stage = new Stage(this.viewport, MySpriteBatch.getInstance().getSpriteBatch());
 
-        this.stage.addActor(new Parser().parsear());
+        this.stage.addActor(new LayoutBtns().getLayout());
     }
 
     @Override

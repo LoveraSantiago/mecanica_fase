@@ -1,31 +1,27 @@
 package prs.mecanica.fase.atores.entidades.controle;
 
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
 import prs.mecanica.fase.comuns.imagens.Imagens;
-import prs.mecanica.fase.comuns.imagens.ImgLeitor;
 
-class Parser {
+class LayoutBtns {
 
     private final int LARGURA_BTN = 10;
-    private final int HALTURA_BTN = 10;
+    private final int HALTURA_BTN = 11;
 
-    public Table parsear(){
+    public Table getLayout(){
 
         Table table = new Table();
+        table.setTransform(true);
         table.setDebug(true);
         table.setFillParent(true);
 
         adicionarBotoes(table);
+        table.bottom().left().padBottom(HALTURA_BTN / 2).padLeft(LARGURA_BTN);
 
-        table.bottom().left().padBottom(HALTURA_BTN / 2).padLeft(LARGURA_BTN / 2).rotateBy(45);
-
-
+        table.rotateBy(5);
+        table.setRotation(5);
         return table;
     }
 
