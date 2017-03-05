@@ -3,33 +3,49 @@ package prs.mecanica.fase.telas.jogo.atores.jogador;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import prs.mecanica.fase.global.Configuracao;
+import prs.mecanica.fase.global.ControleManager;
+import prs.mecanica.fase.telas.jogo.atores.controle.Controle;
 import prs.mecanica.fase.telas.jogo.comuns.MyCamera;
 import prs.mecanica.fase.global.SpriteBatchManager;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoControlavel;
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
+import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoDesenhavel;
 
-public class Jogador implements prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoDesenhavel, TipoControlavel, ControleJogador{
+public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador{
 
     private final SpriteBatchManager spriteBatchManager;
     private final SpriteManager spriteManager;
 
     private Direcoes direcaoAtual;
     private Sprite spriteAtual;
-    private final prs.mecanica.fase.telas.jogo.atores.jogador.PosJog posJog;
+    private final PosJog posJog;
 
     private final InputProcessor controle;
 
-    private final prs.mecanica.fase.telas.jogo.atores.jogador.Movimentador movimentador;
+    private final Movimentador movimentador;
 
     public Jogador() {
         this.spriteManager = new SpriteManager();
         this.spriteAtual = this.spriteManager.getSprite(Direcoes.CIMA);
-        this.posJog = new prs.mecanica.fase.telas.jogo.atores.jogador.PosJog();
+        this.posJog = new PosJog();
 
         this.spriteBatchManager = SpriteBatchManager.getInstance();
 
-        this.movimentador = new prs.mecanica.fase.telas.jogo.atores.jogador.Movimentador(this.spriteManager);
-        this.controle = new prs.mecanica.fase.telas.jogo.atores.jogador.JogadorListener(this);
+        this.movimentador = new Movimentador(this.spriteManager);
+
+
+        //TODO arrumar essa bagunca
+        if(Configuracao.getInstance().isMobile()){
+            this.controle = Controle.getInstance().getControle();
+            Controle.getInstance().registrarControleJogador(this);
+        }
+        else{
+            this.controle = new JogadorListener(this);
+        }
+
+        ControleManager controleManager = ControleManager.getInstance();
+        controleManager.adicionarControlavel(this);
     }
 
     @Override
@@ -58,7 +74,7 @@ public class Jogador implements prs.mecanica.fase.telas.jogo.comuns.contratos.ti
     }
 
     @Override
-    public prs.mecanica.fase.telas.jogo.atores.jogador.PosJog getPosicaoJogador() {
+    public PosJog getPosicaoJogador() {
         this.posJog.setXYWH(this.spriteAtual.getX(), this.spriteAtual.getY(), this.spriteAtual.getWidth() * MyCamera.ESCALA, this.spriteAtual.getHeight() * MyCamera.ESCALA);
         return this.posJog;
     }

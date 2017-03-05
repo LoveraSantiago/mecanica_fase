@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
+import prs.mecanica.fase.telas.jogo.comuns.MyCamera;
 
 class JogadorListener implements InputProcessor{
 
@@ -26,7 +27,7 @@ class JogadorListener implements InputProcessor{
         this.gesture = new JogadorGesture();
 
         this.vetor3 = new Vector3();
-        this.camera = prs.mecanica.fase.telas.jogo.comuns.MyCamera.getInstance().getCamera();
+        this.camera = MyCamera.getInstance().getCamera();
 
         this.direcoes = new Array<Direcoes>();
         this.keyCodeFilter = new KeyCodeFilter();

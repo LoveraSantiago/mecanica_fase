@@ -22,18 +22,16 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 	private Jogador jogador;
 	private Controle controle;
 
+
+
 	@Override
 	public void create() {
 		this.myCamera = MyCamera.getInstance();
 		this.spriteBatchManager = SpriteBatchManager.getInstance();
 
 		this.mapaCasa = new MapaCasa();
-		this.jogador = new Jogador();
 		this.controle = new Controle();
-
-        ControleManager controleManager = ControleManager.getInstance();
-        controleManager.adicionarControlavel(this.jogador);
-        controleManager.adicionarControlavel(this.controle);
+		this.jogador = new Jogador();
 	}
 
 	@Override
@@ -45,8 +43,8 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 		this.spriteBatchManager.atualizar();
 
 		this.mapaCasa.meDesenhar();
-		this.jogador.meDesenhar();
 		this.controle.meDesenhar();
+		this.jogador.meDesenhar();
 	}
 
 	@Override
