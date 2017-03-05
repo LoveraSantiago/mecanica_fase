@@ -14,7 +14,7 @@ class LayoutBtns {
 
         Table table = new Table();
         table.setTransform(true);
-        table.setDebug(true);
+//        table.setDebug(true);
         table.setFillParent(true);
 
         adicionarBotoes(table);

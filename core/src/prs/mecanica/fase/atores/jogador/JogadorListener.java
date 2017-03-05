@@ -32,7 +32,6 @@ class JogadorListener implements InputProcessor{
         this.direcoes = new Array<Direcoes>();
         this.keyCodeFilter = new KeyCodeFilter();
         this.direcaoManager = DirecaoManager.getInstance();
-
     }
 
     @Override

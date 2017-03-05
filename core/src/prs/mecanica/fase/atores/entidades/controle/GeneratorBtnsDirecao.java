@@ -11,6 +11,8 @@ import prs.mecanica.fase.comuns.imagens.ImgLeitor;
 
 class GeneratorBtnsDirecao {
 
+
+
     public Button gerarBotao(Imagens imgU, Imagens imgD){
         Button.ButtonStyle style = new ImageButton.ImageButtonStyle();
         style.up = new SpriteDrawable(ImgLeitor.getInstance().getImg(imgU));
