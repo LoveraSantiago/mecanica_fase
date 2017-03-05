@@ -4,19 +4,19 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 
-import prs.mecanica.fase.atores.entidades.controle.Controle;
-import prs.mecanica.fase.atores.entidades.controle.ControleManager;
-import prs.mecanica.fase.atores.jogador.Jogador;
-import prs.mecanica.fase.atores.mapas.MapaCasa;
-import prs.mecanica.fase.comuns.imagens.ImgLeitor;
-import prs.mecanica.fase.comuns.imagens.MapaLeitor;
-import prs.mecanica.fase.comuns.MyCamera;
-import prs.mecanica.fase.comuns.MySpriteBatch;
+import prs.mecanica.fase.telas.jogo.atores.controle.Controle;
+import prs.mecanica.fase.global.ControleManager;
+import prs.mecanica.fase.telas.jogo.atores.jogador.Jogador;
+import prs.mecanica.fase.telas.jogo.atores.mapas.MapaCasa;
+import prs.mecanica.fase.telas.jogo.comuns.imagens.ImgLeitor;
+import prs.mecanica.fase.telas.jogo.comuns.imagens.MapaLeitor;
+import prs.mecanica.fase.telas.jogo.comuns.MyCamera;
+import prs.mecanica.fase.global.SpriteBatchManager;
 
 public class MecanicaFaseMain extends ApplicationAdapter {
 
 	private MyCamera myCamera;
-	private MySpriteBatch mySpriteBatch;
+	private SpriteBatchManager spriteBatchManager;
 
 	private MapaCasa mapaCasa;
 	private Jogador jogador;
@@ -25,7 +25,7 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 	@Override
 	public void create() {
 		this.myCamera = MyCamera.getInstance();
-		this.mySpriteBatch = MySpriteBatch.getInstance();
+		this.spriteBatchManager = SpriteBatchManager.getInstance();
 
 		this.mapaCasa = new MapaCasa();
 		this.jogador = new Jogador();
@@ -42,7 +42,7 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		this.myCamera.atualizar();
-		this.mySpriteBatch.atualizar();
+		this.spriteBatchManager.atualizar();
 
 		this.mapaCasa.meDesenhar();
 		this.jogador.meDesenhar();
@@ -56,7 +56,7 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 
 	@Override
 	public void dispose() {
-		this.mySpriteBatch.dispose();
+		this.spriteBatchManager.dispose();
 		MapaLeitor.getInstance().dispose();
 		ImgLeitor.getInstance().dispose();
 		this.controle.dispose();
