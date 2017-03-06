@@ -18,13 +18,11 @@ class JogadorListener implements InputProcessor{
     private final Camera camera;
 
     private final prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador controle;
-    private final JogadorGesture gesture;
     private final DirecaoManager direcaoManager;
     private final KeyCodeFilter keyCodeFilter;
 
     public JogadorListener(prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador controle) {
         this.controle = controle;
-        this.gesture = new JogadorGesture();
 
         this.vetor3 = new Vector3();
         this.camera = MyCamera.getInstance().getCamera();
@@ -73,18 +71,11 @@ class JogadorListener implements InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-//        this.vetor3.set(screenX, screenY, 0);
-//        this.vetor3.set(this.camera.unproject(this.vetor3));
-//
-//        if(this.gesture.isToqueValido(this.controle.getPosicaoJogador(), this.vetor3.x, this.vetor3.y)){
-//            this.controle.initMovToque(this.direcaoManager.getDirecaoFromKeyCode(this.gesture.getKeyCode()), this.gesture.getLimite());
-//        }
         return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-//        this.controle.pararMov();
         return false;
     }
 
