@@ -8,10 +8,11 @@ import prs.mecanica.fase.global.ControleManager;
 import prs.mecanica.fase.global.SpriteBatchManager;
 import prs.mecanica.fase.telas.jogo.atores.controle.Controle;
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
+import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoControlavel;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoDesenhavel;
 
-public class Jogador implements TipoDesenhavel, TipoControlavel, prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador {
+public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador {
 
     private final SpriteBatchManager spriteBatchManager;
     private final SpriteManager spriteManager;

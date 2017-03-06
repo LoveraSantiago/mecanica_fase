@@ -18,6 +18,7 @@ public class Movimentador {
     private Rectangle limitesTela;
 
     private float resultTemp;
+
     private       SubMovimentadorHelper helperAtual;
     private final SubMovimentadorHelper helperTecla;
     private final SubMovimentadorHelper helperParado;
