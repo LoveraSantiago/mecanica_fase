@@ -18,11 +18,9 @@ public class Movimentador {
     private Rectangle limitesTela;
 
     private float resultTemp;
-    private float limite;
-    private SubMovimentador subMovimentadorAtual;
-    private final SubMovimentador subMovimentadorTecla;
-    private final SubMovimentador subMovimentadorToque;
-    private final SubMovimentador subMovimentadorParado;
+    private       SubMovimentadorHelper helperAtual;
+    private final SubMovimentadorHelper helperTecla;
+    private final SubMovimentadorHelper helperParado;
 
     public Movimentador(ControleSprite controleSprite) {
         this.controleSprite = controleSprite;
@@ -30,10 +28,9 @@ public class Movimentador {
         this.limitesTela = MapaCasa.getInstance().getOrthogonalTiledMapRenderer().getViewBounds();
         this.limitesTelaSprite = new Rectangle();
 
-        this.subMovimentadorTecla = new SubMovimentadorTecla();
-        this.subMovimentadorToque = new SubMovimentadorToque();
-        this.subMovimentadorParado = new SubMovimentadorParado();
-        this.subMovimentadorAtual = this.subMovimentadorParado;
+        this.helperTecla  = new SubMovimentadorHelperTecla();
+        this.helperParado = new SubMovimentadorHelperParado();
+        this.helperAtual  = this.helperParado;
 
         configurarLimites();
     }
@@ -48,28 +45,22 @@ public class Movimentador {
     }
 
     public void movimentar(Sprite sprite, Direcoes direcaoAtual){
-        this.subMovimentadorAtual.movimentando(sprite, direcaoAtual);
+        this.helperAtual.movimentando(sprite, direcaoAtual);
     }
 
     public void configurarTecla() {
-        this.subMovimentadorAtual = this.subMovimentadorTecla;
-    }
-
-    public void configurarToque(float limite) {
-        this.subMovimentadorAtual = this.subMovimentadorToque;
-        this.limite = limite;
+        this.helperAtual = this.helperTecla;
     }
 
     public void configurarParado(){
-        this.subMovimentadorAtual = subMovimentadorParado;
+        this.helperAtual = helperParado;
     }
 
-    private interface SubMovimentador {
+    private interface SubMovimentadorHelper {
         void movimentando(Sprite sprite, Direcoes direcaoAtual);
     }
 
-    //Todo unificar movimentadortecla e toque utilizando os limites. Aguardar se mapa tera as propriedade de tamanho.
-    private class SubMovimentadorTecla implements SubMovimentador {
+    private class SubMovimentadorHelperTecla implements SubMovimentadorHelper {
 
         @Override
         public void movimentando(Sprite sprite, Direcoes direcaoAtual) {
@@ -111,51 +102,7 @@ public class Movimentador {
         }
     }
 
-
-    //TODO IMPLEMENTAR DIAGONAIS
-    private class SubMovimentadorToque implements SubMovimentador {
-
-        @Override
-        public void movimentando(Sprite sprite, Direcoes direcaoAtual) {
-            if(!limitesTela.contains(sprite.getBoundingRectangle())) return;
-
-            resultTemp = 5f * max(Gdx.graphics.getDeltaTime(), .1f);
-
-            switch (direcaoAtual){
-                case CIMA              :
-                    resultTemp = sprite.getY() + resultTemp;
-                    resultTemp = min(resultTemp, min(limite - (controleSprite.getHeigth() / 2f), limitesTelaSprite.getHeight()));
-                    sprite.setPosition(sprite.getX(), resultTemp);
-                    break;
-                case BAIXO             :
-                    resultTemp = sprite.getY() - resultTemp;
-                    resultTemp = max(resultTemp, max(limite - (controleSprite.getHeigth() / 2f), limitesTelaSprite.getY()));
-                    sprite.setPosition(sprite.getX(), resultTemp);
-                    break;
-                case ESQUERDA          :
-                    resultTemp = sprite.getX() - resultTemp;
-                    resultTemp = max(resultTemp, max(limite - (controleSprite.getWidth() / 2f), limitesTelaSprite.getX()));
-                    sprite.setPosition(resultTemp, sprite.getY());
-                    break;
-                case ESQUERDA_INFERIOR :
-                    break;
-                case ESQUERDA_SUPERIOR :
-                    break;
-                case DIREITA           :
-                    resultTemp = sprite.getX() + resultTemp;
-                    resultTemp = min(resultTemp, min(limite - (controleSprite.getWidth() / 2f), limitesTelaSprite.getWidth()));
-                    sprite.setPosition(resultTemp, sprite.getY());
-                    break;
-                case DIREIRA_SUPERIOR  :
-                    break;
-                case DIREITA_INFERIOR  :
-                    break;
-            }
-            controleSprite.updatePosicaoSprite(sprite);
-        }
-    }
-
-    private class SubMovimentadorParado implements SubMovimentador {
+    private class SubMovimentadorHelperParado implements SubMovimentadorHelper {
 
         @Override
         public void movimentando(Sprite sprite, Direcoes direcaoAtual) {
