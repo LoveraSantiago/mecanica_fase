@@ -29,7 +29,6 @@ class LayoutBtns {
         table.bottom().left().padBottom(HALTURA_BTN / 2).padLeft(LARGURA_BTN);
 
         table.rotateBy(5);
-        table.setRotation(7.5f);
         return table;
     }
 

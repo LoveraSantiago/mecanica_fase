@@ -8,12 +8,13 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import prs.mecanica.fase.global.SpriteBatchManager;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
+import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoDesenhavel;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.usuario.ViewPortUser;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoControlavel;
 
 
 //TODO padronizar singleton
-public class Controle implements prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoDesenhavel, ViewPortUser, Disposable, TipoControlavel{
+public class Controle implements TipoDesenhavel, ViewPortUser, Disposable, TipoControlavel{
 
     private static Controle controle;
 

@@ -4,6 +4,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.utils.Array;
 
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
+import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
 
 class JogadorListener implements InputProcessor{
 
@@ -11,10 +12,10 @@ class JogadorListener implements InputProcessor{
     private Direcoes direcaoTempKD;
     private Direcoes direcaoTempKU;
 
-    private final prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador controle;
+    private final ControleJogador controle;
     private final KeyCodeUtils keyCodeUtils;
 
-    public JogadorListener(prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador controle) {
+    public JogadorListener(ControleJogador controle) {
         this.controle = controle;
 
         this.direcoes = new Array<Direcoes>();
