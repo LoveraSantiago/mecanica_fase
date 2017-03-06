@@ -37,8 +37,8 @@ public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador
 
         //TODO arrumar essa bagunca
         if(Configuracao.getInstance().isMobile()){
-            this.controle = Controle.getInstance().getControle();
             Controle.getInstance().registrarControleJogador(this);
+            this.controle = Controle.getInstance().getControle();
         }
         else{
             this.controle = new JogadorListener(this);

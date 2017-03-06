@@ -32,20 +32,21 @@ public class Controle implements prs.mecanica.fase.telas.jogo.comuns.contratos.t
 
         controle = this;
 
-        helperNaoMobile  = new HelperNaoMobile();
-        helperMobile     = new HelperMobile();
+        this.helperNaoMobile  = new HelperNaoMobile();
+        this.helperMobile     = new HelperMobile();
         this.helperAtual = helperNaoMobile;
     }
 
     public void registrarControleJogador(ControleJogador controleJogador){
         this.stage = new Stage(this.viewport, SpriteBatchManager.getInstance().getSpriteBatch());
 
-        this.stage.addActor(new LayoutBtns().getLayout());
+        this.stage.addActor(new LayoutBtns(controleJogador).getLayout());
+        this.helperAtual = this.helperMobile;
     }
 
     @Override
     public void meDesenhar() {
-        helperAtual.controlando();
+        this.helperAtual.controlando();
     }
 
     @Override

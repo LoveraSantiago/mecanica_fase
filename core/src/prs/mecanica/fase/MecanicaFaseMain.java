@@ -43,8 +43,8 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 		this.spriteBatchManager.atualizar();
 
 		this.mapaCasa.meDesenhar();
-		this.controle.meDesenhar();
 		this.jogador.meDesenhar();
+		this.controle.meDesenhar();
 	}
 
 	@Override
