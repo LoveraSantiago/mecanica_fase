@@ -4,8 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 
-import prs.mecanica.fase.telas.jogo.atores.controle.Controle;
-import prs.mecanica.fase.global.ControleManager;
+import prs.mecanica.fase.telas.jogo.atores.controle.ControleManager;
 import prs.mecanica.fase.telas.jogo.atores.jogador.Jogador;
 import prs.mecanica.fase.telas.jogo.atores.mapas.MapaCasa;
 import prs.mecanica.fase.telas.jogo.comuns.imagens.ImgLeitor;
@@ -20,7 +19,7 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 
 	private MapaCasa mapaCasa;
 	private Jogador jogador;
-	private Controle controle;
+	private ControleManager controleManager;
 
 	@Override
 	public void create() {
@@ -28,8 +27,10 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 		this.spriteBatchManager = SpriteBatchManager.getInstance();
 
 		this.mapaCasa = new MapaCasa();
-		this.controle = new Controle();
 		this.jogador = new Jogador();
+
+		this.controleManager = ControleManager.getInstance();
+		this.controleManager.definirControle(this.jogador);
 	}
 
 	@Override
@@ -42,13 +43,13 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 
 		this.mapaCasa.meDesenhar();
 		this.jogador.meDesenhar();
-		this.controle.meDesenhar();
+		this.controleManager.meDesenhar();
 	}
 
 	@Override
 	public void resize(int width, int height) {
 		this.myCamera.resize(width, height);
-		this.controle.resize(width, height);
+		this.controleManager.resize(width, height);
 	}
 
 	@Override
@@ -56,6 +57,6 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 		this.spriteBatchManager.dispose();
 		MapaLeitor.getInstance().dispose();
 		ImgLeitor.getInstance().dispose();
-		this.controle.dispose();
+		this.controleManager.dispose();
 	}
 }

@@ -5,23 +5,23 @@ import com.badlogic.gdx.InputMultiplexer;
 
 import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoControlavel;
 
-public class ControleManager {
+public class RegistradorInputProcessors {
 
-    private static final ControleManager controleManager;
+    private static final RegistradorInputProcessors REGISTRADOR_INPUT_PROCESSORS;
 
     private final InputMultiplexer inputMultiplexer;
 
     static{
-        controleManager = new ControleManager();
+        REGISTRADOR_INPUT_PROCESSORS = new RegistradorInputProcessors();
     }
 
-    private ControleManager(){
+    private RegistradorInputProcessors(){
         this.inputMultiplexer = new InputMultiplexer();
         Gdx.input.setInputProcessor(this.inputMultiplexer);
     }
 
-    public static ControleManager getInstance() {
-        return controleManager;
+    public static RegistradorInputProcessors getInstance() {
+        return REGISTRADOR_INPUT_PROCESSORS;
     }
 
     public void adicionarControlavel(TipoControlavel controlavel){
