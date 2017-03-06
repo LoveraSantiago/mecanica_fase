@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import prs.mecanica.fase.global.SpriteBatchManager;
-import prs.mecanica.fase.telas.jogo.atores.jogador.ControleJogador;
+import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.usuario.ViewPortUser;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoControlavel;
 

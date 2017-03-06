@@ -12,7 +12,7 @@ import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoControlavel;
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoDesenhavel;
 
-public class Jogador implements TipoDesenhavel, TipoControlavel, ControleJogador{
+public class Jogador implements TipoDesenhavel, TipoControlavel, prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador {
 
     private final SpriteBatchManager spriteBatchManager;
     private final SpriteManager spriteManager;

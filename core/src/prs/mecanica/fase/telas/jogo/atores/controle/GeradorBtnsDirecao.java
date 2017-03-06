@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
-import prs.mecanica.fase.telas.jogo.atores.jogador.ControleJogador;
+import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
 import prs.mecanica.fase.telas.jogo.comuns.imagens.Imagens;
 import prs.mecanica.fase.telas.jogo.comuns.imagens.ImgLeitor;
 

@@ -1,6 +1,7 @@
-package prs.mecanica.fase.telas.jogo.atores.jogador;
+package prs.mecanica.fase.telas.jogo.comuns.contratos.geral;
 
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
+import prs.mecanica.fase.telas.jogo.atores.jogador.PosJog;
 
 public interface ControleJogador {
 

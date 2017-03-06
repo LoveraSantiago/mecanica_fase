@@ -17,12 +17,12 @@ class JogadorListener implements InputProcessor{
     private final Vector3 vetor3;
     private final Camera camera;
 
-    private final ControleJogador controle;
+    private final prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador controle;
     private final JogadorGesture gesture;
     private final DirecaoManager direcaoManager;
     private final KeyCodeFilter keyCodeFilter;
 
-    public JogadorListener(ControleJogador controle) {
+    public JogadorListener(prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador controle) {
         this.controle = controle;
         this.gesture = new JogadorGesture();
 

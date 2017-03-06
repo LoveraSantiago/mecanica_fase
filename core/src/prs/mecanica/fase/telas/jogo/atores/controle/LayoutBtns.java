@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
-import prs.mecanica.fase.telas.jogo.atores.jogador.ControleJogador;
+import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
 import prs.mecanica.fase.telas.jogo.comuns.imagens.Imagens;
 
 class LayoutBtns {
@@ -29,7 +29,7 @@ class LayoutBtns {
         table.bottom().left().padBottom(HALTURA_BTN / 2).padLeft(LARGURA_BTN);
 
         table.rotateBy(5);
-        table.setRotation(5);
+        table.setRotation(7.5f);
         return table;
     }
 

@@ -50,6 +50,7 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 	@Override
 	public void resize(int width, int height) {
 		this.myCamera.resize(width, height);
+		this.controle.resize(width, height);
 	}
 
 	@Override
