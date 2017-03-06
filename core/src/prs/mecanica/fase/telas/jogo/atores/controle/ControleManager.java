@@ -24,7 +24,7 @@ public class ControleManager extends ControlerUtil{
         else{
             this.controlerAtual = new ControleDesktop(controleJogador);
         }
-        RegistradorInputProcessors.getInstance().adicionarControlavel(this);
+        RegistradorInputProcessors.getInstance().adicionarControlavel(this.controlerAtual);
     }
 
     @Override

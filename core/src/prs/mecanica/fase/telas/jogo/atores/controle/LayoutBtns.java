@@ -26,9 +26,7 @@ class LayoutBtns {
         table.setFillParent(true);
 
         adicionarBotoes(table);
-        table.bottom().left().padBottom(HALTURA_BTN / 2).padLeft(LARGURA_BTN);
-
-        table.rotateBy(5);
+        table.bottom().left().padBottom(HALTURA_BTN / 2).padLeft(LARGURA_BTN / 2);
         return table;
     }
 
