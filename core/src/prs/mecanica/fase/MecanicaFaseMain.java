@@ -22,8 +22,6 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 	private Jogador jogador;
 	private Controle controle;
 
-
-
 	@Override
 	public void create() {
 		this.myCamera = MyCamera.getInstance();

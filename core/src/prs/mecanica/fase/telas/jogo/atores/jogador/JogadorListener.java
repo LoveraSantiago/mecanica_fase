@@ -1,12 +1,9 @@
 package prs.mecanica.fase.telas.jogo.atores.jogador;
 
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
-import prs.mecanica.fase.telas.jogo.comuns.MyCamera;
 
 class JogadorListener implements InputProcessor{
 
@@ -14,35 +11,27 @@ class JogadorListener implements InputProcessor{
     private Direcoes direcaoTempKD;
     private Direcoes direcaoTempKU;
 
-    private final Vector3 vetor3;
-    private final Camera camera;
-
     private final prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador controle;
-    private final DirecaoManager direcaoManager;
-    private final KeyCodeFilter keyCodeFilter;
+    private final KeyCodeUtils keyCodeUtils;
 
     public JogadorListener(prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador controle) {
         this.controle = controle;
 
-        this.vetor3 = new Vector3();
-        this.camera = MyCamera.getInstance().getCamera();
-
         this.direcoes = new Array<Direcoes>();
-        this.keyCodeFilter = new KeyCodeFilter();
-        this.direcaoManager = DirecaoManager.getInstance();
+        this.keyCodeUtils = KeyCodeUtils.getInstance();
     }
 
     @Override
     public boolean keyDown(int keycode) {
-        if(this.keyCodeFilter.isKeyCodeMovimentacao(keycode)){
-            this.direcaoTempKD = this.direcaoManager.getDirecaoFromKeyCode(keycode);
+        if(this.keyCodeUtils.isKeyCodeMovimentacao(keycode)){
+            this.direcaoTempKD = this.keyCodeUtils.getDirecaoFromKeyCode(keycode);
             this.direcoes.add(this.direcaoTempKD);
 
             if(this.direcoes.size < 2){
                 this.controle.initMovTecla(this.direcaoTempKD);
             }
             else{
-                this.controle.initMovTecla(this.direcaoManager.getDirecaoFromSomaDirecao(this.direcoes));
+                this.controle.initMovTecla(this.keyCodeUtils.getDirecaoFromSomaDirecao(this.direcoes));
             }
         }
         return false;
@@ -50,8 +39,8 @@ class JogadorListener implements InputProcessor{
 
     @Override
     public boolean keyUp(int keycode) {
-        if(this.keyCodeFilter.isKeyCodeMovimentacao(keycode)){
-            this.direcaoTempKU = this.direcaoManager.getDirecaoFromKeyCode(keycode);
+        if(this.keyCodeUtils.isKeyCodeMovimentacao(keycode)){
+            this.direcaoTempKU = this.keyCodeUtils.getDirecaoFromKeyCode(keycode);
             if(this.direcoes.removeValue(this.direcaoTempKU, true)){
                 if(this.direcoes.size == 0){
                     this.controle.pararMov();

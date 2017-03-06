@@ -9,22 +9,22 @@ import static com.badlogic.gdx.Input.Keys.DOWN;
 import static com.badlogic.gdx.Input.Keys.RIGHT;
 import static com.badlogic.gdx.Input.Keys.UP;
 
-public class DirecaoManager {
+class KeyCodeUtils {
 
-    private static DirecaoManager direcaoManager;
+    private static KeyCodeUtils keyCodeUtils;
 
     private Direcoes direcaoU;
     private Direcoes direcaoP;
 
     static{
-        direcaoManager = new DirecaoManager();
+        keyCodeUtils = new KeyCodeUtils();
     }
 
-    private DirecaoManager(){
+    private KeyCodeUtils(){
     }
 
-    public static DirecaoManager getInstance() {
-        return direcaoManager;
+    public static KeyCodeUtils getInstance() {
+        return keyCodeUtils;
     }
 
     public Direcoes getDirecaoFromKeyCode(int keyCode){
@@ -102,5 +102,15 @@ public class DirecaoManager {
             return true;
         }
         return false;
+    }
+
+    public boolean isKeyCodeMovimentacao(int keyCode){
+        switch (keyCode){
+            case UP   :
+            case DOWN :
+            case LEFT :
+            case RIGHT: return true;
+            default   : return false;
+        }
     }
 }
