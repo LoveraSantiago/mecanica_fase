@@ -1,8 +1,8 @@
 package prs.mecanica.fase.telas.jogo.atores.controle;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
@@ -20,7 +20,7 @@ class GeradorBtnsDirecao {
     }
 
     public Button gerarBotao(Imagens imgU, Imagens imgD, final Direcoes direcao){
-        Button.ButtonStyle style = new ImageButton.ImageButtonStyle();
+        Button.ButtonStyle style = new Button.ButtonStyle();
         style.up = new SpriteDrawable(ImgLeitor.getInstance().getImg(imgU));
         style.down = new SpriteDrawable(ImgLeitor.getInstance().getImg(imgD));
 
@@ -33,12 +33,23 @@ class GeradorBtnsDirecao {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 this.result  = super.touchDown(event, x, y, pointer, button);
                 controleJogador.initMovTecla(direcao);
-                return this.result;
+                return true;
             }
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchUp(event, x, y, pointer, button);
+                controleJogador.pararMov();
+            }
+
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                controleJogador.initMovTecla(direcao);
+            }
+
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+                super.exit(event, x, y, pointer, toActor);
                 controleJogador.pararMov();
             }
         });

@@ -1,7 +1,16 @@
 package prs.mecanica.fase.telas.jogo.atores.controle;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
@@ -70,6 +79,46 @@ class LayoutBtns {
         //botao direita inferior
         btn = this.gerador.gerarBotao(Imagens.BTN_DIR_INF_U, Imagens.BTN_DIR_INF_D, Direcoes.DIREITA_INFERIOR);
         table.add(btn).width(LARGURA_BTN).height(HALTURA_BTN);
+    }
+
+    Skin skin;
+    public Button gerarBotao(Imagens imgU, Imagens imgD, final Direcoes direcao){
+        if(skin == null){
+            skin = new Skin();
+
+            // Generate a 1x1 white texture and store it in the skin named "white".
+            Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+            pixmap.setColor(Color.WHITE);
+            pixmap.fill();
+            skin.add("white", new Texture(pixmap));
+            skin.add("default", new BitmapFont());
+
+            TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+            textButtonStyle.up = skin.newDrawable("white", Color.DARK_GRAY);
+            textButtonStyle.down = skin.newDrawable("white", Color.DARK_GRAY);
+            textButtonStyle.checked = skin.newDrawable("white", Color.BLUE);
+            textButtonStyle.over = skin.newDrawable("white", Color.LIGHT_GRAY);
+            textButtonStyle.font = skin.getFont("default");
+            skin.add("default", textButtonStyle);
+        }
+
+        final TextButton button = new TextButton("Click me!", skin);
+
+        button.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                System.out.println("btn cricado");
+            }
+
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                super.enter(event, x, y, pointer, fromActor);
+                System.out.println("enter chamado");
+            }
+        });
+
+        return button;
     }
 
 }

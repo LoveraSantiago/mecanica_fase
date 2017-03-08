@@ -1,5 +1,6 @@
 package prs.mecanica.fase.telas.jogo.atores.controle;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -13,6 +14,7 @@ class ControleMobile extends ControlerUtil{
     private final Viewport viewport;
     private final Stage stage;
 
+    //Talvez as dimensoes estejam erradas
     private final int LARGURA_TELA = 150;
     private final int HALTURA_TELA = 100;
 
@@ -20,11 +22,13 @@ class ControleMobile extends ControlerUtil{
         this.viewport = new StretchViewport(LARGURA_TELA, HALTURA_TELA);
 
         this.stage = new Stage(this.viewport, SpriteBatchManager.getInstance().getSpriteBatch());
+//        this.stage = new Stage();
         this.stage.addActor(new LayoutBtns(controleJogador).getLayout());
     }
 
     @Override
     public void meDesenhar() {
+        this.stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         this.stage.draw();
     }
 
