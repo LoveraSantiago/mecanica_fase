@@ -21,10 +21,10 @@ class LayoutBtns {
     private final int LARGURA_BTN = 10;
     private final int HALTURA_BTN = 11;
 
-    private final GeradorBtnsDirecao gerador;
+    private final FactoryBtnsDirecao gerador;
     
     public LayoutBtns(ControleJogador controleJogador) {
-        this.gerador = new GeradorBtnsDirecao(controleJogador);
+        this.gerador = new FactoryBtnsDirecao(controleJogador);
     }
 
     public Table getLayout(){

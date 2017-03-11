@@ -17,12 +17,12 @@ import static prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado.ANDAND
 import static prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado.CORRENDO;
 import static prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado.PARADO;
 
-class GeradorBtnsDirecao {
+class FactoryBtnsDirecao {
 
     private final ControleJogador controleJogador;
     private final CacheDirecao cacheDirecao;
 
-    public GeradorBtnsDirecao(ControleJogador controleJogador) {
+    public FactoryBtnsDirecao(ControleJogador controleJogador) {
         this.controleJogador = controleJogador;
         this.cacheDirecao = CacheDirecao.getInstance();
     }
