@@ -4,11 +4,11 @@ import prs.mecanica.fase.global.Configuracao;
 import prs.mecanica.fase.global.RegistradorInputProcessors;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
 
-public class ControleManager extends ControlerModelo {
+public class ControleManager extends ControleModelo {
 
     private final static ControleManager controleManager;
 
-    private ControlerModelo controlerAtual;
+    private ControleModelo controlerAtual;
 
     static{
         controleManager = new ControleManager();

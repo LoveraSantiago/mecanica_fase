@@ -7,10 +7,10 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import prs.mecanica.fase.global.SpriteBatchManager;
-import prs.mecanica.fase.telas.jogo.atores.controle.ControlerModelo;
+import prs.mecanica.fase.telas.jogo.atores.controle.ControleModelo;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
 
-public class ControleMobile extends ControlerModelo {
+public class ControleMobile extends ControleModelo {
 
     private final Viewport viewport;
     private final Stage stage;

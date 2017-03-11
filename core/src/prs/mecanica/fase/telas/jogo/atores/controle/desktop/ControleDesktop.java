@@ -4,14 +4,14 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.utils.Array;
 
 import prs.mecanica.fase.telas.jogo.atores.controle.CacheDirecao;
-import prs.mecanica.fase.telas.jogo.atores.controle.ControlerModelo;
+import prs.mecanica.fase.telas.jogo.atores.controle.ControleModelo;
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
 
 import static prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado.ANDANDO;
 import static prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado.CORRENDO;
 
-public class ControleDesktop extends ControlerModelo {
+public class ControleDesktop extends ControleModelo {
 
     private final Array<Direcoes> direcoes;
     private Direcoes direcaoTempKD;
