@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Array;
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
 
-class ControleDesktop extends ControlerUtil{
+class ControleDesktop extends ControlerModelo {
 
     private final Array<Direcoes> direcoes;
     private Direcoes direcaoTempKD;

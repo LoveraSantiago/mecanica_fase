@@ -61,6 +61,7 @@ public class Movimentador {
         void movimentando(Sprite sprite, Direcoes direcaoAtual);
     }
 
+    //6.25
     private class SubMovimentadorHelperTecla implements SubMovimentadorHelper {
 
         @Override

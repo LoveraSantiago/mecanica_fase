@@ -27,13 +27,11 @@ class GeradorBtnsDirecao {
         Button btn = new Button(style);
         btn.addListener(new ClickListener(){
 
-            private boolean result;
-
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                this.result  = super.touchDown(event, x, y, pointer, button);
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
                 controleJogador.initMovTecla(direcao);
-                return true;
+                System.out.println(direcao + " tap:" + getTapCount());
             }
 
             @Override

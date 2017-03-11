@@ -8,7 +8,7 @@ import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoControlavel;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoDesenhavel;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.usuario.ViewPortUser;
 
-abstract class ControlerUtil extends InputAdapter
+abstract class ControlerModelo extends InputAdapter
         implements TipoDesenhavel, ViewPortUser, TipoControlavel, Disposable{
 
     @Override
