@@ -63,7 +63,7 @@ public class Movimentador {
     }
 
     public void setAcaoAtual(DirecaoEstado acao){
-        System.out.println("Setado acao " + acao);
+//        System.out.println("Setado acao " + acao);
         this.acaoAtual = acao;
     }
 

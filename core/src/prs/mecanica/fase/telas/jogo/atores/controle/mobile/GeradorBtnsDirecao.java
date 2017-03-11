@@ -13,6 +13,10 @@ import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
 import prs.mecanica.fase.telas.jogo.comuns.imagens.Imagens;
 import prs.mecanica.fase.telas.jogo.comuns.imagens.ImgLeitor;
 
+import static prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado.ANDANDO;
+import static prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado.CORRENDO;
+import static prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado.PARADO;
+
 class GeradorBtnsDirecao {
 
     private final ControleJogador controleJogador;
@@ -37,16 +41,16 @@ class GeradorBtnsDirecao {
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 if(cacheDirecao.isMesmaUltimaDirecao(direcao) && getTapCount() > 1){
-                    controleJogador.initMov2(direcao, DirecaoEstado.CORRENDO);
+                    controleJogador.initMov2(direcao, CORRENDO);
                 }
                 else{
-                    controleJogador.initMov2(direcao, DirecaoEstado.ANDANDO);
+                    controleJogador.initMov2(direcao, ANDANDO);
                 }
             }
 
             @Override
             public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                controleJogador.initMov2(direcao, DirecaoEstado.PARADO);
+                controleJogador.initMov2(direcao, PARADO);
             }
         });
         return btn;
