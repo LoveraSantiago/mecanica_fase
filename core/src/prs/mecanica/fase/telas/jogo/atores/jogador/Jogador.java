@@ -3,6 +3,7 @@ package prs.mecanica.fase.telas.jogo.atores.jogador;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import prs.mecanica.fase.global.SpriteBatchManager;
+import prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado;
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoDesenhavel;
@@ -32,10 +33,16 @@ public class Jogador implements TipoDesenhavel, ControleJogador {
     }
 
     @Override
-    public void initMovTecla(Direcoes direcao) {
+    public void initMov(Direcoes direcao) {
         this.direcaoAtual = direcao;
         this.movimentador.configurarTecla();
         this.spriteAtual = this.spriteManager.getSprite(direcao);
+    }
+
+    @Override
+    public void initMov2(Direcoes direcao, DirecaoEstado direcaoEstado) {
+        initMov(direcao);
+        this.movimentador.setAcaoAtual(direcaoEstado);
     }
 
     @Override

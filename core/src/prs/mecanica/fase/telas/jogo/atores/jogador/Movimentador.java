@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 
+import prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado;
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
 import prs.mecanica.fase.telas.jogo.atores.mapas.MapaCasa;
 
@@ -23,6 +24,8 @@ public class Movimentador {
     private final SubMovimentadorHelper helperTecla;
     private final SubMovimentadorHelper helperParado;
 
+    private DirecaoEstado acaoAtual;
+
     public Movimentador(ControleSprite controleSprite) {
         this.controleSprite = controleSprite;
 
@@ -34,6 +37,8 @@ public class Movimentador {
         this.helperAtual  = this.helperParado;
 
         configurarLimites();
+
+        this.acaoAtual = DirecaoEstado.PARADO;
     }
 
     private void configurarLimites(){
@@ -57,6 +62,11 @@ public class Movimentador {
         this.helperAtual = helperParado;
     }
 
+    public void setAcaoAtual(DirecaoEstado acao){
+        System.out.println("Setado acao " + acao);
+        this.acaoAtual = acao;
+    }
+
     private interface SubMovimentadorHelper {
         void movimentando(Sprite sprite, Direcoes direcaoAtual);
     }
@@ -68,7 +78,7 @@ public class Movimentador {
         public void movimentando(Sprite sprite, Direcoes direcaoAtual) {
             if(!limitesTela.contains(sprite.getBoundingRectangle())) return;
 
-            resultTemp = 5f * Gdx.graphics.getDeltaTime();
+            resultTemp = acaoAtual.getVelocidade() * Gdx.graphics.getDeltaTime();
 
             switch (direcaoAtual){
                 case CIMA              :

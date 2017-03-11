@@ -30,10 +30,10 @@ public class ControleDesktop extends ControlerModelo {
             this.direcoes.add(this.direcaoTempKD);
 
             if(this.direcoes.size < 2){
-                this.controle.initMovTecla(this.direcaoTempKD);
+                this.controle.initMov(this.direcaoTempKD);
             }
             else{
-                this.controle.initMovTecla(this.keyCodeUtils.getDirecaoFromSomaDirecao(this.direcoes));
+                this.controle.initMov(this.keyCodeUtils.getDirecaoFromSomaDirecao(this.direcoes));
             }
         }
         return false;
@@ -48,7 +48,7 @@ public class ControleDesktop extends ControlerModelo {
                     this.controle.pararMov();
                 }
                 else if(this.direcoes.size == 1){
-                    this.controle.initMovTecla(this.direcoes.first());
+                    this.controle.initMov(this.direcoes.first());
                 }
             }
         }
