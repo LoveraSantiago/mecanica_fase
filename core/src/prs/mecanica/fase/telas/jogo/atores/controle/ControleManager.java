@@ -19,10 +19,10 @@ public class ControleManager extends ControlerModelo {
 
     public void definirControle(ControleJogador controleJogador){
         if(Configuracao.getInstance().isMobile()){
-            this.controlerAtual = new ControleMobile(controleJogador);
+            this.controlerAtual = new prs.mecanica.fase.telas.jogo.atores.controle.mobile.ControleMobile(controleJogador);
         }
         else{
-            this.controlerAtual = new ControleDesktop(controleJogador);
+            this.controlerAtual = new prs.mecanica.fase.telas.jogo.atores.controle.desktop.ControleDesktop(controleJogador);
         }
         RegistradorInputProcessors.getInstance().adicionarControlavel(this.controlerAtual);
     }

@@ -1,12 +1,13 @@
-package prs.mecanica.fase.telas.jogo.atores.controle;
+package prs.mecanica.fase.telas.jogo.atores.controle.desktop;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.utils.Array;
 
+import prs.mecanica.fase.telas.jogo.atores.controle.ControlerModelo;
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
 
-class ControleDesktop extends ControlerModelo {
+public class ControleDesktop extends ControlerModelo {
 
     private final Array<Direcoes> direcoes;
     private Direcoes direcaoTempKD;

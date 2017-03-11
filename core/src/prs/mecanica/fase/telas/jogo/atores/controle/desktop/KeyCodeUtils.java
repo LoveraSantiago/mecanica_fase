@@ -1,4 +1,4 @@
-package prs.mecanica.fase.telas.jogo.atores.controle;
+package prs.mecanica.fase.telas.jogo.atores.controle.desktop;
 
 import com.badlogic.gdx.utils.Array;
 

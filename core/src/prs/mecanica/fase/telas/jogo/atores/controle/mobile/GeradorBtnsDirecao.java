@@ -1,4 +1,4 @@
-package prs.mecanica.fase.telas.jogo.atores.controle;
+package prs.mecanica.fase.telas.jogo.atores.controle.mobile;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
