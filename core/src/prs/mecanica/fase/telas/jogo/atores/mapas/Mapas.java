@@ -2,7 +2,8 @@ package prs.mecanica.fase.telas.jogo.atores.mapas;
 
 public enum Mapas {
 
-    CASA("casamapa2.tmx");
+    CASA("casamapa2.tmx"),
+    SHOPPING("mapa_shopping.tmx");
 
     private String nomeArquivo;
 

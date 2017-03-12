@@ -3,27 +3,28 @@ package prs.mecanica.fase.telas.jogo.atores.mapas;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
+import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoDesenhavel;
 import prs.mecanica.fase.telas.jogo.comuns.imagens.MapaLeitor;
 import prs.mecanica.fase.telas.jogo.comuns.MyCamera;
 
-public class MapaCasa implements prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoDesenhavel {
+public class MapaRenderer implements TipoDesenhavel {
 
-    private static MapaCasa mapaCasa;
+    private static MapaRenderer mapaRenderer;
 
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private OrthographicCamera camera;
 
-    public MapaCasa(){
-        this.orthogonalTiledMapRenderer = MapaLeitor.getInstance().lerMapa(Mapas.CASA, MyCamera.ESCALA);
+    public MapaRenderer(Mapas mapa){
+        this.orthogonalTiledMapRenderer = MapaLeitor.getInstance().lerMapa(mapa, MyCamera.ESCALA);
         this.camera = MyCamera.getInstance().getCamera();
 
         this.orthogonalTiledMapRenderer.setView(this.camera);
 
-        mapaCasa = this;
+        mapaRenderer = this;
     }
 
-    public static MapaCasa getInstance() {
-        return mapaCasa;
+    public static MapaRenderer getInstance() {
+        return mapaRenderer;
     }
 
     @Override

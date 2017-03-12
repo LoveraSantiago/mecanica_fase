@@ -5,6 +5,8 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.Disposable;
 
+import prs.mecanica.fase.telas.jogo.atores.mapas.Mapas;
+
 public class MapaLeitor implements Disposable{
 
     private static final MapaLeitor MAPA_LEITOR;
@@ -22,7 +24,7 @@ public class MapaLeitor implements Disposable{
         return MAPA_LEITOR;
     }
 
-    public OrthogonalTiledMapRenderer lerMapa(prs.mecanica.fase.telas.jogo.atores.mapas.Mapas mapa, float escala){
+    public OrthogonalTiledMapRenderer lerMapa(Mapas mapa, float escala){
         this.map = new TmxMapLoader().load(mapa.getNomeArquivo());
         return new OrthogonalTiledMapRenderer(map, escala);
     }

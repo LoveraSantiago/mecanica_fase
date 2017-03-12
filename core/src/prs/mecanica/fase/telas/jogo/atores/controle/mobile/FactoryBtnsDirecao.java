@@ -32,7 +32,7 @@ class FactoryBtnsDirecao {
         style.up = new SpriteDrawable(ImgLeitor.getInstance().getImg(imgU));
         style.down = new SpriteDrawable(ImgLeitor.getInstance().getImg(imgD));
         style.over = new SpriteDrawable(ImgLeitor.getInstance().getImg(imgD));
-        style.checked = new SpriteDrawable(ImgLeitor.getInstance().getImg(imgD));
+//        style.checked = new SpriteDrawable(ImgLeitor.getInstance().getImg(imgD));
         style.checkedOver = new SpriteDrawable(ImgLeitor.getInstance().getImg(imgD));
 
         Button btn = new Button(style);

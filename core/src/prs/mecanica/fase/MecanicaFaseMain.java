@@ -6,7 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 
 import prs.mecanica.fase.telas.jogo.atores.controle.ControleManager;
 import prs.mecanica.fase.telas.jogo.atores.jogador.Jogador;
-import prs.mecanica.fase.telas.jogo.atores.mapas.MapaCasa;
+import prs.mecanica.fase.telas.jogo.atores.mapas.MapaRenderer;
+import prs.mecanica.fase.telas.jogo.atores.mapas.Mapas;
 import prs.mecanica.fase.telas.jogo.comuns.imagens.ImgLeitor;
 import prs.mecanica.fase.telas.jogo.comuns.imagens.MapaLeitor;
 import prs.mecanica.fase.telas.jogo.comuns.MyCamera;
@@ -17,7 +18,7 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 	private MyCamera myCamera;
 	private SpriteBatchManager spriteBatchManager;
 
-	private MapaCasa mapaCasa;
+	private MapaRenderer mapaRenderer;
 	private Jogador jogador;
 	private ControleManager controleManager;
 
@@ -26,7 +27,7 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 		this.myCamera = MyCamera.getInstance();
 		this.spriteBatchManager = SpriteBatchManager.getInstance();
 
-		this.mapaCasa = new MapaCasa();
+		this.mapaRenderer = new MapaRenderer(Mapas.SHOPPING);
 		this.jogador = new Jogador();
 
 		this.controleManager = ControleManager.getInstance();
@@ -35,13 +36,13 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 
 	@Override
 	public void render() {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Gdx.gl.glClearColor(255, 255, 255, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		this.myCamera.atualizar();
 		this.spriteBatchManager.atualizar();
 
-		this.mapaCasa.meDesenhar();
+		this.mapaRenderer.meDesenhar();
 		this.jogador.meDesenhar();
 		this.controleManager.meDesenhar();
 	}

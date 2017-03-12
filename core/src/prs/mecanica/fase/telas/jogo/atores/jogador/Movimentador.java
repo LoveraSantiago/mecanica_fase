@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 import prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado;
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
-import prs.mecanica.fase.telas.jogo.atores.mapas.MapaCasa;
+import prs.mecanica.fase.telas.jogo.atores.mapas.MapaRenderer;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
@@ -29,7 +29,7 @@ public class Movimentador {
     public Movimentador(ControleSprite controleSprite) {
         this.controleSprite = controleSprite;
 
-        this.limitesTela = MapaCasa.getInstance().getOrthogonalTiledMapRenderer().getViewBounds();
+        this.limitesTela = MapaRenderer.getInstance().getOrthogonalTiledMapRenderer().getViewBounds();
         this.limitesTelaSprite = new Rectangle();
 
         this.helperTecla  = new SubMovimentadorHelperTecla();
@@ -42,7 +42,7 @@ public class Movimentador {
     }
 
     private void configurarLimites(){
-        this.limitesTelaSprite.set(MapaCasa.getInstance().getOrthogonalTiledMapRenderer().getViewBounds());
+        this.limitesTelaSprite.set(MapaRenderer.getInstance().getOrthogonalTiledMapRenderer().getViewBounds());
 
         this.limitesTelaSprite.setX(this.limitesTelaSprite.getX() + .01f);
         this.limitesTelaSprite.setY(this.limitesTelaSprite.getY() + .01f);
