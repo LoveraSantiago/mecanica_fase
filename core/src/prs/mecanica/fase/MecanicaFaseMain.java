@@ -39,7 +39,7 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 		Gdx.gl.glClearColor(255, 255, 255, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		this.myCamera.atualizar();
+		this.myCamera.atualizar(this.jogador);
 		this.spriteBatchManager.atualizar();
 
 		this.mapaRenderer.meDesenhar();

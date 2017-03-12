@@ -1,6 +1,7 @@
 package prs.mecanica.fase.telas.jogo.atores.jogador;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
@@ -32,7 +33,7 @@ public class SpriteManager implements ControleSprite{
         this.arraySprites.addAll(this.spriteCima, this.spriteBaixo, this.spriteDir, this.spriteEsq);
 
         configurarSprites();
-        configurarTamanhoSprite();
+        configurarCamposTamanhoSprite();
     }
 
     public Sprite getSprite(Direcoes direcao){
@@ -56,9 +57,16 @@ public class SpriteManager implements ControleSprite{
         }
     }
 
-    public void configurarTamanhoSprite(){
+    public void configurarCamposTamanhoSprite(){
         this.widthSprite = this.spriteCima.getWidth() * MyCamera.ESCALA;
         this.heightSprite = this.spriteCima.getHeight() * MyCamera.ESCALA;
+    }
+
+    @Override
+    public void updatePosicaoSprite(Sprite sprite){
+        for(this.contadorSprites = 0; this.contadorSprites < this.arraySprites.size; this.contadorSprites++){
+            this.arraySprites.get(this.contadorSprites).setPosition(sprite.getX(), sprite.getY());
+        }
     }
 
     @Override
@@ -69,12 +77,5 @@ public class SpriteManager implements ControleSprite{
     @Override
     public float getHeigth() {
         return this.heightSprite;
-    }
-
-    @Override
-    public void updatePosicaoSprite(Sprite sprite){
-        for(this.contadorSprites = 0; this.contadorSprites < this.arraySprites.size; this.contadorSprites++){
-            this.arraySprites.get(this.contadorSprites).setPosition(sprite.getX(), sprite.getY());
-        }
     }
 }
