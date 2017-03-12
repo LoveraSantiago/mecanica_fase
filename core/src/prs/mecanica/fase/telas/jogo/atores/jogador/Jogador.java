@@ -20,7 +20,10 @@ public class Jogador implements TipoDesenhavel, ControleJogador {
 
     public Jogador() {
         this.spriteManager = new SpriteManager();
-        this.spriteAtual = this.spriteManager.getSprite(Direcoes.CIMA);
+
+        this.direcaoAtual = Direcoes.CIMA;
+        this.spriteAtual = this.spriteManager.getSprite(this.direcaoAtual);
+
         this.spriteBatchManager = SpriteBatchManager.getInstance();
 
         this.movimentador = new Movimentador(this.spriteManager);
@@ -33,20 +36,9 @@ public class Jogador implements TipoDesenhavel, ControleJogador {
     }
 
     @Override
-    public void initMov(Direcoes direcao) {
+    public void iniciarMov(Direcoes direcao, DirecaoEstado direcaoEstado) {
         this.direcaoAtual = direcao;
-        this.movimentador.configurarTecla();
         this.spriteAtual = this.spriteManager.getSprite(direcao);
-    }
-
-    @Override
-    public void initMov2(Direcoes direcao, DirecaoEstado direcaoEstado) {
-        initMov(direcao);
         this.movimentador.setAcaoAtual(direcaoEstado);
-    }
-
-    @Override
-    public void pararMov() {
-        this.movimentador.configurarParado();
     }
 }

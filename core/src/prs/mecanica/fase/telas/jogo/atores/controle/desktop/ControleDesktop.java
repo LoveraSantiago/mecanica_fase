@@ -10,6 +10,7 @@ import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
 
 import static prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado.ANDANDO;
 import static prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado.CORRENDO;
+import static prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado.PARADO;
 
 public class ControleDesktop extends ControleModelo {
 
@@ -41,18 +42,18 @@ public class ControleDesktop extends ControleModelo {
 
             if(this.cacheDirecao.isMesmaUltimaDirecao(this.direcaoTempKD) && this.tapKeyboard.isTap()){
                 if(this.direcoes.size < 2){
-                    this.controle.initMov2(this.direcaoTempKD, CORRENDO);
+                    this.controle.iniciarMov(this.direcaoTempKD, CORRENDO);
                 }
                 else{
-                    this.controle.initMov2(this.keyCodeUtils.getDirecaoFromSomaDirecao(this.direcoes), CORRENDO);
+                    this.controle.iniciarMov(this.keyCodeUtils.getDirecaoFromSomaDirecao(this.direcoes), CORRENDO);
                 }
             }
             else{
                 if(this.direcoes.size < 2){
-                    this.controle.initMov2(this.direcaoTempKD, ANDANDO);
+                    this.controle.iniciarMov(this.direcaoTempKD, ANDANDO);
                 }
                 else{
-                    this.controle.initMov2(this.keyCodeUtils.getDirecaoFromSomaDirecao(this.direcoes), ANDANDO);
+                    this.controle.iniciarMov(this.keyCodeUtils.getDirecaoFromSomaDirecao(this.direcoes), ANDANDO);
                 }
             }
         }
@@ -66,10 +67,10 @@ public class ControleDesktop extends ControleModelo {
             this.direcaoTempKU = this.keyCodeUtils.getDirecaoFromKeyCode(keycode);
             if(this.direcoes.removeValue(this.direcaoTempKU, true)){
                 if(this.direcoes.size == 0){
-                    this.controle.pararMov();
+                    this.controle.iniciarMov(Direcoes.CIMA, PARADO);
                 }
                 else if(this.direcoes.size == 1){
-                    this.controle.initMov(this.direcoes.first());
+                    this.controle.iniciarMov(this.direcoes.first(), ANDANDO);
                 }
             }
 

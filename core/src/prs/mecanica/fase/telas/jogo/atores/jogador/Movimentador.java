@@ -20,10 +20,6 @@ public class Movimentador {
 
     private float resultTemp;
 
-    private       SubMovimentadorHelper helperAtual;
-    private final SubMovimentadorHelper helperTecla;
-    private final SubMovimentadorHelper helperParado;
-
     private DirecaoEstado acaoAtual;
 
     public Movimentador(ControleSprite controleSprite) {
@@ -31,10 +27,6 @@ public class Movimentador {
 
         this.limitesTela = MapaRenderer.getInstance().getOrthogonalTiledMapRenderer().getViewBounds();
         this.limitesTelaSprite = new Rectangle();
-
-        this.helperTecla  = new SubMovimentadorHelperTecla();
-        this.helperParado = new SubMovimentadorHelperParado();
-        this.helperAtual  = this.helperParado;
 
         configurarLimites();
 
@@ -51,74 +43,45 @@ public class Movimentador {
     }
 
     public void movimentar(Sprite sprite, Direcoes direcaoAtual){
-        this.helperAtual.movimentando(sprite, direcaoAtual);
-    }
+        if(!this.limitesTela.contains(sprite.getBoundingRectangle())) return;
 
-    public void configurarTecla() {
-        this.helperAtual = this.helperTecla;
-    }
+        this.resultTemp = this.acaoAtual.getVelocidade() * Gdx.graphics.getDeltaTime();
 
-    public void configurarParado(){
-        this.helperAtual = helperParado;
+        switch (direcaoAtual){
+            case CIMA              :
+                this.resultTemp = sprite.getY() + this.resultTemp;
+                sprite.setPosition(sprite.getX(), min(this.resultTemp, this.limitesTelaSprite.getHeight()));
+                break;
+            case BAIXO             :
+                this.resultTemp = sprite.getY() - this.resultTemp;
+                sprite.setPosition(sprite.getX(), max(this.resultTemp, this.limitesTelaSprite.getY()));
+                break;
+            case ESQUERDA          :
+                this.resultTemp = sprite.getX() - this.resultTemp;
+                sprite.setPosition(max(this.resultTemp, this.limitesTelaSprite.getX()), sprite.getY());
+                break;
+            case ESQUERDA_INFERIOR :
+                sprite.setPosition(max(sprite.getX() - this.resultTemp, this.limitesTelaSprite.getX()), max(sprite.getY() - this.resultTemp, this.limitesTelaSprite.getY()));
+                break;
+            case ESQUERDA_SUPERIOR :
+                sprite.setPosition(max(sprite.getX() - this.resultTemp, this.limitesTelaSprite.getX()), min(sprite.getY() + this.resultTemp, this.limitesTelaSprite.getHeight()));
+                break;
+            case DIREITA           :
+                this.resultTemp = sprite.getX() + this.resultTemp;
+                sprite.setPosition(min(this.resultTemp, this.limitesTelaSprite.getWidth()), sprite.getY());
+                break;
+            case DIREIRA_SUPERIOR  :
+                sprite.setPosition(min(sprite.getX() + this.resultTemp, this.limitesTelaSprite.getWidth()), min(sprite.getY() + this.resultTemp, this.limitesTelaSprite.getHeight()));
+                break;
+            case DIREITA_INFERIOR  :
+                sprite.setPosition(min(sprite.getX() + this.resultTemp, this.limitesTelaSprite.getWidth()), max(sprite.getY() - this.resultTemp, this.limitesTelaSprite.getY()));
+                break;
+        }
+        this.controleSprite.updatePosicaoSprite(sprite);
     }
 
     public void setAcaoAtual(DirecaoEstado acao){
 //        System.out.println("Setado acao " + acao);
         this.acaoAtual = acao;
-    }
-
-    private interface SubMovimentadorHelper {
-        void movimentando(Sprite sprite, Direcoes direcaoAtual);
-    }
-
-    //6.25
-    private class SubMovimentadorHelperTecla implements SubMovimentadorHelper {
-
-        @Override
-        public void movimentando(Sprite sprite, Direcoes direcaoAtual) {
-            if(!limitesTela.contains(sprite.getBoundingRectangle())) return;
-
-            resultTemp = acaoAtual.getVelocidade() * Gdx.graphics.getDeltaTime();
-
-            switch (direcaoAtual){
-                case CIMA              :
-                    resultTemp = sprite.getY() + resultTemp;
-                    sprite.setPosition(sprite.getX(), min(resultTemp, limitesTelaSprite.getHeight()));
-                    break;
-                case BAIXO             :
-                    resultTemp = sprite.getY() - resultTemp;
-                    sprite.setPosition(sprite.getX(), max(resultTemp, limitesTelaSprite.getY()));
-                    break;
-                case ESQUERDA          :
-                    resultTemp = sprite.getX() - resultTemp;
-                    sprite.setPosition(max(resultTemp, limitesTelaSprite.getX()), sprite.getY());
-                    break;
-                case ESQUERDA_INFERIOR :
-                    sprite.setPosition(max(sprite.getX() - resultTemp, limitesTelaSprite.getX()), max(sprite.getY() - resultTemp, limitesTelaSprite.getY()));
-                    break;
-                case ESQUERDA_SUPERIOR :
-                    sprite.setPosition(max(sprite.getX() - resultTemp, limitesTelaSprite.getX()), min(sprite.getY() + resultTemp, limitesTelaSprite.getHeight()));
-                    break;
-                case DIREITA           :
-                    resultTemp = sprite.getX() + resultTemp;
-                    sprite.setPosition(min(resultTemp, limitesTelaSprite.getWidth()), sprite.getY());
-                    break;
-                case DIREIRA_SUPERIOR  :
-                    sprite.setPosition(min(sprite.getX() + resultTemp, limitesTelaSprite.getWidth()), min(sprite.getY() + resultTemp, limitesTelaSprite.getHeight()));
-                    break;
-                case DIREITA_INFERIOR  :
-                    sprite.setPosition(min(sprite.getX() + resultTemp, limitesTelaSprite.getWidth()), max(sprite.getY() - resultTemp, limitesTelaSprite.getY()));
-                    break;
-            }
-            controleSprite.updatePosicaoSprite(sprite);
-        }
-    }
-
-    private class SubMovimentadorHelperParado implements SubMovimentadorHelper {
-
-        @Override
-        public void movimentando(Sprite sprite, Direcoes direcaoAtual) {
-            controleSprite.updatePosicaoSprite(sprite);
-        }
     }
 }

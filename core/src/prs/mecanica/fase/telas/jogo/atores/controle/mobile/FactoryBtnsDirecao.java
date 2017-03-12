@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
 import prs.mecanica.fase.telas.jogo.atores.controle.CacheDirecao;
-import prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado;
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
 import prs.mecanica.fase.telas.jogo.comuns.imagens.Imagens;
@@ -41,16 +40,16 @@ class FactoryBtnsDirecao {
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 if(cacheDirecao.isMesmaUltimaDirecao(direcao) && getTapCount() > 1){
-                    controleJogador.initMov2(direcao, CORRENDO);
+                    controleJogador.iniciarMov(direcao, CORRENDO);
                 }
                 else{
-                    controleJogador.initMov2(direcao, ANDANDO);
+                    controleJogador.iniciarMov(direcao, ANDANDO);
                 }
             }
 
             @Override
             public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                controleJogador.initMov2(direcao, PARADO);
+                controleJogador.iniciarMov(direcao, PARADO);
             }
         });
         return btn;

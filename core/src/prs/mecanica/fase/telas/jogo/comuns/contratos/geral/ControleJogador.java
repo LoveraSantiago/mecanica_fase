@@ -5,7 +5,5 @@ import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
 
 public interface ControleJogador {
 
-    void initMov(Direcoes direcao);
-    void pararMov();
-    void initMov2(Direcoes direcao, DirecaoEstado direcaoEstado);
+    void iniciarMov(Direcoes direcao, DirecaoEstado direcaoEstado);
 }
