@@ -6,9 +6,12 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado;
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
 
-public class Movimentador {
+public class Movimentador implements PosicaoJogador{
 
     private final ControleSprite controleSprite;
+
+    private float posX;
+    private float posY;
     private float resultTemp;
 
     private DirecaoEstado acaoAtual;
@@ -16,6 +19,9 @@ public class Movimentador {
     public Movimentador(ControleSprite controleSprite) {
         this.controleSprite = controleSprite;
         this.acaoAtual = DirecaoEstado.PARADO;
+
+        this.posX = .1f;
+        this.posY = .1f;
     }
 
     public void movimentar(Sprite sprite, Direcoes direcaoAtual){
@@ -52,5 +58,15 @@ public class Movimentador {
 
     public void setAcaoAtual(DirecaoEstado acao){
         this.acaoAtual = acao;
+    }
+
+    @Override
+    public float getPosX() {
+        return 0;
+    }
+
+    @Override
+    public float getPosY() {
+        return 0;
     }
 }
