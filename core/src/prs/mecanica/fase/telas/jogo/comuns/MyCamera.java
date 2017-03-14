@@ -99,7 +99,6 @@ public class MyCamera implements TipoAtualizavel, ViewPortUser {
             else if((jogador.getPosY()  + jogador.getHaltura()) > ptYMaior){
                 this.camera.translate(0, (jogador.getPosY()  + jogador.getHaltura()) - ptYMaior, 0);
             }
-
         }
         atualizar();
     }

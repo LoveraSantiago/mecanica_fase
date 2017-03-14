@@ -23,7 +23,9 @@ public enum Imagens {
     BTN_DIR_SUP_D("btn_direitasuperior_d"),
     BTN_DIR_INF_D("btn_direitainferior_d"),
     BTN_ESQ_SUP_D("btn_esquerdasuperior_d"),
-    BTN_ESQ_INF_D("btn_esquerdainferior_d");
+    BTN_ESQ_INF_D("btn_esquerdainferior_d"),
+
+    CAMINHADA_DIREITA("andando_direita");
 
     private String nomeArquivo;
 

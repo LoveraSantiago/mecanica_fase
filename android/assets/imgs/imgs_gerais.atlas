@@ -4,142 +4,149 @@ size: 1024,64
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+andando_direita
+  rotate: false
+  xy: 2, 9
+  size: 180, 33
+  orig: 180, 33
+  offset: 0, 0
+  index: -1
 btn_baixo_d
   rotate: false
-  xy: 2, 2
+  xy: 184, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 btn_baixo_u
   rotate: false
-  xy: 44, 2
+  xy: 226, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 btn_cima_d
   rotate: false
-  xy: 86, 2
+  xy: 268, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 btn_cima_u
   rotate: false
-  xy: 128, 2
+  xy: 310, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 btn_direita_d
   rotate: false
-  xy: 170, 2
+  xy: 352, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 btn_direita_u
   rotate: false
-  xy: 212, 2
+  xy: 394, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 btn_direitainferior_d
   rotate: false
-  xy: 254, 2
+  xy: 436, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 btn_direitainferior_u
   rotate: false
-  xy: 296, 2
+  xy: 478, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 btn_direitasuperior_d
   rotate: false
-  xy: 338, 2
+  xy: 520, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 btn_direitasuperior_u
   rotate: false
-  xy: 380, 2
+  xy: 562, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 btn_esquerda_d
   rotate: false
-  xy: 422, 2
+  xy: 604, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 btn_esquerda_u
   rotate: false
-  xy: 464, 2
+  xy: 646, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 btn_esquerdainferior_d
   rotate: false
-  xy: 506, 2
+  xy: 688, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 btn_esquerdainferior_u
   rotate: false
-  xy: 548, 2
+  xy: 730, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 btn_esquerdasuperior_d
   rotate: false
-  xy: 590, 2
+  xy: 772, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 btn_esquerdasuperior_u
   rotate: false
-  xy: 632, 2
+  xy: 814, 2
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 pbaixo
   rotate: false
-  xy: 674, 2
+  xy: 856, 2
   size: 20, 40
   orig: 20, 40
   offset: 0, 0
   index: -1
 pcima
   rotate: false
-  xy: 696, 2
+  xy: 878, 2
   size: 20, 40
   orig: 20, 40
   offset: 0, 0
   index: -1
 pdireita
   rotate: false
-  xy: 718, 2
+  xy: 900, 2
   size: 20, 40
   orig: 20, 40
   offset: 0, 0
   index: -1
 pesquerda
   rotate: false
-  xy: 740, 2
+  xy: 922, 2
   size: 20, 40
   orig: 20, 40
   offset: 0, 0
