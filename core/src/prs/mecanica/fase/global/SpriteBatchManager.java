@@ -38,10 +38,4 @@ public class SpriteBatchManager implements Disposable, prs.mecanica.fase.telas.j
     public void dispose() {
         this.spriteBatch.dispose();
     }
-
-    public void desenharSprite(Sprite sprite){
-        this.spriteBatch.begin();
-        sprite.draw(this.spriteBatch);
-        this.spriteBatch.end();
-    }
 }

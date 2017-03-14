@@ -1,6 +1,7 @@
 package prs.mecanica.fase.telas.jogo.atores.jogador;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 import prs.mecanica.fase.global.SpriteBatchManager;
@@ -12,7 +13,7 @@ import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoDesenhavel;
 
 public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogador {
 
-    private final SpriteBatchManager spriteBatchManager;
+    private final SpriteBatch spriteBatch;
     private final SpriteManager spriteManager;
 
     private Direcoes direcaoAtual;
@@ -26,7 +27,7 @@ public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogad
         this.direcaoAtual = Direcoes.CIMA;
         this.spriteAtual = this.spriteManager.getSprite(this.direcaoAtual);
 
-        this.spriteBatchManager = SpriteBatchManager.getInstance();
+        this.spriteBatch = SpriteBatchManager.getInstance().getSpriteBatch();
 
         this.movimentador = new Movimentador(this.spriteManager);
     }
@@ -34,7 +35,9 @@ public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogad
     @Override
     public void meDesenhar() {
         this.movimentador.movimentar(this.spriteAtual, this.direcaoAtual);
-        this.spriteBatchManager.desenharSprite  (this.spriteAtual);
+        this.spriteBatch.begin();
+        this.spriteAtual.draw(this.spriteBatch);
+        this.spriteBatch.end();
     }
 
     @Override
