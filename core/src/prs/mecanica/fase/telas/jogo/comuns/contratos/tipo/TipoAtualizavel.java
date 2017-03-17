@@ -1,7 +1,7 @@
 package prs.mecanica.fase.telas.jogo.comuns.contratos.tipo;
 
-public interface TipoAtualizavel {
+public interface TipoAtualizavel <T>{
 
-    void atualizar();
+    void atualizar(T t);
 
 }

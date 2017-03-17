@@ -5,7 +5,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoDesenhavel;
 import prs.mecanica.fase.telas.jogo.comuns.imagens.MapaLeitor;
-import prs.mecanica.fase.telas.jogo.comuns.MyCamera;
+import prs.mecanica.fase.telas.jogo.atores.camera.MyCamera;
 
 public class MapaRenderer implements TipoDesenhavel {
 

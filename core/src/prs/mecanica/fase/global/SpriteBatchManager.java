@@ -1,12 +1,13 @@
 package prs.mecanica.fase.global;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
 
-import prs.mecanica.fase.telas.jogo.comuns.MyCamera;
+import prs.mecanica.fase.telas.jogo.atores.camera.MyCamera;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoAtualizavel;
 
-public class SpriteBatchManager implements Disposable, TipoAtualizavel {
+public class SpriteBatchManager implements Disposable, TipoAtualizavel<OrthographicCamera> {
 
     private static final SpriteBatchManager SPRITE_BATCH_MANAGER;
 
@@ -18,7 +19,7 @@ public class SpriteBatchManager implements Disposable, TipoAtualizavel {
 
     private SpriteBatchManager(){
         this.spriteBatch = new SpriteBatch();
-        atualizar();
+        atualizar(MyCamera.getInstance().getCamera());
     }
 
     public static SpriteBatchManager getInstance() {
@@ -30,8 +31,8 @@ public class SpriteBatchManager implements Disposable, TipoAtualizavel {
     }
 
     @Override
-    public void atualizar() {
-        this.spriteBatch.setProjectionMatrix(MyCamera.getInstance().getCamera().combined);
+    public void atualizar(OrthographicCamera camera) {
+        this.spriteBatch.setProjectionMatrix(camera.combined);
     }
 
     @Override

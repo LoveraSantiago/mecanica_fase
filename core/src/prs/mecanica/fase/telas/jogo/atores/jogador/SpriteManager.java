@@ -3,11 +3,10 @@ package prs.mecanica.fase.telas.jogo.atores.jogador;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
-import prs.mecanica.fase.telas.jogo.comuns.MyCamera;
+import prs.mecanica.fase.telas.jogo.atores.camera.MyCamera;
 import prs.mecanica.fase.telas.jogo.comuns.imagens.Imagens;
 import prs.mecanica.fase.telas.jogo.comuns.imagens.ImgLeitor;
 

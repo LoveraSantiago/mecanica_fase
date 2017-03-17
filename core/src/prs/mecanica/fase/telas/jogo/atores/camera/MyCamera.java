@@ -1,4 +1,4 @@
-package prs.mecanica.fase.telas.jogo.comuns;
+package prs.mecanica.fase.telas.jogo.atores.camera;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
@@ -9,7 +9,7 @@ import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.InformacaoJogador;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.usuario.ViewPortUser;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoAtualizavel;
 
-public class MyCamera implements TipoAtualizavel, ViewPortUser {
+public class MyCamera implements ViewPortUser, TipoAtualizavel<InformacaoJogador>{
 
     public static final float ESCALA = 1f / 10f;
     public static final int LARGURA_TELA = 30;
@@ -30,7 +30,7 @@ public class MyCamera implements TipoAtualizavel, ViewPortUser {
         this.viewport.apply();
 
         this.camera.position.set(this.camera.viewportWidth / 2f, this.camera.viewportHeight / 2f, 0);
-        atualizar();
+        this.camera.update();
     }
 
     public static MyCamera getInstance() {
@@ -43,10 +43,10 @@ public class MyCamera implements TipoAtualizavel, ViewPortUser {
         this.viewport.apply();
     }
 
-    @Override
-    public void atualizar() {
-        this.camera.update();
-    }
+//    @Override
+//    public void atualizar() {
+//        this.camera.update();
+//    }
 
     private Vector3 diferenca = new Vector3();
     private float ptYMaior;
@@ -55,6 +55,7 @@ public class MyCamera implements TipoAtualizavel, ViewPortUser {
     private float ptXMaior;
 
     float result;
+    @Override
     public void atualizar(InformacaoJogador jogador){
         this.ptYMaior = -1f;
         this.ptXMaior = -1f;
@@ -100,7 +101,7 @@ public class MyCamera implements TipoAtualizavel, ViewPortUser {
                 this.camera.translate(0, (jogador.getPosY()  + jogador.getHaltura()) - ptYMaior, 0);
             }
         }
-        atualizar();
+        this.camera.update();
     }
 
     public OrthographicCamera getCamera() {

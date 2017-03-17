@@ -10,7 +10,7 @@ import prs.mecanica.fase.telas.jogo.atores.mapas.MapaRenderer;
 import prs.mecanica.fase.telas.jogo.atores.mapas.Mapas;
 import prs.mecanica.fase.telas.jogo.comuns.imagens.ImgLeitor;
 import prs.mecanica.fase.telas.jogo.comuns.imagens.MapaLeitor;
-import prs.mecanica.fase.telas.jogo.comuns.MyCamera;
+import prs.mecanica.fase.telas.jogo.atores.camera.MyCamera;
 import prs.mecanica.fase.global.SpriteBatchManager;
 
 public class MecanicaFaseMain extends ApplicationAdapter {
@@ -40,7 +40,7 @@ public class MecanicaFaseMain extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		this.myCamera.atualizar(this.jogador);
-		this.spriteBatchManager.atualizar();
+		this.spriteBatchManager.atualizar(this.myCamera.getCamera());
 
 		this.mapaRenderer.meDesenhar();
 		this.jogador.meDesenhar();
