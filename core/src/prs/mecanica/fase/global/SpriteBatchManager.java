@@ -1,12 +1,12 @@
 package prs.mecanica.fase.global;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
 
 import prs.mecanica.fase.telas.jogo.comuns.MyCamera;
+import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoAtualizavel;
 
-public class SpriteBatchManager implements Disposable, prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoAtualizavel {
+public class SpriteBatchManager implements Disposable, TipoAtualizavel {
 
     private static final SpriteBatchManager SPRITE_BATCH_MANAGER;
 

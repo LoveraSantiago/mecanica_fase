@@ -74,13 +74,6 @@ public class SpriteManager implements ControleSprite{
     }
 
     @Override
-    public void updatePosicaoSprite(Sprite sprite){
-        for(this.contadorSprites = 0; this.contadorSprites < this.arraySprites.size; this.contadorSprites++){
-            this.arraySprites.get(this.contadorSprites).setPosition(sprite.getX(), sprite.getY());
-        }
-    }
-
-    @Override
     public float getWidth() {
         return this.widthSprite;
     }

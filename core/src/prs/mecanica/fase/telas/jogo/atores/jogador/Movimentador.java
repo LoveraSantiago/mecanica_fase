@@ -8,52 +8,53 @@ import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
 
 public class Movimentador implements PosicaoJogador{
 
-    private final ControleSprite controleSprite;
-
     private float posX;
     private float posY;
     private float resultTemp;
 
     private DirecaoEstado acaoAtual;
 
-    public Movimentador(ControleSprite controleSprite) {
-        this.controleSprite = controleSprite;
+    public Movimentador() {
         this.acaoAtual = DirecaoEstado.PARADO;
 
         this.posX = .1f;
         this.posY = .1f;
     }
 
-    public void movimentar(Sprite sprite, Direcoes direcaoAtual){
+    public void movimentar(Sprite spriteAtual, Direcoes direcaoAtual){
         this.resultTemp = this.acaoAtual.getVelocidade() * Gdx.graphics.getDeltaTime();
 
         switch (direcaoAtual){
             case CIMA              :
-                sprite.setPosition(sprite.getX(), sprite.getY() + this.resultTemp);
+                this.posY += this.resultTemp;
                 break;
             case BAIXO             :
-                sprite.setPosition(sprite.getX(), sprite.getY() - this.resultTemp);
+                this.posY -= this.resultTemp;
                 break;
             case ESQUERDA          :
-                sprite.setPosition(sprite.getX() - this.resultTemp, sprite.getY());
+                this.posX -= this.resultTemp;
                 break;
             case ESQUERDA_INFERIOR :
-                sprite.setPosition(sprite.getX() - this.resultTemp, sprite.getY() - this.resultTemp);
+                this.posX -= this.resultTemp;
+                this.posY -= this.resultTemp;
                 break;
             case ESQUERDA_SUPERIOR :
-                sprite.setPosition(sprite.getX() - this.resultTemp, sprite.getY() + this.resultTemp);
+                this.posX -= this.resultTemp;
+                this.posY += this.resultTemp;
                 break;
             case DIREITA           :
-                sprite.setPosition(sprite.getX() + this.resultTemp, sprite.getY());
+                this.posX += this.resultTemp;
                 break;
             case DIREIRA_SUPERIOR  :
-                sprite.setPosition(sprite.getX() + this.resultTemp, sprite.getY() + this.resultTemp);
+                this.posX += this.resultTemp;
+                this.posY += this.resultTemp;
                 break;
             case DIREITA_INFERIOR  :
-                sprite.setPosition(sprite.getX() + this.resultTemp, sprite.getY() - this.resultTemp);
+                this.posX += this.resultTemp;
+                this.posY -= this.resultTemp;
                 break;
         }
-        this.controleSprite.updatePosicaoSprite(sprite);
+        spriteAtual.setPosition(this.posX, this.posY);
     }
 
     public void setAcaoAtual(DirecaoEstado acao){
@@ -62,11 +63,11 @@ public class Movimentador implements PosicaoJogador{
 
     @Override
     public float getPosX() {
-        return 0;
+        return this.posX;
     }
 
     @Override
     public float getPosY() {
-        return 0;
+        return this.posY;
     }
 }
