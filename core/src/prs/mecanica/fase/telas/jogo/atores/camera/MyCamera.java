@@ -31,9 +31,9 @@ public class MyCamera implements ViewPortUser, TipoAtualizavel<InformacaoJogador
         this.viewport.apply();
 
         this.camera.position.set(this.camera.viewportWidth / 2f, this.camera.viewportHeight / 2f, 0);
+        this.camera.update();
 
         this.movimentador = new MovimentadorCamera(this.camera);
-        this.camera.update();
     }
 
     public static MyCamera getInstance() {

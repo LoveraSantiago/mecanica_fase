@@ -30,6 +30,7 @@ public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogad
         this.spriteBatch = SpriteBatchManager.getInstance().getSpriteBatch();
 
         this.movimentador = new Movimentador();
+        this.movimentador.movimentar(this.spriteAtual, this.direcaoAtual);
     }
 
     @Override

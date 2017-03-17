@@ -23,6 +23,7 @@ class MovimentadorCamera implements TipoAtualizavel<InformacaoJogador>{
 
     @Override
     public void atualizar(InformacaoJogador jogador) {
+        System.out.println("posX: " + jogador.getPosX() + "posY: " + jogador.getPosY());
         if(!this.miniArea.contains(jogador.getBounds())){
 
             if(jogador.getPosX() < this.miniArea.getX()){
