@@ -19,6 +19,7 @@ public class MyCamera implements ViewPortUser, TipoAtualizavel<InformacaoJogador
     private final OrthographicCamera camera;
 
     private final Viewport viewport;
+    private final MovimentadorCamera movimentador;
 
     static{
         myCamera = new MyCamera();
@@ -30,6 +31,8 @@ public class MyCamera implements ViewPortUser, TipoAtualizavel<InformacaoJogador
         this.viewport.apply();
 
         this.camera.position.set(this.camera.viewportWidth / 2f, this.camera.viewportHeight / 2f, 0);
+
+        this.movimentador = new MovimentadorCamera(this.camera);
         this.camera.update();
     }
 
@@ -41,6 +44,9 @@ public class MyCamera implements ViewPortUser, TipoAtualizavel<InformacaoJogador
     public void resize(int width, int heigth){
         this.viewport.update(width, heigth);
         this.viewport.apply();
+        this.camera.update();
+
+        this.movimentador.setLimitesCamera();
     }
 
 //    @Override
@@ -48,59 +54,60 @@ public class MyCamera implements ViewPortUser, TipoAtualizavel<InformacaoJogador
 //        this.camera.update();
 //    }
 
-    private Vector3 diferenca = new Vector3();
-    private float ptYMaior;
-    private float ptYMenor;
-    private float ptXmenor;
-    private float ptXMaior;
-
-    float result;
+//    private Vector3 diferenca = new Vector3();
+//    private float ptYMaior;
+//    private float ptYMenor;
+//    private float ptXmenor;
+//    private float ptXMaior;
+//
+//    float result;
     @Override
     public void atualizar(InformacaoJogador jogador){
-        this.ptYMaior = -1f;
-        this.ptXMaior = -1f;
-        this.ptXmenor = 100f;
-        this.ptYMenor = 100f;
-
-        for(int i = 0; i < this.camera.frustum.planePoints.length; i++){
-            this.ptYMaior = Math.max(this.ptYMaior, this.camera.frustum.planePoints[i].y);
-            this.ptYMenor = Math.min(this.ptYMenor, this.camera.frustum.planePoints[i].y);
-            this.ptXMaior = Math.max(this.ptXMaior, this.camera.frustum.planePoints[i].x);
-            this.ptXmenor = Math.min(this.ptXmenor, this.camera.frustum.planePoints[i].x);
-        }
-        System.out.println("x jogador: " + (jogador.getPosX() + jogador.getLargura()) + " limiteCamera: " + ptXMaior);
-
-        if(!this.camera.frustum.pointInFrustum(jogador.getPosX(), jogador.getPosY(), 0) ||
-                !this.camera.frustum.pointInFrustum(jogador.getPosX() + jogador.getLargura(), jogador.getPosY() + jogador.getHaltura(), 0)){
-
-//            this.ptYMaior = -1f;
-//            this.ptXMaior = -1f;
-//            this.ptXmenor = 100f;
-//            this.ptYMenor = 100f;
+//        this.ptYMaior = -1f;
+//        this.ptXMaior = -1f;
+//        this.ptXmenor = 100f;
+//        this.ptYMenor = 100f;
 //
-//            for(int i = 0; i < this.camera.frustum.planePoints.length; i++){
-//                this.ptYMaior = Math.max(this.ptYMaior, this.camera.frustum.planePoints[i].y);
-//                this.ptYMenor = Math.min(this.ptYMenor, this.camera.frustum.planePoints[i].y);
-//                this.ptXMaior = Math.max(this.ptXMaior, this.camera.frustum.planePoints[i].x);
-//                this.ptXmenor = Math.min(this.ptXmenor, this.camera.frustum.planePoints[i].x);
+//        for(int i = 0; i < this.camera.frustum.planePoints.length; i++){
+//            this.ptYMaior = Math.max(this.ptYMaior, this.camera.frustum.planePoints[i].y);
+//            this.ptYMenor = Math.min(this.ptYMenor, this.camera.frustum.planePoints[i].y);
+//            this.ptXMaior = Math.max(this.ptXMaior, this.camera.frustum.planePoints[i].x);
+//            this.ptXmenor = Math.min(this.ptXmenor, this.camera.frustum.planePoints[i].x);
+//        }
+//        System.out.println("x jogador: " + (jogador.getPosX() + jogador.getLargura()) + " limiteCamera: " + ptXMaior);
+//
+//        if(!this.camera.frustum.pointInFrustum(jogador.getPosX(), jogador.getPosY(), 0) ||
+//                !this.camera.frustum.pointInFrustum(jogador.getPosX() + jogador.getLargura(), jogador.getPosY() + jogador.getHaltura(), 0)){
+//
+////            this.ptYMaior = -1f;
+////            this.ptXMaior = -1f;
+////            this.ptXmenor = 100f;
+////            this.ptYMenor = 100f;
+////
+////            for(int i = 0; i < this.camera.frustum.planePoints.length; i++){
+////                this.ptYMaior = Math.max(this.ptYMaior, this.camera.frustum.planePoints[i].y);
+////                this.ptYMenor = Math.min(this.ptYMenor, this.camera.frustum.planePoints[i].y);
+////                this.ptXMaior = Math.max(this.ptXMaior, this.camera.frustum.planePoints[i].x);
+////                this.ptXmenor = Math.min(this.ptXmenor, this.camera.frustum.planePoints[i].x);
+////            }
+//
+////            System.out.println("x jogador: " + jogador.getPosX() + " limiteCamera: " + ptXMaior);
+//            if(jogador.getPosX() < ptXmenor){
+//                this.camera.translate(jogador.getPosX() - ptXmenor, 0, 0);
 //            }
-
-//            System.out.println("x jogador: " + jogador.getPosX() + " limiteCamera: " + ptXMaior);
-            if(jogador.getPosX() < ptXmenor){
-                this.camera.translate(jogador.getPosX() - ptXmenor, 0, 0);
-            }
-            else if((jogador.getPosX() + jogador.getLargura()) > ptXMaior){
-                System.out.println("entramos");
-                this.camera.translate((jogador.getPosX() + jogador.getLargura()) - ptXMaior, 0, 0);
-            }
-
-            if(jogador.getPosY() < ptYMenor){
-                this.camera.translate(0, jogador.getPosY() - ptYMenor, 0);
-            }
-            else if((jogador.getPosY()  + jogador.getHaltura()) > ptYMaior){
-                this.camera.translate(0, (jogador.getPosY()  + jogador.getHaltura()) - ptYMaior, 0);
-            }
-        }
+//            else if((jogador.getPosX() + jogador.getLargura()) > ptXMaior){
+//                System.out.println("entramos");
+//                this.camera.translate((jogador.getPosX() + jogador.getLargura()) - ptXMaior, 0, 0);
+//            }
+//
+//            if(jogador.getPosY() < ptYMenor){
+//                this.camera.translate(0, jogador.getPosY() - ptYMenor, 0);
+//            }
+//            else if((jogador.getPosY()  + jogador.getHaltura()) > ptYMaior){
+//                this.camera.translate(0, (jogador.getPosY()  + jogador.getHaltura()) - ptYMaior, 0);
+//            }
+//        }
+        this.movimentador.atualizar(jogador);
         this.camera.update();
     }
 

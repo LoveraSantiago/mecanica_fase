@@ -17,8 +17,8 @@ public class Movimentador implements PosicaoJogador{
     public Movimentador() {
         this.acaoAtual = DirecaoEstado.PARADO;
 
-        this.posX = .1f;
-        this.posY = .1f;
+        this.posX = 5.1f;
+        this.posY = 3.1f;
     }
 
     public void movimentar(Sprite spriteAtual, Direcoes direcaoAtual){
