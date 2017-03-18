@@ -19,7 +19,7 @@ public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogad
     private Direcoes direcaoAtual;
     private Sprite spriteAtual;
 
-    private final Movimentador movimentador;
+    private final MovimentadorJogador movimentador;
     private final Rectangle areaJogador;
 
     public Jogador() {
@@ -30,7 +30,7 @@ public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogad
 
         this.spriteBatch = SpriteBatchManager.getInstance().getSpriteBatch();
 
-        this.movimentador = new Movimentador();
+        this.movimentador = new MovimentadorJogador();
         this.movimentador.movimentar(this.spriteAtual, this.direcaoAtual);
 
         this.areaJogador = new Rectangle();

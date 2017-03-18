@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado;
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
 
-public class Movimentador implements PosicaoJogador{
+public class MovimentadorJogador implements PosicaoJogador{
 
     private float posX;
     private float posY;
@@ -14,7 +14,7 @@ public class Movimentador implements PosicaoJogador{
 
     private DirecaoEstado acaoAtual;
 
-    public Movimentador() {
+    public MovimentadorJogador() {
         this.acaoAtual = DirecaoEstado.PARADO;
 
         this.posX = 5.1f;
