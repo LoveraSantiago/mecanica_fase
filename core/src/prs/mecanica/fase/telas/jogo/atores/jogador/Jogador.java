@@ -20,6 +20,7 @@ public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogad
     private Sprite spriteAtual;
 
     private final Movimentador movimentador;
+    private final Rectangle areaJogador;
 
     public Jogador() {
         this.spriteManager = new SpriteManager();
@@ -31,6 +32,8 @@ public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogad
 
         this.movimentador = new Movimentador();
         this.movimentador.movimentar(this.spriteAtual, this.direcaoAtual);
+
+        this.areaJogador = new Rectangle();
     }
 
     @Override
@@ -60,16 +63,16 @@ public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogad
 
     @Override
     public float getPosX() {
-        return this.spriteAtual.getX();
+        return this.movimentador.getPosX();
     }
 
     @Override
     public float getPosY(){
-        return this.spriteAtual.getY();
+        return this.movimentador.getPosY();
     }
 
     @Override
     public Rectangle getBounds() {
-        return this.spriteAtual.getBoundingRectangle();
+        return this.areaJogador.set(getPosX(), getPosY(), getLargura(), getHaltura());
     }
 }
