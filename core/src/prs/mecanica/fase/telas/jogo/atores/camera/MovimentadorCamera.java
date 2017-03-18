@@ -25,7 +25,6 @@ class MovimentadorCamera implements TipoAtualizavel<InformacaoJogador>{
     public void atualizar(InformacaoJogador jogador) {
         if(!this.miniArea.contains(jogador.getBounds())){
             setLimitesCamera();
-            System.out.println("diferenca x:" + (jogador.getPosX() - this.miniArea.getX()));
             if(jogador.getPosX() < this.miniArea.getX()){
                 this.camera.translate(jogador.getPosX() - this.miniArea.getX(), 0, 0);
             }

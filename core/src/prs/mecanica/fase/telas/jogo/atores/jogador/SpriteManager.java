@@ -23,8 +23,8 @@ public class SpriteManager implements ControleSprite{
     private final Sprite spriteDir;
     private final Array<Sprite> arraySprites;
 
-    private TextureRegion caminhada;
-    private Animation<TextureRegion> animation;
+//    private TextureRegion caminhada;
+//    private Animation<TextureRegion> animation;
 
 
     public SpriteManager() {
@@ -40,10 +40,10 @@ public class SpriteManager implements ControleSprite{
         configurarSprites();
         configurarCamposTamanhoSprite();
 
-        caminhada = imgLeitor.getImg(Imagens.CAMINHADA_DIREITA);
-        TextureRegion[] regions = TextureRegion.split(caminhada.getTexture(), 30, 33)[0];
-        animation = new Animation<TextureRegion>(0.15f, regions);
-        animation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+//        caminhada = imgLeitor.getImg(Imagens.CAMINHADA_DIREITA);
+//        TextureRegion[] regions = TextureRegion.split(caminhada.getTexture(), 30, 33)[0];
+//        animation = new Animation<TextureRegion>(0.15f, regions);
+//        animation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
      }
 
     public Sprite getSprite(Direcoes direcao){

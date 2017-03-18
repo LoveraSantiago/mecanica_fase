@@ -1,7 +1,10 @@
 package prs.mecanica.fase.telas.jogo.atores.jogador;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
 import prs.mecanica.fase.global.SpriteBatchManager;
@@ -11,6 +14,8 @@ import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.InformacaoJogador;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoAtualizavel;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoDesenhavel;
+import prs.mecanica.fase.telas.jogo.comuns.imagens.Imagens;
+import prs.mecanica.fase.telas.jogo.comuns.imagens.ImgLeitor;
 
 public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogador, TipoAtualizavel<Object>{
 
@@ -22,6 +27,12 @@ public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogad
 
     private final MovimentadorJogador movimentador;
     private final Rectangle areaJogador;
+
+
+    private TextureRegion walkSheet;
+    private Animation<TextureRegion> walkAnimation;
+    private TextureRegion atual;
+    float stateTime;
 
     public Jogador() {
         this.spriteManager = new SpriteManager();
@@ -35,6 +46,12 @@ public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogad
         this.movimentador.movimentar(this.direcaoAtual);
 
         this.areaJogador = new Rectangle();
+
+        ImgLeitor imgLeitor = ImgLeitor.getInstance();
+        walkSheet = imgLeitor.getImg(Imagens.CAMINHADA_DIREITA);
+        TextureRegion[] regions = TextureRegion.split(walkSheet.getTexture(), 30, 33)[0];
+        walkAnimation = new Animation<TextureRegion>(0.15f, regions);
+        walkAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
     }
 
     @Override
@@ -47,6 +64,11 @@ public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogad
         this.spriteBatch.begin();
         this.spriteAtual.setPosition(getPosX(), getPosY());
         this.spriteAtual.draw(this.spriteBatch);
+
+        this.stateTime += Gdx.graphics.getDeltaTime();
+        this.atual = this.walkAnimation.getKeyFrame(stateTime, true);
+        this.spriteBatch.draw(this.atual, getPosX(), getPosY(), getLargura(), getHaltura());
+
         this.spriteBatch.end();
     }
 
