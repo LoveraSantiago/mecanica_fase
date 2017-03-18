@@ -2,8 +2,8 @@ package prs.mecanica.fase.telas.jogo.atores.entidades;
 
 public enum DirecaoEstado {
 
-    PARADO(0),
-    ANDANDO(5),
+    PARADO(0f),
+    ANDANDO(5f),
     CORRENDO(10f);
 
     private float velocidade;

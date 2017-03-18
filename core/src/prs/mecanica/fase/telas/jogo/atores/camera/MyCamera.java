@@ -1,12 +1,13 @@
 package prs.mecanica.fase.telas.jogo.atores.camera;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.InformacaoJogador;
-import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoAtualizavel;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.usuario.ViewPortUser;
+import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoAtualizavel;
 
 public class MyCamera implements ViewPortUser, TipoAtualizavel<InformacaoJogador>{
 
