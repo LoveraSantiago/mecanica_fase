@@ -9,9 +9,10 @@ import prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado;
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.ControleJogador;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.geral.InformacaoJogador;
+import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoAtualizavel;
 import prs.mecanica.fase.telas.jogo.comuns.contratos.tipo.TipoDesenhavel;
 
-public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogador {
+public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogador, TipoAtualizavel<Object>{
 
     private final SpriteBatch spriteBatch;
     private final SpriteManager spriteManager;
@@ -37,9 +38,14 @@ public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogad
     }
 
     @Override
-    public void meDesenhar() {
+    public void atualizar(Object o) {
         this.movimentador.movimentar(this.spriteAtual, this.direcaoAtual);
+    }
+
+    @Override
+    public void meDesenhar() {
         this.spriteBatch.begin();
+        this.spriteAtual.setPosition(getPosX(), getPosY());
         this.spriteAtual.draw(this.spriteBatch);
         this.spriteBatch.end();
     }

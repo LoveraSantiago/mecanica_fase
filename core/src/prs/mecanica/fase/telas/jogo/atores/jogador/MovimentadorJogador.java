@@ -1,7 +1,6 @@
 package prs.mecanica.fase.telas.jogo.atores.jogador;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import prs.mecanica.fase.telas.jogo.atores.entidades.DirecaoEstado;
 import prs.mecanica.fase.telas.jogo.atores.entidades.Direcoes;
@@ -21,7 +20,7 @@ public class MovimentadorJogador implements PosicaoJogador{
         this.posY = 3.1f;
     }
 
-    public void movimentar(Sprite spriteAtual, Direcoes direcaoAtual){
+    public void movimentar(Direcoes direcaoAtual){
         this.resultTemp = this.acaoAtual.getVelocidade() * Gdx.graphics.getDeltaTime();
 
         switch (direcaoAtual){
@@ -54,7 +53,6 @@ public class MovimentadorJogador implements PosicaoJogador{
                 this.posY -= this.resultTemp;
                 break;
         }
-        spriteAtual.setPosition(this.posX, this.posY);
     }
 
     public void setAcaoAtual(DirecaoEstado acao){
