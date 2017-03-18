@@ -49,9 +49,9 @@ public class Jogador implements TipoDesenhavel, ControleJogador, InformacaoJogad
 
         ImgLeitor imgLeitor = ImgLeitor.getInstance();
         walkSheet = imgLeitor.getImg(Imagens.CAMINHADA_DIREITA);
-        TextureRegion[] regions = TextureRegion.split(walkSheet.getTexture(), 30, 33)[0];
+        TextureRegion[] regions = walkSheet.split(30, 33)[0];
         walkAnimation = new Animation<TextureRegion>(0.15f, regions);
-        walkAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+        walkAnimation.setPlayMode(Animation.PlayMode.LOOP);
     }
 
     @Override

@@ -31,6 +31,11 @@ public class ImgLeitor implements Disposable{
         return this.textureAtlas.createSprite(img.getNomeArquivo());
     }
 
+    public TextureAtlas.AtlasRegion getRegiao(Imagens img){
+        TextureAtlas.AtlasRegion region = this.textureAtlas.findRegion(img.getNomeArquivo());
+        return region;
+    }
+
     public TextureAtlas getTextureAtlas() {
         return textureAtlas;
     }
