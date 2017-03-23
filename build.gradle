@@ -80,3 +80,9 @@ project(":core") {
 tasks.eclipse.doLast {
     delete ".project"
 }
+
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('ddMMyyyy_HHmmss')
+    return formattedDate
+}

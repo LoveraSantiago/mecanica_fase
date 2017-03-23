@@ -19,11 +19,16 @@ task dist(type: Jar) {
     from files(sourceSets.main.output.resourcesDir)
     from {configurations.compile.collect {zipTree(it)}}
     from files(project.assetsDir);
+
+    baseName = 'mecanica_fase'
+    version = '1.0_' + getDate()
  
     manifest {
         attributes 'Main-Class': project.mainClassName
     }
 }
+
+//ver https://github.com/eggheadgames/libgdx-flavors
 
 dist.dependsOn classes
 
