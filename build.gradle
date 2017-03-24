@@ -86,3 +86,10 @@ def getDate() {
     def formattedDate = date.format('ddMMyyyy_HHmmss')
     return formattedDate
 }
+
+
+task copiar(type: Copy){
+    from(file('core/qq/'))
+    into('core/qq2')
+    include('**/*.txt', '**/*.xml', '**/*.properties')
+}
